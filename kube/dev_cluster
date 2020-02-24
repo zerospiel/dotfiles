@@ -1,0 +1,21 @@
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: cert
+    server: https://URI:6443
+  name: cluster-dev
+contexts:
+- context:
+    cluster:  cluster-dev
+    namespace: default
+    user:  cluster-dev
+  name: cluster-dev
+current-context: cluster-dev
+kind: Config
+preferences: {}
+users:
+- name: cluster-dev
+  user:
+    client-certificate-data: cert
+    client-key-data: cert
+

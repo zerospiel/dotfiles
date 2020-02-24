@@ -1,0 +1,5 @@
+[user]
+	name = Michael Morgoev
+	email = morgoevm@gmail.com
+[url "git@YOUR_GIT_SSH_URI:"]
+	insteadOf = https://URI

@@ -1,0 +1,162 @@
+{
+    // Telemetry
+    "telemetry.enableTelemetry": false,
+    // 
+    // Terminals
+    "terminal.integrated.shell.osx": "/usr/local/bin/bash",
+    "terminal.integrated.shell.linux": "/bin/bash",
+    // 
+    // Breadcrumbs
+    "breadcrumbs.enabled": true,
+    // 
+    // WARN: VS CODE EDITOR COMMON AND MISC
+    "vsicons.dontShowNewVersionMessage": true,
+    "workbench.colorTheme": "Quiet Light",
+    "explorer.compactFolders": false,
+    // 
+    // Editor fonts, families, sizes, wrap etc.
+    "editor.fontSize": 14,
+    "editor.fontLigatures": false,
+    "editor.wordWrap": "on",
+    "editor.renderControlCharacters": false,
+    "editor.copyWithSyntaxHighlighting": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    // 
+    // Workbench setup
+    "workbench.startupEditor": "none",
+    "workbench.statusBar.feedback.visible": false,
+    "workbench.editor.showTabs": true,
+    "workbench.iconTheme": "vscode-icons",
+    // 
+    // Extensions setup
+    "extensions.showRecommendationsOnlyOnDemand": false,
+    "extensions.autoCheckUpdates": true,
+    "extensions.autoUpdate": true,
+    //
+    // Window
+    "window.nativeTabs": true,
+    "window.zoomLevel": 0,
+    // 
+    // Go related settings (gopls, modules etc.)
+    // "go.autocompleteUnimportedPackages": true,
+    // "go.useCodeSnippetsOnFunctionSuggest": true,
+    "go.docsTool": "gogetdoc",
+    "go.formatTool": "goimports",
+    "go.formatFlags": [
+        "-w"
+    ],
+    "go.buildOnSave": "off",
+    "go.vetOnSave": "off",
+    "go.lintOnSave": "package",
+    "go.lintTool": "golangci-lint",
+    "go.lintFlags": [
+        "--config=./.golangci.yaml"
+    ],
+    "go.addTags": {
+        "tags": "json",
+        "options": "",
+        "promptForTags": true,
+        "transform": "snakecase"
+    },
+    "go.useLanguageServer": true,
+    // "go.languageServerExperimentalFeatures": {
+    //     "autoComplete": true,
+    //     "diagnostics": true,
+    //     "documentLink": false, // to remove import links to godoc
+    //     "documentSymbols": true,
+    //     "findReferences": true,
+    //     "format": true, // to let goimports/gofmt/goreturns format the code instead of gopls
+    //     "goToDefinition": true,
+    //     "goToTypeDefinition": true,
+    //     "highlight": true,
+    //     "hover": true,
+    //     "incrementalSync": true,
+    //     "rename": true,
+    //     "signatureHelp": true,
+    //     "workspaceSymbols": true,
+    // // },
+    "[go]": {
+        "editor.snippetSuggestions": "inline",
+        "editor.formatOnSave": true,
+        "editor.formatOnSaveTimeout": 4500,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        },
+        "editor.codeActionsOnSaveTimeout": 9000,
+    },
+    "gopls": {
+        "usePlaceholders": true, // add parameter placeholders when completing a function
+        "staticcheck": false, // add staticcheck linter capabilities
+        // Experimental settings
+        "completeUnimported": true, // autocomplete unimported packages
+        // "watchFileChanges": true, // watch file changes outside of the editor
+        "deepCompletion": true, // enable deep completion
+    },
+    // 
+    "files.associations": {
+        "*.lock": "toml",
+        "*.tpl": "gohtml",
+        "README": "markdown",
+        "CHANGELOG": "markdown",
+        "Dockerfile": "dockerfile",
+    },
+    "files.eol": "\n",
+    // TODO extension settings
+    "todohighlight.isEnable": true,
+    "todohighlight.include": [
+        "**/*.go",
+        "**/*.md"
+    ],
+    "todohighlight.exclude": [
+        "**/node_modules/**",
+        "**/bower_components/**",
+        "**/dist/**",
+        "**/build/**",
+        "**/.vscode/**",
+        "**/.github/**",
+        "**/_output/**",
+        "**/*.min.*",
+        "**/*.map",
+        "**/.next/**",
+        "**/vendor/**"
+    ],
+    "todohighlight.keywords": [
+        "DEBUG:",
+        "REVIEW:",
+        {
+            "text": "NOTE:",
+            "color": "#ff0000",
+            "backgroundColor": "yellow",
+            "overviewRulerColor": "grey"
+        },
+        {
+            "text": "HACK:",
+            "color": "#000",
+            "isWholeLine": false,
+        },
+        {
+            "text": "WARN:",
+            "color": "#ffffff",
+            "backgroundColor": "red",
+            "overviewRulerColor": "grey",
+            "isWholeLine": false,
+        },
+    ],
+    // 
+    // Other (file) extensions
+    "clang-format.style": "{BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 100}",
+    "[proto3]": {
+        "editor.defaultFormatter": "xaver.clang-format"
+    },
+    "[sql]": {
+        "editor.defaultFormatter": "bradymholt.pgformatter"
+    },
+    "pgFormatter.formatType": false,
+    "pgFormatter.commaBreak": true,
+    "pgFormatter.spaces": 4,
+    "pgFormatter.functionCase": "uppercase",
+    "pgFormatter.keywordCase": "uppercase",
+    "markdownConverter.Document.HeaderTemplate": "",
+    "markdownConverter.Document.FooterTemplate": ""
+}
