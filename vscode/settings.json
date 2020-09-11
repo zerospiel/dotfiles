@@ -11,8 +11,8 @@
     // 
     // WARN: VS CODE EDITOR COMMON AND MISC
     "vsicons.dontShowNewVersionMessage": true,
-    "workbench.colorTheme": "Quiet Light",
     "explorer.compactFolders": false,
+    "explorer.confirmDragAndDrop": false,
     // 
     // Editor fonts, families, sizes, wrap etc.
     "editor.fontSize": 14,
@@ -21,13 +21,16 @@
     "editor.renderControlCharacters": false,
     "editor.copyWithSyntaxHighlighting": true,
     "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "modifications",
     "editor.formatOnPaste": true,
+    "editor.renderWhitespace": "none",
     // 
     // Workbench setup
     "workbench.startupEditor": "none",
     "workbench.statusBar.feedback.visible": false,
     "workbench.editor.showTabs": true,
     "workbench.iconTheme": "vscode-icons",
+    "workbench.colorTheme": "Quiet Light",
     // 
     // Extensions setup
     "extensions.showRecommendationsOnlyOnDemand": false,
@@ -51,7 +54,8 @@
     "go.lintOnSave": "package",
     "go.lintTool": "golangci-lint",
     "go.lintFlags": [
-        "--config=./.golangci.yaml"
+        "--config=./.golangci.yaml",
+        "--timeout=1m",
     ],
     "go.addTags": {
         "tags": "json",
@@ -77,11 +81,12 @@
     //     "workspaceSymbols": true,
     // // },
     "[go]": {
-        "editor.snippetSuggestions": "inline",
+        "editor.snippetSuggestions": "bottom",
         "editor.formatOnSave": true,
         "editor.formatOnSaveTimeout": 4500,
         "editor.codeActionsOnSave": {
-            "source.organizeImports": true
+            "source.organizeImports": true,
+            "source.fixAll": true
         },
         "editor.codeActionsOnSaveTimeout": 9000,
     },
@@ -92,6 +97,7 @@
         "completeUnimported": true, // autocomplete unimported packages
         // "watchFileChanges": true, // watch file changes outside of the editor
         "deepCompletion": true, // enable deep completion
+        "hoverKind": "FullDocumentation",
     },
     // 
     "files.associations": {
@@ -158,5 +164,7 @@
     "pgFormatter.functionCase": "uppercase",
     "pgFormatter.keywordCase": "uppercase",
     "markdownConverter.Document.HeaderTemplate": "",
-    "markdownConverter.Document.FooterTemplate": ""
+    "markdownConverter.Document.FooterTemplate": "",
+    "diffEditor.ignoreTrimWhitespace": false,
+    "gitlens.views.repositories.branches.layout": "list",
 }
