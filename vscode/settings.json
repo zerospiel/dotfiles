@@ -21,7 +21,7 @@
     "editor.renderControlCharacters": false,
     "editor.copyWithSyntaxHighlighting": true,
     "editor.formatOnSave": true,
-    "editor.formatOnSaveMode": "modifications",
+    "editor.formatOnSaveMode": "file",
     "editor.formatOnPaste": true,
     "editor.renderWhitespace": "none",
     // 
@@ -98,6 +98,10 @@
         // "watchFileChanges": true, // watch file changes outside of the editor
         "deepCompletion": true, // enable deep completion
         "hoverKind": "FullDocumentation",
+        "codelens": {
+            "generate": true, // Run `go generate`.
+            "gc_details": true // Show a code lens toggling the display of gc's choices.
+        }
     },
     // 
     "files.associations": {
