@@ -98,6 +98,7 @@
         // "watchFileChanges": true, // watch file changes outside of the editor
         "deepCompletion": true, // enable deep completion
         "hoverKind": "FullDocumentation",
+        "experimentalWorkspaceModule": true,
         "codelens": {
             "generate": true, // Run `go generate`.
             "gc_details": true // Show a code lens toggling the display of gc's choices.
