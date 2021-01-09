@@ -24,6 +24,7 @@
     "editor.formatOnSaveMode": "file",
     "editor.formatOnPaste": true,
     "editor.renderWhitespace": "none",
+    "editor.suggestSelection": "first",
     // 
     // Workbench setup
     "workbench.startupEditor": "none",
@@ -33,7 +34,8 @@
     "workbench.colorTheme": "Quiet Light",
     // 
     // Extensions setup
-    "extensions.showRecommendationsOnlyOnDemand": false,
+    // "extensions.showRecommendationsOnlyOnDemand": false,
+    "extensions.ignoreRecommendations": false,
     "extensions.autoCheckUpdates": true,
     "extensions.autoUpdate": true,
     //
@@ -54,8 +56,7 @@
     "go.lintOnSave": "package",
     "go.lintTool": "golangci-lint",
     "go.lintFlags": [
-        "--config=./.golangci.yaml",
-        "--timeout=1m",
+        "--timeout=1m"
     ],
     "go.addTags": {
         "tags": "json",
@@ -83,25 +84,28 @@
     "[go]": {
         "editor.snippetSuggestions": "bottom",
         "editor.formatOnSave": true,
-        "editor.formatOnSaveTimeout": 4500,
         "editor.codeActionsOnSave": {
             "source.organizeImports": true,
             "source.fixAll": true
-        },
-        "editor.codeActionsOnSaveTimeout": 9000,
+        }
     },
     "gopls": {
         "usePlaceholders": true, // add parameter placeholders when completing a function
         "staticcheck": false, // add staticcheck linter capabilities
         // Experimental settings
-        "completeUnimported": true, // autocomplete unimported packages
+        // moved to internal and enabled by default b5590deeca9b708498816ae0bf4482b97f46295f
+        // "completeUnimported": true, // autocomplete unimported packages
         // "watchFileChanges": true, // watch file changes outside of the editor
-        "deepCompletion": true, // enable deep completion
+        // "deepCompletion": true, // enable deep completion
         "hoverKind": "FullDocumentation",
         "experimentalWorkspaceModule": true,
-        "codelens": {
+        "codelenses": {
             "generate": true, // Run `go generate`.
             "gc_details": true // Show a code lens toggling the display of gc's choices.
+        },
+        "analyses": {
+            "fieldalignment": true,
+            "unusedparams": true
         }
     },
     // 
@@ -151,12 +155,12 @@
             "color": "#ffffff",
             "backgroundColor": "red",
             "overviewRulerColor": "grey",
-            "isWholeLine": false,
-        },
+            "isWholeLine": false
+        }
     ],
     // 
     // Other (file) extensions
-    "clang-format.style": "{BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 100}",
+    "clang-format.style": "file",
     "[proto3]": {
         "editor.defaultFormatter": "xaver.clang-format"
     },
@@ -172,4 +176,8 @@
     "markdownConverter.Document.FooterTemplate": "",
     "diffEditor.ignoreTrimWhitespace": false,
     "gitlens.views.repositories.branches.layout": "list",
+    "vs-kubernetes": {
+        "vs-kubernetes.minikube-path.mac": "/Users/mmorgoev/.vs-kubernetes/tools/minikube/darwin-amd64/minikube"
+    },
+    "python.languageServer": "Pylance"
 }

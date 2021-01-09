@@ -1,0 +1,12 @@
+Language: Proto
+BasedOnStyle: Google
+IndentWidth: 4
+TabWidth: 4
+ContinuationIndentWidth: 4
+UseTab: Never
+# AlignConsecutiveAssignments: true
+AlwaysBreakAfterReturnType: None
+AlignTrailingComments: true
+IndentWrappedFunctionNames: true
+ColumnLimit: 128
+ReflowComments: true
