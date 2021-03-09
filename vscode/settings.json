@@ -56,7 +56,7 @@
     "go.lintOnSave": "package",
     "go.lintTool": "golangci-lint",
     "go.lintFlags": [
-        "--timeout=1m"
+        "--timeout=5s"
     ],
     "go.addTags": {
         "tags": "json",
@@ -105,16 +105,35 @@
         },
         "analyses": {
             "fieldalignment": true,
-            "unusedparams": true
+            "shadow": false
         }
     },
     // 
+    // python
+    "python.languageServer": "Pylance",
+    "python.showStartPage": false,
+    "workbench.editorAssociations": [
+        {
+            "viewType": "jupyter.notebook.ipynb",
+            "filenamePattern": "*.ipynb"
+        }
+    ],
+    //
+    // java
+    "java.home": "/Library/Java/JavaVirtualMachines/adoptopenjdk-15.jdk/Contents/Home",
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+    },
+    //  
     "files.associations": {
         "*.lock": "toml",
         "*.tpl": "gohtml",
         "README": "markdown",
         "CHANGELOG": "markdown",
-        "Dockerfile": "dockerfile",
+        "Dockerfile": "dockerfile"
     },
     "files.eol": "\n",
     // TODO extension settings
@@ -156,6 +175,13 @@
             "backgroundColor": "red",
             "overviewRulerColor": "grey",
             "isWholeLine": false
+        },
+        {
+            "text": "kludge",
+            "color": "#ef42f5",
+            "backgroundColor": "black",
+            "overviewRulerColor": "grey",
+            "isWholeLine": false
         }
     ],
     // 
@@ -177,7 +203,15 @@
     "diffEditor.ignoreTrimWhitespace": false,
     "gitlens.views.repositories.branches.layout": "list",
     "vs-kubernetes": {
-        "vs-kubernetes.minikube-path.mac": "/Users/mmorgoev/.vs-kubernetes/tools/minikube/darwin-amd64/minikube"
+        "vs-kubernetes.minikube-path.mac": "/Users/mmorgoev/.vs-kubernetes/tools/minikube/darwin-amd64/minikube",
+        "vscode-kubernetes.minikube-path.mac": "/Users/mmorgoev/.vs-kubernetes/tools/minikube/darwin-amd64/minikube"
     },
-    "python.languageServer": "Pylance"
+    "mssql.connections": [
+        {
+            "server": "{{put-server-name-here}}",
+            "database": "{{put-database-name-here}}",
+            "user": "{{put-username-here}}",
+            "password": "{{put-password-here}}"
+        }
+    ]
 }

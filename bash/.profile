@@ -11,7 +11,7 @@ export GOPRIVATE=*.ozon.ru
 export GOPROXY="https://proxy.golang.org|direct"
 export GONOSUMDB=$GONOPROXY
 export GOSUMDB=sum.golang.org
-export GO111MODULE=auto
+export GO111MODULE=on
 export GOINSECURE=none
 
 # csharp related envs
@@ -26,6 +26,7 @@ export CLICOLOR=1
 export LSCOLORS=Gxfxcxdxbxegedabagacad
 export BASH_SILENCE_DEPRECATION_WARNING=1
 export GITLAB_TOKEN=some_token
+export BUF_TOKEN=some_token
 
 alias k="kubectl"
 alias clickconnect='docker run -it --rm yandex/clickhouse-client --host $1 --user $2 --password $3 --database $4'
@@ -74,7 +75,7 @@ getbuf() {
         v="v$1"
     fi
     echo $v
-    got -o $GOBIN/buf https://github.com/bufbuild/buf/releases/download/$v/buf-`uname -s`-`uname -m`
+    got -o $GOBIN/buf https://github.com/bufbuild/buf/releases/download/$v/buf-`uname -s`-`uname -m` && chmod +x $GOBIN/buf
 }
 
 get_branch() {
