@@ -6,10 +6,10 @@ export GOPATH=$HOME/go
 # export GOROOT=$(brew --prefix go@1.12)/libexec
 export GOROOT=/usr/local/go
 export GOBIN=$GOPATH/bin
-export GONOPROXY=*.ozon.ru
+export GONOPROXY=$GOPRIVATE
 export GOPRIVATE=*.ozon.ru
 export GOPROXY="https://proxy.golang.org|direct"
-export GONOSUMDB=$GONOPROXY
+export GONOSUMDB=$GOPRIVATE
 export GOSUMDB=sum.golang.org
 export GO111MODULE=on
 export GOINSECURE=none
@@ -62,7 +62,7 @@ gitsetzero() {
 }
 
 getgot() {
-    go get github.com/melbahja/got/cmd/got
+    go install github.com/melbahja/got/cmd/got@latest
 }
 
 getbuf() {
