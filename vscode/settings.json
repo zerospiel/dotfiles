@@ -9,6 +9,9 @@
     "security.workspace.trust.untrustedFiles": "open",
     "extensions.supportUntrustedWorkspaces": {},
     // 
+    // Disable any automatic updates
+    "update.mode": "none",
+    // 
     // Terminals
     "terminal.integrated.profiles.osx": {
         "bash": {
