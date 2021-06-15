@@ -1,10 +1,54 @@
 {
     // Telemetry
     "telemetry.enableTelemetry": false,
+    //
+    // I'm not monkey and understand what I'm doing
+    "security.workspace.trust.enabled": false,
+    "security.workspace.trust.startupPrompt": "never",
+    "security.workspace.trust.emptyWindow": true,
+    "security.workspace.trust.untrustedFiles": "open",
+    "extensions.supportUntrustedWorkspaces": {},
     // 
     // Terminals
-    "terminal.integrated.shell.osx": "/usr/local/bin/bash",
-    "terminal.integrated.shell.linux": "/bin/bash",
+    "terminal.integrated.profiles.osx": {
+        "bash": {
+            "path": "/usr/local/bin/bash",
+            "icon": "terminal-bash"
+        },
+        "zsh": {
+            "path": "zsh"
+        },
+        "fish": {
+            "path": "fish"
+        },
+        "tmux": {
+            "path": "tmux",
+            "icon": "terminal-tmux"
+        },
+        "pwsh": {
+            "path": "pwsh",
+            "icon": "terminal-powershell"
+        }
+    },
+    "terminal.integrated.profiles.linux": {
+        "bash": {
+            "path": "/bin/bash"
+        },
+        "zsh": {
+            "path": "zsh"
+        },
+        "fish": {
+            "path": "fish"
+        },
+        "tmux": {
+            "path": "tmux",
+            "icon": "terminal-tmux"
+        },
+        "pwsh": {
+            "path": "pwsh",
+            "icon": "terminal-powershell"
+        }
+    },
     // 
     // Breadcrumbs
     "breadcrumbs.enabled": true,
@@ -41,7 +85,6 @@
     //
     // Window
     "window.nativeTabs": true,
-    "window.zoomLevel": 0,
     // 
     // Go related settings (gopls, modules etc.)
     // "go.autocompleteUnimportedPackages": true,
@@ -105,6 +148,8 @@
         },
         "analyses": {
             "fieldalignment": true,
+            "unusedparams": true,
+            "unusedwrite": true,
             "shadow": false
         }
     },
@@ -112,12 +157,9 @@
     // python
     "python.languageServer": "Pylance",
     "python.showStartPage": false,
-    "workbench.editorAssociations": [
-        {
-            "viewType": "jupyter.notebook.ipynb",
-            "filenamePattern": "*.ipynb"
-        }
-    ],
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter.notebook.ipynb"
+    },
     //
     // java
     "java.home": "/Library/Java/JavaVirtualMachines/adoptopenjdk-15.jdk/Contents/Home",
@@ -213,5 +255,6 @@
             "user": "{{put-username-here}}",
             "password": "{{put-password-here}}"
         }
-    ]
+    ],
+    "redhat.telemetry.enabled": false
 }
