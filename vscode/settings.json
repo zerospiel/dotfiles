@@ -136,7 +136,7 @@
         }
     },
     "gopls": {
-        "usePlaceholders": true, // add parameter placeholders when completing a function
+        "usePlaceholders": false, // add parameter placeholders when completing a function
         "staticcheck": false, // add staticcheck linter capabilities
         // Experimental settings
         // moved to internal and enabled by default b5590deeca9b708498816ae0bf4482b97f46295f
@@ -162,7 +162,7 @@
     "python.showStartPage": false,
     "workbench.editorAssociations": [
         {
-            "viewType": "jupyter.notebook.ipynb",
+            "viewType": "jupyter-notebook",
             "filenamePattern": "*.ipynb"
         }
     ],
@@ -262,5 +262,6 @@
             "password": "{{put-password-here}}"
         }
     ],
-    "redhat.telemetry.enabled": false
+    "redhat.telemetry.enabled": false,
+    "Lua.telemetry.enable": false
 }
