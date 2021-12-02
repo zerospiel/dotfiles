@@ -1,0 +1,11 @@
+[user]
+	name = zerospiel
+	email = morgoevm@gmail.com
+# [url "git@gitlab.ozon.ru:"]
+	# insteadOf = https://gitlab.ozon.ru/
+[pull]
+	ff = only
+[init]
+	defaultBranch = master
+[diff]
+	tool=vimdiff

@@ -53,9 +53,6 @@
         }
     },
     // 
-    // Breadcrumbs
-    "breadcrumbs.enabled": true,
-    // 
     // WARN: VS CODE EDITOR COMMON AND MISC
     "vsicons.dontShowNewVersionMessage": true,
     "explorer.compactFolders": false,
@@ -104,9 +101,11 @@
     "go.lintFlags": [
         "--timeout=5s"
     ],
+    "go.toolsManagement.autoUpdate": true,
     "go.addTags": {
         "tags": "json",
         "options": "",
+        "template": "",
         "promptForTags": true,
         "transform": "snakecase"
     },

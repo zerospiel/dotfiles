@@ -4,7 +4,7 @@
 # golang related envs
 export GOPATH=$HOME/go
 # export GOROOT=$(brew --prefix go@1.12)/libexec
-export GOROOT=/usr/local/go
+# export GOROOT=/usr/local/go
 export GOBIN=$GOPATH/bin
 export GONOPROXY=$GOPRIVATE
 export GOPRIVATE=*.ozon.ru
@@ -19,21 +19,27 @@ DOTNET_CLI_TELEMETRY_OPTOUT=0
 
 # other related envs
 # export PATH="/usr/local/opt/helm@2/bin:$GOBIN:$PATH"
-export PATH="$GOBIN:$PATH"
+export PATH="/usr/local/opt/python@3.7/bin:$GOBIN:$PATH"
 export LC_ALL='en_US.UTF-8'
 export PS1="\[\033[38;5;5m\]\W\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]\[\033[38;5;10m\]\\$\[$(tput sgr0)\]\[\033[38;5;15m\]\[$(tput sgr0)\] \[\033[38;5;14m\]\$(get_branch)\[$(tput sgr0)\]"
 export CLICOLOR=1
 export LSCOLORS=Gxfxcxdxbxegedabagacad
 export BASH_SILENCE_DEPRECATION_WARNING=1
-export GITLAB_TOKEN=some_token
-export BUF_TOKEN=some_token
+export GITLAB_TOKEN=
+export DAS_TOKEN=
+
+# history size
+export HISTFILESIZE=1000000
+export HISTSIZE=1000000
 
 alias k="kubectl"
-alias clickconnect='docker run -it --rm yandex/clickhouse-client --host $1 --user $2 --password $3 --database $4'
 alias fixgovno='launchctl unload /Library/LaunchAgents/com.trusourcelabs.NoMAD.plist; killall NoMAD'
 alias etcdctl2='ETCDCTL_API=2 etcdctl'
 alias etcdstg='etcdctl2 --endpoints `cat $HOME/.pki/eps_stg` --ca-file $HOME/.pki/ca_stg --cert-file $HOME/.pki/cert_stg --key-file $HOME/.pki/key_stg'
 alias etcdprod='etcdctl2 --endpoints `cat $HOME/.pki/eps_prod` --ca-file $HOME/.pki/ca_prod --cert-file $HOME/.pki/cert_prod --key-file $HOME/.pki/key_prod'
+alias etcdrtcprod='etcdctl --endpoints `cat $HOME/.pki/rtc_eps_prod` --cacert $HOME/.pki/rtc_ca_prod --cert $HOME/.pki/rtc_cert_prod --key $HOME/.pki/rtc_key_prod'
+alias etcdrtcstg='etcdctl --endpoints `cat $HOME/.pki/rtc_eps_stg` --cacert $HOME/.pki/rtc_ca_stg --cert $HOME/.pki/rtc_cert_stg --key $HOME/.pki/rtc_key_stg'
+alias etcdrtcdev='etcdctl --endpoints `cat $HOME/.pki/rtc_eps_dev` --cacert $HOME/.pki/rtc_ca_dev --cert $HOME/.pki/rtc_cert_dev --key $HOME/.pki/rtc_key_dev'
 
 alias ls='ls -G'
 alias grep='grep --color=auto'
@@ -42,14 +48,6 @@ alias sed='gsed'
 alias grpcurl='grpcurl -plaintext'
 # alias dkb='sudo kextunload /System/Library/Extensions/AppleUSBTopCase.kext/Contents/PlugIns/AppleUSBTCKeyboard.kext/'
 # alias ekb='sudo kextload /System/Library/Extensions/AppleUSBTopCase.kext/Contents/PlugIns/AppleUSBTCKeyboard.kext/'
-
-kafka-topic-describe() {
-    kafka-topics --bootstrap-server $1 --describe --topic $2
-}
-
-kafka-topic-consume() {
-    kt consume -brokers $1 -topic $2
-}
 
 getip() {
     dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | tr -d '"'
@@ -107,3 +105,4 @@ rmqq() {
     fi
     qq
 }
+

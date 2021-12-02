@@ -1,7 +1,7 @@
 #bash profile
 
 if [ -f $HOME/.profile ]; then
-	. $HOME/.profile
+    . $HOME/.profile
 fi
 
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
