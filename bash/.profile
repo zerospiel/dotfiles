@@ -18,7 +18,7 @@ export GOINSECURE=none
 DOTNET_CLI_TELEMETRY_OPTOUT=0
 
 # other related envs
-export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}"
+export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$GOBIN${PATH+:$PATH}"
 export LC_ALL='en_US.UTF-8'
 export PS1="\[\033[38;5;5m\]\W\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]\[\033[38;5;10m\]\\$\[$(tput sgr0)\]\[\033[38;5;15m\]\[$(tput sgr0)\] \[\033[38;5;14m\]\$(get_branch)\[$(tput sgr0)\]"
 export CLICOLOR=1
