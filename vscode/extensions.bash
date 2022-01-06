@@ -1,8 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 code --install-extension 13xforever.language-x86-64-assembly
 code --install-extension adamprzybylski.paradox-syntax
-code --install-extension AlanWalk.markdown-toc
 code --install-extension bmarkovic.haproxy
 code --install-extension bradymholt.pgformatter
 code --install-extension bufbuild.vscode-buf
@@ -11,7 +10,9 @@ code --install-extension dakara.transformer
 code --install-extension DavidAnson.vscode-markdownlint
 code --install-extension dracula-theme.theme-dracula
 code --install-extension eamodio.gitlens
+code --install-extension EditorConfig.EditorConfig
 code --install-extension golang.go
+code --install-extension jeff-hykin.better-cpp-syntax
 code --install-extension mads-hartmann.bash-ide-vscode
 code --install-extension manuth.markdown-converter
 code --install-extension ms-azuretools.vscode-docker
@@ -33,8 +34,8 @@ code --install-extension shakram02.bash-beautify
 code --install-extension SonarSource.sonarlint-vscode
 code --install-extension sumneko.lua
 code --install-extension tootone.org-mode
+code --install-extension twxs.cmake
 code --install-extension vintharas.learn-vim
-code --install-extension vscjava.vscode-gradle
 code --install-extension vscjava.vscode-java-debug
 code --install-extension vscjava.vscode-java-dependency
 code --install-extension vscjava.vscode-java-pack

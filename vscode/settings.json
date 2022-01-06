@@ -1,6 +1,7 @@
 {
     // Telemetry
     "telemetry.enableTelemetry": false,
+    "telemetry.telemetryLevel": "off",
     //
     // I'm not monkey and understand what I'm doing
     "security.workspace.trust.enabled": false,
@@ -8,14 +9,14 @@
     "security.workspace.trust.emptyWindow": true,
     "security.workspace.trust.untrustedFiles": "open",
     "extensions.supportUntrustedWorkspaces": {},
-    // 
+    //
     // Disable any automatic updates
     "update.mode": "none",
     // 
     // Terminals
     "terminal.integrated.profiles.osx": {
         "bash": {
-            "path": "/usr/local/bin/bash",
+            "path": "/opt/homebrew/bin/bash",
             "icon": "terminal-bash"
         },
         "zsh": {
@@ -52,6 +53,8 @@
             "icon": "terminal-powershell"
         }
     },
+    "terminal.integrated.tabs.enabled": false,
+    "terminal.integrated.defaultProfile.osx": "bash",
     // 
     // WARN: VS CODE EDITOR COMMON AND MISC
     "vsicons.dontShowNewVersionMessage": true,
@@ -159,12 +162,9 @@
     // python
     "python.languageServer": "Pylance",
     "python.showStartPage": false,
-    "workbench.editorAssociations": [
-        {
-            "viewType": "jupyter-notebook",
-            "filenamePattern": "*.ipynb"
-        }
-    ],
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
     //
     // java
     "java.home": "/Library/Java/JavaVirtualMachines/adoptopenjdk-15.jdk/Contents/Home",
@@ -262,5 +262,6 @@
         }
     ],
     "redhat.telemetry.enabled": false,
-    "Lua.telemetry.enable": false
+    "Lua.telemetry.enable": false,
+    "vim.hlsearch": true
 }
