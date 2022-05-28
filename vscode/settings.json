@@ -11,7 +11,7 @@
     "extensions.supportUntrustedWorkspaces": {},
     //
     // Disable any automatic updates
-    "update.mode": "none",
+    "update.mode": "manual",
     // 
     // Terminals
     "terminal.integrated.profiles.osx": {
@@ -53,8 +53,8 @@
             "icon": "terminal-powershell"
         }
     },
-    "terminal.integrated.tabs.enabled": false,
     "terminal.integrated.defaultProfile.osx": "bash",
+    "terminal.integrated.tabs.enabled": false,
     // 
     // WARN: VS CODE EDITOR COMMON AND MISC
     "vsicons.dontShowNewVersionMessage": true,
@@ -138,6 +138,10 @@
         }
     },
     "gopls": {
+        "build.directoryFilters": [
+            "-node_modules",
+            "-vendor",
+        ],
         "usePlaceholders": false, // add parameter placeholders when completing a function
         "staticcheck": false, // add staticcheck linter capabilities
         // Experimental settings
@@ -161,13 +165,14 @@
     // 
     // python
     "python.languageServer": "Pylance",
-    "python.showStartPage": false,
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter-notebook"
     },
     //
     // java
-    "java.home": "/Library/Java/JavaVirtualMachines/adoptopenjdk-15.jdk/Contents/Home",
+    "java.home": "/Library/Java/JavaVirtualMachines/openjdk.jdk/Contents/Home",
+    // 
+    // files
     "files.exclude": {
         "**/.classpath": true,
         "**/.project": true,
@@ -183,6 +188,7 @@
         "Dockerfile": "dockerfile"
     },
     "files.eol": "\n",
+    // 
     // TODO extension settings
     "todohighlight.isEnable": true,
     "todohighlight.include": [
@@ -232,7 +238,7 @@
         }
     ],
     // 
-    // Other (file) extensions
+    // Other (language) extensions
     "clang-format.style": "file",
     "[proto3]": {
         "editor.defaultFormatter": "xaver.clang-format"
@@ -253,15 +259,8 @@
         "vs-kubernetes.minikube-path.mac": "/Users/mmorgoev/.vs-kubernetes/tools/minikube/darwin-amd64/minikube",
         "vscode-kubernetes.minikube-path.mac": "/Users/mmorgoev/.vs-kubernetes/tools/minikube/darwin-amd64/minikube"
     },
-    "mssql.connections": [
-        {
-            "server": "{{put-server-name-here}}",
-            "database": "{{put-database-name-here}}",
-            "user": "{{put-username-here}}",
-            "password": "{{put-password-here}}"
-        }
-    ],
     "redhat.telemetry.enabled": false,
     "Lua.telemetry.enable": false,
-    "vim.hlsearch": true
+    "vim.hlsearch": true,
+    "yaml.format.enable": false
 }
