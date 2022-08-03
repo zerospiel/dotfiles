@@ -25,6 +25,7 @@ export CLICOLOR=1
 export LSCOLORS=Gxfxcxdxbxegedabagacad
 export BASH_SILENCE_DEPRECATION_WARNING=1
 # export GITLAB_TOKEN=
+export KIND_EXPERIMENTAL_PROVIDER=podman
 
 # history size
 export HISTFILESIZE=1000000
@@ -62,7 +63,8 @@ getbuf() {
         v="v$1"
     fi
     echo $v
-    rm $GOBIN/buf && got -o $GOBIN/buf https://github.com/bufbuild/buf/releases/download/$v/buf-`uname -s`-`uname -m` && chmod +x $GOBIN/buf
+    if [[ -f $GOBIN/buf ]]; then rm $GOBIN/buf; fi
+    curl -sSL -o $GOBIN/buf https://github.com/bufbuild/buf/releases/download/$v/buf-`uname -s`-`uname -m` && chmod +x $GOBIN/buf
 }
 
 get_branch() {

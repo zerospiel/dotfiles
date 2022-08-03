@@ -12,6 +12,7 @@ code --install-extension enkia.tokyo-night
 code --install-extension golang.go
 code --install-extension huntertran.auto-markdown-toc
 code --install-extension jeff-hykin.better-cpp-syntax
+code --install-extension lextudio.restructuredtext
 code --install-extension mads-hartmann.bash-ide-vscode
 code --install-extension manuth.markdown-converter
 code --install-extension ms-azuretools.vscode-docker
@@ -22,11 +23,14 @@ code --install-extension ms-python.vscode-pylance
 code --install-extension ms-vscode.cpptools
 code --install-extension ms-vscode.mono-debug
 code --install-extension ms-vsliveshare.vsliveshare
+code --install-extension NicolasVuillamy.vscode-groovy-lint
 code --install-extension rebornix.ruby
 code --install-extension redhat.vscode-yaml
 code --install-extension shakram02.bash-beautify
 code --install-extension SonarSource.sonarlint-vscode
 code --install-extension sumneko.lua
+code --install-extension technosophos.vscode-helm
+code --install-extension trond-snekvik.simple-rst
 code --install-extension vintharas.learn-vim
 code --install-extension vscode-icons-team.vscode-icons
 code --install-extension vscodevim.vim
