@@ -42,3 +42,5 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 
 :set mouse=nicr
+
+:set number
