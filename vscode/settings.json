@@ -135,8 +135,16 @@
         "editor.codeActionsOnSave": {
             "source.organizeImports": true,
             "source.fixAll": true
-        }
+        },
+        "editor.inlayHints.enabled": "offUnlessPressed"
     },
+    "go.inlayHints.assignVariableTypes": true,
+    "go.inlayHints.compositeLiteralFields": true,
+    "go.inlayHints.compositeLiteralTypes": true,
+    "go.inlayHints.constantValues": true,
+    "go.inlayHints.functionTypeParameters": true,
+    "go.inlayHints.parameterNames": true,
+    "go.inlayHints.rangeVariableTypes": true,
     "gopls": {
         "build.directoryFilters": [
             "-node_modules",
@@ -262,5 +270,6 @@
     "redhat.telemetry.enabled": false,
     "Lua.telemetry.enable": false,
     "vim.hlsearch": true,
-    "yaml.format.enable": false
+    "yaml.format.enable": false,
+    "git.mergeEditor": true
 }
