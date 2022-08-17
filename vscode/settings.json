@@ -55,6 +55,10 @@
     },
     "terminal.integrated.defaultProfile.osx": "bash",
     "terminal.integrated.tabs.enabled": false,
+    "terminal.integrated.shellIntegration.decorationIcon": "circle-outline",
+    "terminal.integrated.shellIntegration.decorationIconSuccess": "primitive-dot",
+    "terminal.integrated.shellIntegration.enabled": true,
+    "terminal.integrated.shellIntegration.decorationsEnabled": "both",
     // 
     // WARN: VS CODE EDITOR COMMON AND MISC
     "vsicons.dontShowNewVersionMessage": true,

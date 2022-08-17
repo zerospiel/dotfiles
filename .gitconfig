@@ -19,3 +19,8 @@
 	windowMemory = 2047m
 [safe]
 	directory = /Users/mmorgoev/go/src/sigs.k8s.io/cluster-api-provider-openstack
+# experimental
+[merge]
+  tool = code
+[mergetool "code"]
+  cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
