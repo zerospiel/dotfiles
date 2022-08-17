@@ -9,3 +9,13 @@
 	defaultBranch = master
 [diff]
 	tool=vimdiff
+[core] 
+	compression = 0
+	packedGitLimit = 512m 
+	packedGitWindowSize = 512m 
+[pack] 
+	deltaCacheSize = 2047m 
+	packSizeLimit = 2047m 
+	windowMemory = 2047m
+[safe]
+	directory = /Users/mmorgoev/go/src/sigs.k8s.io/cluster-api-provider-openstack
