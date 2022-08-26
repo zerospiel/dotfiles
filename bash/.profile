@@ -7,7 +7,7 @@ export GOPATH=$HOME/go
 # export GOROOT=/usr/local/go
 export GOBIN=$GOPATH/bin
 export GONOPROXY=$GOPRIVATE
-export GOPRIVATE=*.ozon.ru
+export GOPRIVATE=gerrit.mcp.mirantis.com
 export GOPROXY="https://proxy.golang.org|direct"
 export GONOSUMDB=$GOPRIVATE
 export GOSUMDB=sum.golang.org
@@ -32,12 +32,14 @@ export HISTFILESIZE=1000000
 export HISTSIZE=1000000
 
 alias k="kubectl"
-
+alias helm3="$(brew --prefix helm@3)/bin/helm"
 alias ls='ls -G'
 alias grep='grep --color=auto'
 alias c='clear'
 alias sed='gsed'
 alias grpcurl='grpcurl -plaintext'
+alias ssh='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
+alias scp='scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
 
 getip() {
     dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | tr -d '"'
@@ -97,3 +99,22 @@ rmqq() {
     qq
 }
 
+connect_ui() {
+	local ssh_key=${1}
+	local user=${2}
+	local private_ip=${3}
+	local public_ip=${4}
+	ssh -i ${ssh_key} -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no ${user}@${private_ip} -o "proxycommand ssh -W %h:%p -i ${ssh_key} -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no ${user}@${public_ip}"
+}
+
+connect_seed_tmux() {
+	local ssh_key=${1}
+	local user_host=${2}
+	ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i ${ssh_key} -t ${user_host} 'tmux a || tmux'
+}
+
+portforward_seed() {
+	local ssh_key=${1}
+	local user_host=${2}
+	ssh -i ${ssh_key} -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -L 127.0.0.1:9000:127.0.0.1:80 ${user_host}
+}
