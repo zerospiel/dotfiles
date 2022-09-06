@@ -13,6 +13,7 @@ export GONOSUMDB=$GOPRIVATE
 export GOSUMDB=sum.golang.org
 export GO111MODULE=on
 export GOINSECURE=none
+export GOVULNDB=https://vuln.go.dev
 
 # csharp related envs
 DOTNET_CLI_TELEMETRY_OPTOUT=0
