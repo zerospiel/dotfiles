@@ -1,14 +1,10 @@
-#!/usr/bin/env bash
-
 code --install-extension bmarkovic.haproxy
 code --install-extension bradymholt.pgformatter
 code --install-extension bufbuild.vscode-buf
 code --install-extension bungcip.better-toml
 code --install-extension dakara.transformer
 code --install-extension DavidAnson.vscode-markdownlint
-code --install-extension dracula-theme.theme-dracula
 code --install-extension eamodio.gitlens
-code --install-extension enkia.tokyo-night
 code --install-extension golang.go
 code --install-extension huntertran.auto-markdown-toc
 code --install-extension jeff-hykin.better-cpp-syntax
@@ -18,6 +14,7 @@ code --install-extension manuth.markdown-converter
 code --install-extension ms-azuretools.vscode-docker
 code --install-extension ms-dotnettools.csharp
 code --install-extension ms-kubernetes-tools.vscode-kubernetes-tools
+code --install-extension ms-python.isort
 code --install-extension ms-python.python
 code --install-extension ms-python.vscode-pylance
 code --install-extension ms-vscode.cpptools

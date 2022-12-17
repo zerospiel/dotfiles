@@ -1,7 +1,10 @@
 {
     // Telemetry
-    "telemetry.enableTelemetry": false,
+    // "telemetry.enableTelemetry": false,
     "telemetry.telemetryLevel": "off",
+    "redhat.telemetry.enabled": false,
+    "Lua.telemetry.enable": false,
+    "sonarlint.disableTelemetry": true,
     //
     // I'm not monkey and understand what I'm doing
     "security.workspace.trust.enabled": false,
@@ -12,6 +15,7 @@
     //
     // Disable any automatic updates
     "update.mode": "manual",
+    "update.showReleaseNotes": false,
     // 
     // Terminals
     "terminal.integrated.profiles.osx": {
@@ -83,13 +87,16 @@
     "workbench.editor.showTabs": true,
     "workbench.iconTheme": "vscode-icons",
     "workbench.colorTheme": "Quiet Light",
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
     // 
     // Extensions setup
     // "extensions.showRecommendationsOnlyOnDemand": false,
-    "extensions.ignoreRecommendations": false,
+    "extensions.ignoreRecommendations": true,
     "extensions.autoCheckUpdates": true,
-    "extensions.autoUpdate": true,
-    //
+    "extensions.autoUpdate": false,
+    // 
     // Window
     "window.nativeTabs": true,
     // 
@@ -97,7 +104,7 @@
     // "go.autocompleteUnimportedPackages": true,
     // "go.useCodeSnippetsOnFunctionSuggest": true,
     "go.docsTool": "gogetdoc",
-    "go.formatTool": "goimports",
+    "go.formatTool": "gofumpt",
     "go.formatFlags": [
         "-w"
     ],
@@ -111,10 +118,10 @@
     "go.toolsManagement.autoUpdate": true,
     "go.addTags": {
         "tags": "json",
-        "options": "",
+        "options": "json=omitempty",
         "template": "",
         "promptForTags": true,
-        "transform": "snakecase"
+        "transform": "camelcase"
     },
     "go.useLanguageServer": true,
     // "go.languageServerExperimentalFeatures": {
@@ -156,29 +163,43 @@
         ],
         "usePlaceholders": false, // add parameter placeholders when completing a function
         "staticcheck": false, // add staticcheck linter capabilities
+        "formatting.gofumpt": true, // use gofumpt as format tool
         // Experimental settings
         // moved to internal and enabled by default b5590deeca9b708498816ae0bf4482b97f46295f
         // "completeUnimported": true, // autocomplete unimported packages
         // "watchFileChanges": true, // watch file changes outside of the editor
         // "deepCompletion": true, // enable deep completion
         "hoverKind": "FullDocumentation",
-        "experimentalWorkspaceModule": true,
+        // "experimentalWorkspaceModule": true, deprecated since gopls@v0.10.0
+        "newDiff": "old", // newDiff enables the new diff implementation
         "codelenses": {
             "generate": true, // Run `go generate`.
-            "gc_details": true // Show a code lens toggling the display of gc's choices.
+            "gc_details": true, // Show a code lens toggling the display of gc's choices.
+            "regenerate_cgo": true, // Regenerates cgo definitions.
+            // "run_vulncheck_exp": true, // removed since 0.11.0; Run vulnerability check (govulncheck).
+            "run_govulncheck": true,
+            "upgrade_dependency": true, // Upgrades a dependency in the go.mod file for a module.
+            "vendor": true // Runs go mod vendor for a module.
         },
+        "vulncheck": "Imports",
         "analyses": {
             "fieldalignment": true,
             "unusedparams": true,
             "unusedwrite": true,
+            "useany": true,
+            "nilness": true,
             "shadow": false
         }
     },
     // 
     // python
     "python.languageServer": "Pylance",
-    "workbench.editorAssociations": {
-        "*.ipynb": "jupyter-notebook"
+    "python.analysis.typeCheckingMode": "off",
+    "python.analysis.diagnosticSeverityOverrides": {
+        "reportGeneralTypeIssues": "none",
+        "reportUnboundVariable": "none",
+        "reportOptionalSubscript": "none",
+        "reportOptionalMemberAccess": "none"
     },
     //
     // java
@@ -250,6 +271,16 @@
         }
     ],
     // 
+    // RST settings
+    "restructuredtext.linter.doc8.extraArgs": [
+        "--ignore D000",
+        "--ignore D001",
+        "--ignore-path ${workspaceFolder}/doc/*/target,${workspaceFolder}/doc/*/${workspaceFolder}/build*,${workspaceFolder}/doc/common/glossary.rst,${workspaceFolder}/doc/mcp-deployment-guide/source/_examples",
+        "--max-line-length 79"
+    ],
+    "restructuredtext.experimental": true,
+    "restructuredtext.linter.run": "onSave",
+    // 
     // Other (language) extensions
     "clang-format.style": "file",
     "[proto3]": {
@@ -271,9 +302,8 @@
         "vs-kubernetes.minikube-path.mac": "/Users/mmorgoev/.vs-kubernetes/tools/minikube/darwin-amd64/minikube",
         "vscode-kubernetes.minikube-path.mac": "/Users/mmorgoev/.vs-kubernetes/tools/minikube/darwin-amd64/minikube"
     },
-    "redhat.telemetry.enabled": false,
-    "Lua.telemetry.enable": false,
     "vim.hlsearch": true,
     "yaml.format.enable": false,
-    "git.mergeEditor": true
+    "git.mergeEditor": true,
+    "sonarlint.testFilePattern": "**/*.go,**.go"
 }
