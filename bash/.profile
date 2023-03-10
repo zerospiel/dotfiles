@@ -59,15 +59,24 @@ getgot() {
 getbuf() {
     argl=${#@}
     v=""
-    if [[ $argl -eq 0 ]]
+    version_string="latest version"
+    if [[ $argl -eq 0 ]];
     then
-        v=$(git ls-remote --tags --sort v:refname --exit-code --refs https://github.com/bufbuild/buf | tail -n1 | cut -d '/' -f3)
+        v=$(git ls-remote --tags --sort v:refname --exit-code --refs https://github.com/bufbuild/buf | tail -n1 | cut -d '/' -f3 | cut -c2-)
     else
-        v="v$1"
+        v="$1"
+        version_string="given version"
     fi
-    echo $v
-    if [[ -f $GOBIN/buf ]]; then rm $GOBIN/buf; fi
-    curl -sSL -o $GOBIN/buf https://github.com/bufbuild/buf/releases/download/$v/buf-`uname -s`-`uname -m` && chmod +x $GOBIN/buf
+    link="https://github.com/bufbuild/buf/releases/download/v${v}/buf-$(uname -s)-$(uname -m)"
+    curl -sI --fail -o /dev/null ${link}
+    if [[ $? -ne 0 ]]; then echo "No such version ${v}" && return 1; fi
+    bufpath=$(which buf)
+    if [[ -e "${bufpath}" && -x "${bufpath}" ]]; then
+        if [[ $(${bufpath} --version) == ${v} ]]; then echo "Current version ${v} equals to the ${version_string}" && return 0; fi
+        rm ${bufpath}
+    elif [[ -z ${bufpath} ]]; then bufpath=${GOBIN}/buf; fi
+    echo "Getting the ${version_string}: ${v}"
+    curl -sSL -o ${bufpath} https://github.com/bufbuild/buf/releases/download/v${v}/buf-`uname -s`-`uname -m` && chmod +x ${bufpath}
 }
 
 get_branch() {
