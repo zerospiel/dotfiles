@@ -3,6 +3,14 @@
 	email = morgoevm@gmail.com
 # [url "git@gitlab.ozon.ru:"]
 	# insteadOf = https://gitlab.ozon.ru/
+# for git clone
+[url "ssh://mmorgoev@gerrit.mcp.mirantis.com:29418"]
+	insteadOf = https://gerrit.mcp.mirantis.com
+# for go get
+[url "ssh://mmorgoev@gerrit.mcp.mirantis.com:29418"]
+	insteadOf = https://gerrit.mcp.mirantis.com/a
+[advice]
+	detachedHead = false
 [pull]
 	ff = only
 [init]
@@ -18,9 +26,12 @@
 	packSizeLimit = 2047m 
 	windowMemory = 2047m
 [safe]
-	directory = /Users/mmorgoev/go/src/sigs.k8s.io/cluster-api-provider-openstack
-# experimental
+	directory = /Users/morgoev/go/src/sigs.k8s.io/cluster-api-provider-openstack
 [merge]
-  tool = code
+	# experimental
+	tool = code
 [mergetool "code"]
-  cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
+	# experimental
+	cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
+[http]
+	postBuffer = 157286400

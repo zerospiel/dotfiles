@@ -26,7 +26,6 @@ code --install-extension redhat.vscode-yaml
 code --install-extension shakram02.bash-beautify
 code --install-extension SonarSource.sonarlint-vscode
 code --install-extension sumneko.lua
-code --install-extension technosophos.vscode-helm
 code --install-extension trond-snekvik.simple-rst
 code --install-extension vintharas.learn-vim
 code --install-extension vscode-icons-team.vscode-icons

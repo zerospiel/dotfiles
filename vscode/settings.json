@@ -156,6 +156,7 @@
     "go.inlayHints.functionTypeParameters": true,
     "go.inlayHints.parameterNames": true,
     "go.inlayHints.rangeVariableTypes": true,
+    "go.diagnostic.vulncheck": "Imports",
     "gopls": {
         "build.directoryFilters": [
             "-node_modules",
@@ -181,7 +182,7 @@
             "upgrade_dependency": true, // Upgrades a dependency in the go.mod file for a module.
             "vendor": true // Runs go mod vendor for a module.
         },
-        "vulncheck": "Imports",
+        // "vulncheck": "Imports", // duplicates go.diagnostic.vulncheck since 07.12.2022
         "analyses": {
             "fieldalignment": true,
             "unusedparams": true,
@@ -289,6 +290,9 @@
     "[sql]": {
         "editor.defaultFormatter": "bradymholt.pgformatter"
     },
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
     "pgFormatter.formatType": false,
     "pgFormatter.commaBreak": true,
     "pgFormatter.spaces": 4,
@@ -299,11 +303,81 @@
     "diffEditor.ignoreTrimWhitespace": false,
     "gitlens.views.repositories.branches.layout": "list",
     "vs-kubernetes": {
-        "vs-kubernetes.minikube-path.mac": "/Users/mmorgoev/.vs-kubernetes/tools/minikube/darwin-amd64/minikube",
-        "vscode-kubernetes.minikube-path.mac": "/Users/mmorgoev/.vs-kubernetes/tools/minikube/darwin-amd64/minikube"
+        "vs-kubernetes.crd-code-completion": "disabled"
     },
     "vim.hlsearch": true,
     "yaml.format.enable": false,
     "git.mergeEditor": true,
-    "sonarlint.testFilePattern": "**/*.go,**.go"
+    "sonarlint.testFilePattern": "**/*.go,*.go",
+    "sonarlint.rules": {
+        "go:S2757": {
+            "level": "off"
+        },
+        "go:S1479": {
+            "level": "off"
+        },
+        "go:S3923": {
+            "level": "off"
+        },
+        "go:S1763": {
+            "level": "off"
+        },
+        "go:S1940": {
+            "level": "off"
+        },
+        "go:S1125": {
+            "level": "off"
+        },
+        "go:S3776": {
+            "level": "off"
+        },
+        "go:S100": {
+            "level": "off"
+        },
+        "go:S1186": {
+            "level": "off"
+        },
+        "go:S4144": {
+            "level": "off"
+        },
+        "go:S107": {
+            "level": "off"
+        },
+        "go:ParsingError": {
+            "level": "off"
+        },
+        "go:S1764": {
+            "level": "off"
+        },
+        "go:S117": {
+            "level": "off"
+        },
+        "go:S4663": {
+            "level": "off"
+        },
+        "go:S108": {
+            "level": "off"
+        },
+        "go:S1110": {
+            "level": "off"
+        },
+        "go:S1862": {
+            "level": "off"
+        },
+        "go:S1192": {
+            "level": "off"
+        },
+        "go:S1134": {
+            "level": "off"
+        },
+        "go:S1135": {
+            "level": "off"
+        },
+        "go:S1871": {
+            "level": "off"
+        },
+        "go:S1656": {
+            "level": "off"
+        }
+    }
 }

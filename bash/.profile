@@ -33,7 +33,6 @@ export HISTFILESIZE=1000000
 export HISTSIZE=1000000
 
 alias k="kubectl"
-alias helm3="$(brew --prefix helm@3)/bin/helm"
 alias ls='ls -G'
 alias grep='grep --color=auto'
 alias c='clear'
@@ -41,6 +40,8 @@ alias sed='gsed'
 alias grpcurl='grpcurl -plaintext'
 alias ssh='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
 alias scp='scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
+alias switcharm="arch -arm64 bash"
+alias switchamd="arch -x86_64 bash"
 
 getip() {
     dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | tr -d '"'

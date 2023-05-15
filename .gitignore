@@ -1,0 +1,16 @@
+*
+!*.*
+!*/
+!LICENSE
+!README
+!Makefile
+!Dockerfile
+.vscode
+vendor/
+dist/
+*.swp
+*.cover
+*DS_Store
+
+go.work
+go.work.sum
