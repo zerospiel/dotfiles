@@ -80,6 +80,7 @@
     "editor.formatOnPaste": true,
     "editor.renderWhitespace": "none",
     "editor.suggestSelection": "first",
+    "editor.largeFileOptimizations": true,
     // 
     // Workbench setup
     "workbench.startupEditor": "none",
@@ -160,8 +161,9 @@
     "gopls": {
         "build.directoryFilters": [
             "-node_modules",
-            "-vendor",
+            "-vendor"
         ],
+        // "analysisProgressReporting": true, // report when deep analyse is slow
         "usePlaceholders": false, // add parameter placeholders when completing a function
         "staticcheck": false, // add staticcheck linter capabilities
         "formatting.gofumpt": true, // use gofumpt as format tool
@@ -172,7 +174,7 @@
         // "deepCompletion": true, // enable deep completion
         "hoverKind": "FullDocumentation",
         // "experimentalWorkspaceModule": true, deprecated since gopls@v0.10.0
-        "newDiff": "old", // newDiff enables the new diff implementation
+        "newDiff": "new", // newDiff enables the new diff implementation
         "codelenses": {
             "generate": true, // Run `go generate`.
             "gc_details": true, // Show a code lens toggling the display of gc's choices.
@@ -379,5 +381,6 @@
         "go:S1656": {
             "level": "off"
         }
-    }
+    },
+    "editor.accessibilitySupport": "off"
 }
