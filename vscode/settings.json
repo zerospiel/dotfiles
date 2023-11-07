@@ -58,11 +58,11 @@
         }
     },
     "terminal.integrated.defaultProfile.osx": "bash",
-    "terminal.integrated.tabs.enabled": false,
     "terminal.integrated.shellIntegration.decorationIcon": "circle-outline",
     "terminal.integrated.shellIntegration.decorationIconSuccess": "primitive-dot",
     "terminal.integrated.shellIntegration.enabled": true,
     "terminal.integrated.shellIntegration.decorationsEnabled": "both",
+    "terminal.integrated.tabs.enabled": false,
     // 
     // WARN: VS CODE EDITOR COMMON AND MISC
     "vsicons.dontShowNewVersionMessage": true,
@@ -81,11 +81,12 @@
     "editor.renderWhitespace": "none",
     "editor.suggestSelection": "first",
     "editor.largeFileOptimizations": true,
+    "editor.accessibilitySupport": "off",
     // 
     // Workbench setup
     "workbench.startupEditor": "none",
     "workbench.statusBar.feedback.visible": false,
-    "workbench.editor.showTabs": true,
+    "workbench.editor.showTabs": "multiple",
     "workbench.iconTheme": "vscode-icons",
     "workbench.colorTheme": "Quiet Light",
     "workbench.editorAssociations": {
@@ -229,7 +230,9 @@
     "todohighlight.isEnable": true,
     "todohighlight.include": [
         "**/*.go",
-        "**/*.md"
+        "**/*.md",
+        "**/*.yaml",
+        "**/*.mk"
     ],
     "todohighlight.exclude": [
         "**/node_modules/**",
@@ -245,21 +248,26 @@
         "**/vendor/**"
     ],
     "todohighlight.keywords": [
-        "DEBUG:",
-        "REVIEW:",
+        "DEBUG",
+        "REVIEW",
         {
-            "text": "NOTE:",
+            "text": "TODO",
+            "color": "white",
+            "backgroundColor": "orange"
+        },
+        {
+            "text": "NOTE",
             "color": "#ff0000",
             "backgroundColor": "yellow",
             "overviewRulerColor": "grey"
         },
         {
-            "text": "HACK:",
+            "text": "HACK",
             "color": "#000",
-            "isWholeLine": false,
+            "isWholeLine": false
         },
         {
-            "text": "WARN:",
+            "text": "WARN",
             "color": "#ffffff",
             "backgroundColor": "red",
             "overviewRulerColor": "grey",
@@ -309,78 +317,5 @@
     },
     "vim.hlsearch": true,
     "yaml.format.enable": false,
-    "git.mergeEditor": true,
-    "sonarlint.testFilePattern": "**/*.go,*.go",
-    "sonarlint.rules": {
-        "go:S2757": {
-            "level": "off"
-        },
-        "go:S1479": {
-            "level": "off"
-        },
-        "go:S3923": {
-            "level": "off"
-        },
-        "go:S1763": {
-            "level": "off"
-        },
-        "go:S1940": {
-            "level": "off"
-        },
-        "go:S1125": {
-            "level": "off"
-        },
-        "go:S3776": {
-            "level": "off"
-        },
-        "go:S100": {
-            "level": "off"
-        },
-        "go:S1186": {
-            "level": "off"
-        },
-        "go:S4144": {
-            "level": "off"
-        },
-        "go:S107": {
-            "level": "off"
-        },
-        "go:ParsingError": {
-            "level": "off"
-        },
-        "go:S1764": {
-            "level": "off"
-        },
-        "go:S117": {
-            "level": "off"
-        },
-        "go:S4663": {
-            "level": "off"
-        },
-        "go:S108": {
-            "level": "off"
-        },
-        "go:S1110": {
-            "level": "off"
-        },
-        "go:S1862": {
-            "level": "off"
-        },
-        "go:S1192": {
-            "level": "off"
-        },
-        "go:S1134": {
-            "level": "off"
-        },
-        "go:S1135": {
-            "level": "off"
-        },
-        "go:S1871": {
-            "level": "off"
-        },
-        "go:S1656": {
-            "level": "off"
-        }
-    },
-    "editor.accessibilitySupport": "off"
+    "git.mergeEditor": true
 }
