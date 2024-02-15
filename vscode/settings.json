@@ -87,7 +87,7 @@
     "workbench.startupEditor": "none",
     "workbench.statusBar.feedback.visible": false,
     "workbench.editor.showTabs": "multiple",
-    "workbench.iconTheme": "vscode-icons",
+    "workbench.iconTheme": "vs-minimal",
     "workbench.colorTheme": "Quiet Light",
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter-notebook"
@@ -125,6 +125,9 @@
         "promptForTags": true,
         "transform": "camelcase"
     },
+    "go.toolsEnvVars": {
+        "GOEXPERIMENT": "rangefunc"
+    },
     "go.useLanguageServer": true,
     // "go.languageServerExperimentalFeatures": {
     //     "autoComplete": true,
@@ -146,8 +149,8 @@
         "editor.snippetSuggestions": "bottom",
         "editor.formatOnSave": true,
         "editor.codeActionsOnSave": {
-            "source.organizeImports": true,
-            "source.fixAll": true
+            "source.organizeImports": "explicit",
+            "source.fixAll": "explicit"
         },
         "editor.inlayHints.enabled": "offUnlessPressed"
     },
@@ -190,6 +193,7 @@
             "fieldalignment": true,
             "unusedparams": true,
             "unusedwrite": true,
+            "unusedvariable": true,
             "useany": true,
             "nilness": true,
             "shadow": false
