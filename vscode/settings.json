@@ -101,6 +101,7 @@
     // 
     // Window
     "window.nativeTabs": true,
+    "window.customTitleBarVisibility": "never",
     // 
     // Go related settings (gopls, modules etc.)
     // "go.autocompleteUnimportedPackages": true,
