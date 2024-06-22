@@ -1,7 +1,8 @@
 code --install-extension bradymholt.pgformatter
 code --install-extension bufbuild.vscode-buf
+code --install-extension chrisjsewell.myst-tml-syntax
 code --install-extension dakara.transformer
-code --install-extension DavidAnson.vscode-markdownlint
+code --install-extension davidanson.vscode-markdownlint
 code --install-extension eamodio.gitlens
 code --install-extension golang.go
 code --install-extension huntertran.auto-markdown-toc
@@ -18,6 +19,7 @@ code --install-extension ms-python.vscode-pylance
 code --install-extension ms-vscode.cpptools
 code --install-extension redhat.vscode-yaml
 code --install-extension sumneko.lua
+code --install-extension swyddfa.esbonio
 code --install-extension trond-snekvik.simple-rst
 code --install-extension vintharas.learn-vim
 code --install-extension vscode-icons-team.vscode-icons

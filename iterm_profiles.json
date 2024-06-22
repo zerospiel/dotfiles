@@ -35,18 +35,10 @@
     "Blue Component" : 0.3333333432674408,
     "Red Component" : 1
   },
-  "Ansi 0 Color" : {
-    "Green Component" : 0,
-    "Blue Component" : 0,
-    "Red Component" : 0
-  },
+  "Horizontal Spacing" : 1,
   "Rows" : 27,
   "Default Bookmark" : "No",
-  "Ansi 1 Color" : {
-    "Green Component" : 0,
-    "Blue Component" : 0,
-    "Red Component" : 0.73333334922790527
-  },
+  "Guid" : "314A874D-F730-4CD3-B768-B01EA8AC8B68",
   "Non-ASCII Anti Aliased" : true,
   "Use Bright Bold" : true,
   "Ansi 10 Color" : {
@@ -73,7 +65,7 @@
     "Blue Component" : 0.73333334922790527,
     "Red Component" : 0.73333334922790527
   },
-  "Working Directory" : "\/Users\/mmorgoev",
+  "Working Directory" : "\/Users\/morgen",
   "Use Tab Color" : true,
   "Blinking Cursor" : false,
   "Disable Window Resizing" : true,
@@ -324,21 +316,21 @@
     "Alpha Component" : 1,
     "Green Component" : 0.27450980392156865
   },
+  "Transparency" : 0,
+  "Ansi 1 Color" : {
+    "Green Component" : 0,
+    "Blue Component" : 0,
+    "Red Component" : 0.73333334922790527
+  },
+  "Custom Directory" : "No",
   "Cursor Color" : {
     "Green Component" : 0.73333334922790527,
     "Blue Component" : 0.73333334922790527,
     "Red Component" : 0.73333334922790527
   },
-  "Transparency" : 0,
-  "Horizontal Spacing" : 1,
-  "Ansi 3 Color" : {
-    "Green Component" : 0.73333334922790527,
-    "Blue Component" : 0,
-    "Red Component" : 0.73333334922790527
-  },
-  "Ansi 4 Color" : {
+  "Ansi 0 Color" : {
     "Green Component" : 0,
-    "Blue Component" : 0.73333334922790527,
+    "Blue Component" : 0,
     "Red Component" : 0
   },
   "Set Local Environment Vars" : false,
@@ -349,11 +341,19 @@
     "Red Component" : 0
   },
   "Normal Font" : "Monaco 14",
-  "Custom Directory" : "No",
-  "Guid" : "314A874D-F730-4CD3-B768-B01EA8AC8B68",
   "Ansi 2 Color" : {
     "Green Component" : 0.73333334922790527,
     "Blue Component" : 0,
+    "Red Component" : 0
+  },
+  "Ansi 3 Color" : {
+    "Green Component" : 0.73333334922790527,
+    "Blue Component" : 0,
+    "Red Component" : 0.73333334922790527
+  },
+  "Ansi 4 Color" : {
+    "Green Component" : 0,
+    "Blue Component" : 0.73333334922790527,
     "Red Component" : 0
   }
 }

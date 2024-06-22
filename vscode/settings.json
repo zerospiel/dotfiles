@@ -179,7 +179,7 @@
         // "deepCompletion": true, // enable deep completion
         "hoverKind": "FullDocumentation",
         // "experimentalWorkspaceModule": true, deprecated since gopls@v0.10.0
-        "newDiff": "new", // newDiff enables the new diff implementation
+        // "newDiff": "new", // removed since 0.15.0; newDiff enables the new diff implementation
         "codelenses": {
             "generate": true, // Run `go generate`.
             "gc_details": true, // Show a code lens toggling the display of gc's choices.
@@ -197,7 +197,10 @@
             "unusedvariable": true,
             "useany": true,
             "nilness": true,
-            "shadow": false
+            "shadow": false,
+            "stdversion": true,
+            "sigchanyzer": true,
+            "framepointer": true
         }
     },
     // 
