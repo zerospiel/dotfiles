@@ -50,8 +50,8 @@ getip() {
 
 gitsetzero() {
     git init
-    git config --local --add user.email mmorgen@posteo.com
-    git config --local --add user.name zerospiel
+    git config --local user.email mmorgen@posteo.com
+    git config --local user.name zerospiel
 }
 
 getgot() {

@@ -65,7 +65,6 @@
     "terminal.integrated.tabs.enabled": false,
     // 
     // WARN: VS CODE EDITOR COMMON AND MISC
-    "vsicons.dontShowNewVersionMessage": true,
     "explorer.compactFolders": false,
     "explorer.confirmDragAndDrop": false,
     // 
