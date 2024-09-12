@@ -126,7 +126,7 @@
         "transform": "camelcase"
     },
     "go.toolsEnvVars": {
-        "GOEXPERIMENT": "rangefunc"
+        "GOEXPERIMENT": "aliastypeparams"
     },
     "go.useLanguageServer": true,
     // "go.languageServerExperimentalFeatures": {
@@ -319,10 +319,12 @@
     "markdownConverter.Document.FooterTemplate": "",
     "diffEditor.ignoreTrimWhitespace": false,
     "gitlens.views.repositories.branches.layout": "list",
+    "gitlens.plusFeatures.enabled": false,
     "vs-kubernetes": {
         "vs-kubernetes.crd-code-completion": "disabled"
     },
     "vim.hlsearch": true,
     "yaml.format.enable": false,
-    "git.mergeEditor": true
+    "git.mergeEditor": true,
+    "git.openRepositoryInParentFolders": "never"
 }
