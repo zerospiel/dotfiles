@@ -326,5 +326,11 @@
     "vim.hlsearch": true,
     "yaml.format.enable": false,
     "git.mergeEditor": true,
-    "git.openRepositoryInParentFolders": "never"
+    "git.openRepositoryInParentFolders": "never",
+    "markdownlint.config": {
+        "MD029": false
+    },
+    "[markdown]": {
+        "diffEditor.ignoreTrimWhitespace": false
+    }
 }

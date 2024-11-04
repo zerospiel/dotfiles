@@ -54,6 +54,12 @@ gitsetzero() {
     git config --local user.name zerospiel
 }
 
+gitsetwork() {
+    git init
+    git config --local user.email mmorgen@mirantis.com
+    git config --local user.name "Michael Morgen"
+}
+
 getgot() {
     go install github.com/melbahja/got/cmd/got@latest
 }
@@ -129,4 +135,13 @@ portforward_seed() {
 	local ssh_key=${1}
 	local user_host=${2}
 	ssh -i ${ssh_key} -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -L 127.0.0.1:9000:127.0.0.1:80 ${user_host}
+}
+
+ghpull() {
+    if [ ${#@} -gt 0 ]; then
+        local pr_num=${1};
+        local stream=${2:-upstream};
+        printf "Fetching PR #${pr_num} from the ${stream} remote\n"
+        git fetch ${stream} pull/${pr_num}/head && git checkout FETCH_HEAD;
+    fi
 }
