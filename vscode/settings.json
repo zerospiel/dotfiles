@@ -58,8 +58,8 @@
         }
     },
     "terminal.integrated.defaultProfile.osx": "bash",
-    "terminal.integrated.shellIntegration.decorationIcon": "circle-outline",
-    "terminal.integrated.shellIntegration.decorationIconSuccess": "primitive-dot",
+    // "terminal.integrated.shellIntegration.decorationIcon": "circle-outline",
+    // "terminal.integrated.shellIntegration.decorationIconSuccess": "primitive-dot",
     "terminal.integrated.shellIntegration.enabled": true,
     "terminal.integrated.shellIntegration.decorationsEnabled": "both",
     "terminal.integrated.tabs.enabled": false,
@@ -84,7 +84,7 @@
     // 
     // Workbench setup
     "workbench.startupEditor": "none",
-    "workbench.statusBar.feedback.visible": false,
+    // "workbench.statusBar.feedback.visible": false,
     "workbench.editor.showTabs": "multiple",
     "workbench.iconTheme": "vs-minimal",
     "workbench.colorTheme": "Quiet Light",
@@ -105,7 +105,7 @@
     // Go related settings (gopls, modules etc.)
     // "go.autocompleteUnimportedPackages": true,
     // "go.useCodeSnippetsOnFunctionSuggest": true,
-    "go.docsTool": "gogetdoc",
+    // "go.docsTool": "gogetdoc",
     "go.formatTool": "gofumpt",
     "go.formatFlags": [
         "-w"
@@ -183,23 +183,31 @@
             "generate": true, // Run `go generate`.
             "gc_details": true, // Show a code lens toggling the display of gc's choices.
             "regenerate_cgo": true, // Regenerates cgo definitions.
+            "test": false, // https://github.com/golang/tools/blob/master/gopls/doc/codelenses.md#test-run-tests-and-benchmarks
             // "run_vulncheck_exp": true, // removed since 0.11.0; Run vulnerability check (govulncheck).
             "run_govulncheck": true,
+            "vulncheck": true,
             "upgrade_dependency": true, // Upgrades a dependency in the go.mod file for a module.
             "vendor": true // Runs go mod vendor for a module.
         },
         // "vulncheck": "Imports", // duplicates go.diagnostic.vulncheck since 07.12.2022
         "analyses": {
-            "fieldalignment": true,
-            "unusedparams": true,
-            "unusedwrite": true,
-            "unusedvariable": true,
+            // "fieldalignment": true, // use "the 'fieldalignment' analyzer was removed in gopls/v0.17.0; instead, hover over struct fields to see size/offset information (https://go.dev/issue/66861)" instead
+            // "unusedparams": true,
+            // "unusedwrite": true,
+            // "unusedvariable": true,
+            // "useany": true,
+            // "nilness": true,
+            // "shadow": false,
+            // "stdversion": true,
+            // "sigchanyzer": true,
+            // "framepointer": true,
+            // "yield": true,
+            // "waitgroup": true
+            // only those analyzers that are not turned on by default
             "useany": true,
-            "nilness": true,
-            "shadow": false,
-            "stdversion": true,
-            "sigchanyzer": true,
-            "framepointer": true
+            "unusedvariable": true,
+            "shadow": false // no need
         }
     },
     // 
