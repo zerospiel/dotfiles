@@ -126,7 +126,7 @@
         "transform": "camelcase"
     },
     "go.toolsEnvVars": {
-        "GOEXPERIMENT": "aliastypeparams"
+        "GOEXPERIMENT": "synctest"
     },
     "go.useLanguageServer": true,
     // "go.languageServerExperimentalFeatures": {
@@ -162,6 +162,7 @@
     "go.inlayHints.parameterNames": true,
     "go.inlayHints.rangeVariableTypes": true,
     "go.diagnostic.vulncheck": "Imports",
+    "go.showWelcome": false,
     "gopls": {
         "build.directoryFilters": [
             "-node_modules",
@@ -181,7 +182,7 @@
         // "newDiff": "new", // removed since 0.15.0; newDiff enables the new diff implementation
         "codelenses": {
             "generate": true, // Run `go generate`.
-            "gc_details": true, // Show a code lens toggling the display of gc's choices.
+            // "gc_details": true, // Show a code lens toggling the display of gc's choices. // removed since 0.18.0
             "regenerate_cgo": true, // Regenerates cgo definitions.
             "test": false, // https://github.com/golang/tools/blob/master/gopls/doc/codelenses.md#test-run-tests-and-benchmarks
             // "run_vulncheck_exp": true, // removed since 0.11.0; Run vulnerability check (govulncheck).
@@ -203,7 +204,11 @@
             // "sigchanyzer": true,
             // "framepointer": true,
             // "yield": true,
-            // "waitgroup": true
+            // "waitgroup": true,
+            // "modernize": true,
+            // "unusedfunc": true,
+            // "hostport": true,
+            // "gofix": true, // https://pkg.go.dev/golang.org/x/tools/gopls/internal/analysis/gofix
             // only those analyzers that are not turned on by default
             "useany": true,
             "unusedvariable": true,
