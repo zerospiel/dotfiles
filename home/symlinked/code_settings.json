@@ -1,0 +1,363 @@
+{
+    // Telemetry
+    // "telemetry.enableTelemetry": false,
+    "telemetry.telemetryLevel": "off",
+    "redhat.telemetry.enabled": false,
+    "Lua.telemetry.enable": false,
+    "sonarlint.disableTelemetry": true,
+    //
+    // I'm not monkey and understand what I'm doing
+    "security.workspace.trust.enabled": false,
+    "security.workspace.trust.startupPrompt": "never",
+    "security.workspace.trust.emptyWindow": true,
+    "security.workspace.trust.untrustedFiles": "open",
+    "extensions.supportUntrustedWorkspaces": {},
+    //
+    // Disable any automatic updates
+    "update.mode": "manual",
+    "update.showReleaseNotes": false,
+    // 
+    // Terminals
+    "terminal.integrated.profiles.osx": {
+        "bash": {
+            "path": "/opt/homebrew/bin/bash",
+            "icon": "terminal-bash"
+        },
+        "zsh": {
+            "path": "zsh"
+        },
+        "fish": {
+            "path": "fish"
+        },
+        "tmux": {
+            "path": "tmux",
+            "icon": "terminal-tmux"
+        },
+        "pwsh": {
+            "path": "pwsh",
+            "icon": "terminal-powershell"
+        }
+    },
+    "terminal.integrated.profiles.linux": {
+        "bash": {
+            "path": "/bin/bash"
+        },
+        "zsh": {
+            "path": "zsh"
+        },
+        "fish": {
+            "path": "fish"
+        },
+        "tmux": {
+            "path": "tmux",
+            "icon": "terminal-tmux"
+        },
+        "pwsh": {
+            "path": "pwsh",
+            "icon": "terminal-powershell"
+        }
+    },
+    "terminal.integrated.defaultProfile.osx": "bash",
+    // "terminal.integrated.shellIntegration.decorationIcon": "circle-outline",
+    // "terminal.integrated.shellIntegration.decorationIconSuccess": "primitive-dot",
+    "terminal.integrated.shellIntegration.enabled": true,
+    "terminal.integrated.shellIntegration.decorationsEnabled": "both",
+    "terminal.integrated.tabs.enabled": false,
+    "terminal.integrated.initialHint": false,
+    // 
+    // WARN: VS CODE EDITOR COMMON AND MISC
+    "explorer.compactFolders": false,
+    "explorer.confirmDragAndDrop": false,
+    // 
+    // Editor fonts, families, sizes, wrap etc.
+    "editor.fontSize": 14,
+    "editor.fontLigatures": false,
+    "editor.wordWrap": "on",
+    "editor.renderControlCharacters": false,
+    "editor.copyWithSyntaxHighlighting": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "file",
+    "editor.formatOnPaste": true,
+    "editor.renderWhitespace": "none",
+    "editor.suggestSelection": "first",
+    "editor.largeFileOptimizations": true,
+    "editor.accessibilitySupport": "off",
+    // 
+    // Workbench setup
+    "workbench.startupEditor": "none",
+    // "workbench.statusBar.feedback.visible": false,
+    "workbench.editor.showTabs": "multiple",
+    "workbench.iconTheme": "vs-minimal",
+    "workbench.colorTheme": "Quiet Light",
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "workbench.editor.empty.hint": "hidden",
+    // 
+    // Extensions setup
+    // "extensions.showRecommendationsOnlyOnDemand": false,
+    "extensions.ignoreRecommendations": true,
+    "extensions.autoCheckUpdates": true,
+    "extensions.autoUpdate": false,
+    // 
+    // Window
+    "window.nativeTabs": true,
+    "window.customTitleBarVisibility": "never",
+    // 
+    // Go related settings (gopls, modules etc.)
+    // "go.autocompleteUnimportedPackages": true,
+    // "go.useCodeSnippetsOnFunctionSuggest": true,
+    // "go.docsTool": "gogetdoc",
+    "go.formatTool": "gofumpt",
+    "go.formatFlags": [
+        "-w"
+    ],
+    "go.buildOnSave": "off",
+    "go.vetOnSave": "off",
+    "go.lintOnSave": "package",
+    "go.lintTool": "golangci-lint-v2",
+    "go.lintFlags": [
+        "--path-mode=abs",
+        "--timeout=30s",
+        "--fast-only"
+    ],
+    "go.toolsManagement.autoUpdate": true,
+    "go.addTags": {
+        "tags": "json",
+        "options": "json=omitempty",
+        "template": "",
+        "promptForTags": true,
+        "transform": "camelcase"
+    },
+    "go.toolsEnvVars": {
+        "GOEXPERIMENT": "synctest,jsonv2"
+    },
+    "go.useLanguageServer": true,
+    // "go.languageServerExperimentalFeatures": {
+    //     "autoComplete": true,
+    //     "diagnostics": true,
+    //     "documentLink": false, // to remove import links to godoc
+    //     "documentSymbols": true,
+    //     "findReferences": true,
+    //     "format": true, // to let goimports/gofmt/goreturns format the code instead of gopls
+    //     "goToDefinition": true,
+    //     "goToTypeDefinition": true,
+    //     "highlight": true,
+    //     "hover": true,
+    //     "incrementalSync": true,
+    //     "rename": true,
+    //     "signatureHelp": true,
+    //     "workspaceSymbols": true,
+    // // },
+    "[go]": {
+        "editor.snippetSuggestions": "bottom",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit",
+            "source.fixAll": "explicit"
+        },
+        "editor.inlayHints.enabled": "offUnlessPressed"
+    },
+    "go.inlayHints.assignVariableTypes": true,
+    "go.inlayHints.compositeLiteralFields": true,
+    "go.inlayHints.compositeLiteralTypes": true,
+    "go.inlayHints.constantValues": true,
+    "go.inlayHints.functionTypeParameters": true,
+    "go.inlayHints.parameterNames": true,
+    "go.inlayHints.rangeVariableTypes": true,
+    "go.inlayHints.ignoredError": true,
+    "go.diagnostic.vulncheck": "Imports",
+    "go.showWelcome": false,
+    "gopls": {
+        "build.directoryFilters": [
+            "-node_modules",
+            "-vendor"
+        ],
+        "importsSource": "goimports",
+        // "analysisProgressReporting": true, // report when deep analyse is slow
+        "usePlaceholders": false, // add parameter placeholders when completing a function
+        "staticcheck": true, // add staticcheck linter capabilities
+        "formatting.gofumpt": true, // use gofumpt as format tool
+        // Experimental settings
+        // moved to internal and enabled by default b5590deeca9b708498816ae0bf4482b97f46295f
+        // "completeUnimported": true, // autocomplete unimported packages
+        // "watchFileChanges": true, // watch file changes outside of the editor
+        // "deepCompletion": true, // enable deep completion
+        "hoverKind": "FullDocumentation",
+        // "experimentalWorkspaceModule": true, deprecated since gopls@v0.10.0
+        // "newDiff": "new", // removed since 0.15.0; newDiff enables the new diff implementation
+        "codelenses": {
+            "generate": true, // Run `go generate`.
+            // "gc_details": true, // Show a code lens toggling the display of gc's choices. // removed since 0.18.0
+            "regenerate_cgo": true, // Regenerates cgo definitions.
+            "test": false, // https://github.com/golang/tools/blob/master/gopls/doc/codelenses.md#test-run-tests-and-benchmarks
+            // "run_vulncheck_exp": true, // removed since 0.11.0; Run vulnerability check (govulncheck).
+            "run_govulncheck": true,
+            "vulncheck": true,
+            "upgrade_dependency": true, // Upgrades a dependency in the go.mod file for a module.
+            "vendor": true // Runs go mod vendor for a module.
+        },
+        // "vulncheck": "Imports", // duplicates go.diagnostic.vulncheck since 07.12.2022
+        "analyses": {
+            // "fieldalignment": true, // use "the 'fieldalignment' analyzer was removed in gopls/v0.17.0; instead, hover over struct fields to see size/offset information (https://go.dev/issue/66861)" instead
+            // "unusedparams": true,
+            // "unusedwrite": true,
+            // "unusedvariable": true,
+            // "useany": true,
+            // "nilness": true,
+            // "shadow": false,
+            // "stdversion": true,
+            // "sigchanyzer": true,
+            // "framepointer": true,
+            // "yield": true,
+            // "waitgroup": true,
+            // "modernize": true,
+            // "unusedfunc": true,
+            // "hostport": true,
+            // "gofix": true, // https://pkg.go.dev/golang.org/x/tools/gopls/internal/analysis/gofix
+            // only those analyzers that are not turned on by default
+            // "useany": true,
+            // "unusedvariable": true,
+            // "shadow": false // no need
+            // maprange
+            // recursiveiter
+        }
+    },
+    // 
+    // python
+    "python.languageServer": "Pylance",
+    "python.analysis.typeCheckingMode": "off",
+    "python.analysis.diagnosticSeverityOverrides": {
+        "reportGeneralTypeIssues": "none",
+        "reportUnboundVariable": "none",
+        "reportOptionalSubscript": "none",
+        "reportOptionalMemberAccess": "none"
+    },
+    //
+    // java
+    "java.home": "/Library/Java/JavaVirtualMachines/openjdk.jdk/Contents/Home",
+    // 
+    // files
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+    },
+    //  
+    "files.associations": {
+        "*.lock": "toml",
+        "*.tpl": "gohtml",
+        "README": "markdown",
+        "CHANGELOG": "markdown",
+        "Dockerfile": "dockerfile"
+    },
+    "files.eol": "\n",
+    // 
+    // TODO extension settings
+    "todohighlight.isEnable": true,
+    "todohighlight.include": [
+        "**/*.go",
+        "**/*.md",
+        "**/*.yaml",
+        "**/*.mk"
+    ],
+    "todohighlight.exclude": [
+        "**/node_modules/**",
+        "**/bower_components/**",
+        "**/dist/**",
+        "**/build/**",
+        "**/.vscode/**",
+        "**/.github/**",
+        "**/_output/**",
+        "**/*.min.*",
+        "**/*.map",
+        "**/.next/**",
+        "**/vendor/**"
+    ],
+    "todohighlight.keywords": [
+        "DEBUG",
+        "REVIEW",
+        {
+            "text": "TODO",
+            "color": "white",
+            "backgroundColor": "orange"
+        },
+        {
+            "text": "NOTE",
+            "color": "#ff0000",
+            "backgroundColor": "yellow",
+            "overviewRulerColor": "grey"
+        },
+        {
+            "text": "HACK",
+            "color": "#000",
+            "isWholeLine": false
+        },
+        {
+            "text": "WARN",
+            "color": "#ffffff",
+            "backgroundColor": "red",
+            "overviewRulerColor": "grey",
+            "isWholeLine": false
+        },
+        {
+            "text": "kludge",
+            "color": "#ef42f5",
+            "backgroundColor": "black",
+            "overviewRulerColor": "grey",
+            "isWholeLine": false
+        }
+    ],
+    // 
+    // RST settings
+    "restructuredtext.linter.doc8.extraArgs": [
+        "--ignore D000",
+        "--ignore D001",
+        "--ignore-path ${workspaceFolder}/doc/*/target,${workspaceFolder}/doc/*/${workspaceFolder}/build*,${workspaceFolder}/doc/common/glossary.rst,${workspaceFolder}/doc/mcp-deployment-guide/source/_examples",
+        "--max-line-length 79"
+    ],
+    "restructuredtext.experimental": true,
+    "restructuredtext.linter.run": "onSave",
+    // 
+    // GitLens settins
+    "gitlens.views.repositories.branches.layout": "list",
+    "gitlens.plusFeatures.enabled": false,
+    "gitlens.showWhatsNewAfterUpgrades": false,
+    "gitlens.views.launchpad.files.layout": "list",
+    // 
+    // Other (language) extensions
+    "clang-format.style": "file",
+    "[proto3]": {
+        "editor.defaultFormatter": "xaver.clang-format"
+    },
+    "[sql]": {
+        "editor.defaultFormatter": "bradymholt.pgformatter"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "pgFormatter.formatType": false,
+    "pgFormatter.commaBreak": true,
+    "pgFormatter.spaces": 4,
+    "pgFormatter.functionCase": "uppercase",
+    "pgFormatter.keywordCase": "uppercase",
+    "markdownConverter.Document.HeaderTemplate": "",
+    "markdownConverter.Document.FooterTemplate": "",
+    "diffEditor.ignoreTrimWhitespace": true,
+    "vs-kubernetes": {
+        "vs-kubernetes.crd-code-completion": "disabled"
+    },
+    "vim.hlsearch": true,
+    "yaml.format.enable": false,
+    "git.mergeEditor": true,
+    "git.openRepositoryInParentFolders": "never",
+    "markdownlint.config": {
+        "MD029": false
+    },
+    "[markdown]": {
+        "diffEditor.ignoreTrimWhitespace": false
+    },
+    "diffEditor.renderSideBySide": true,
+    "containers.containerClient": "com.microsoft.visualstudio.containers.podman"
+}

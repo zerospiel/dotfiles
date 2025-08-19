@@ -1,0 +1,65 @@
+{{/* vim: set filetype=gitconfig: */}}
+
+[alias]
+  tree = log --graph --oneline --all
+  ct = describe --tags --abbrev=0
+
+[advice]
+	detachedHead = false
+
+[core]
+  editor = vim
+	compression = 0
+	packedGitLimit = 512m
+	packedGitWindowSize = 512m
+  pager = delta
+  whitespace = trailing-space,space-before-tab
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+    navigate = true
+    side-by-side
+
+[diff]
+  algorithm = histogram
+  colorMoved = default
+
+[init]
+  defaultBranch = main
+
+[http]
+	postBuffer = 157286400
+
+[merge]
+	tool = code
+  conflictStyle = diff3
+
+[mergetool "code"]
+	cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
+
+[mergetool "vimdiff"]
+  cmd = vimdiff \"$LOCAL\" \"$MERGED\" \"$REMOTE\"
+
+[pack]
+	deltaCacheSize = 2047m 
+	packSizeLimit = 2047m 
+	windowMemory = 2047m
+
+[pull]
+	ff = only
+
+[user]
+	name = Michael Morgen
+	email = {{ .email }}
+
+[url "git@github.com:zerospiel"]
+  insteadOf = https://github.com/zerospiel
+
+[includeIf "hasconfig:remote.*.url:git@github.com*/**"]
+  path = public-config
+[includeIf "hasconfig:remote.*.url:ssh://git@github.com/**"]
+    path = public-config
+[includeIf "hasconfig:remote.*.url:https://github.com/**"]
+    path = public-config

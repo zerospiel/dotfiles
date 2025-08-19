@@ -1,0 +1,20 @@
+auto-update = off
+background-blur = false
+background-opacity = 1
+cursor-style = block
+cursor-style-blink = false
+font-family = Monaco
+font-size = 14
+keybind = "super+f=write_scrollback_file:paste"
+{{- if eq .chezmoi.os "darwin" }}
+macos-option-as-alt = false
+macos-titlebar-style = tabs
+macos-window-shadow = false
+{{- end }}
+scrollback-limit = 100000
+shell-integration-features = no-cursor
+theme = "iTerm2 Default"
+window-height = 27
+window-subtitle = working-directory
+window-theme = dark
+window-width = 105

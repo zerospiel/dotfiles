@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# vim: set expandtab ts=4 sw=4 ft=bash:
+
+[[ $(command -v go) ]] || exit 0
+
+binaries=(
+    github.com/bufbuild/buf/cmd/buf
+    github.com/bufbuild/buf/cmd/protoc-gen-buf-breaking
+    github.com/bufbuild/buf/cmd/protoc-gen-buf-lint
+    github.com/cweill/gotests/gotests
+    github.com/envoyproxy/protoc-gen-validate
+    github.com/fatih/gomodifytags
+    github.com/go-delve/delve/cmd/dlv
+    github.com/golangci/golangci-lint/v2/cmd/golangci-lint
+    github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway
+    github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2
+    github.com/haya14busa/goplay/cmd/goplay
+    github.com/josharian/impl
+    github.com/klauspost/asmfmt/cmd/asmfmt
+    golang.org/x/perf/cmd/benchstat
+    golang.org/x/tools/cmd/deadcode
+    golang.org/x/tools/cmd/goimports
+    golang.org/x/tools/cmd/gonew
+    golang.org/x/tools/gopls
+    golang.org/x/vuln/cmd/govulncheck
+    google.golang.org/grpc/cmd/protoc-gen-go-grpc
+    google.golang.org/protobuf/cmd/protoc-gen-go
+    mvdan.cc/gofumpt
+    mvdan.cc/sh/v3/cmd/shfmt
+    sigs.k8s.io/cloud-provider-kind
+    sigs.k8s.io/controller-runtime/tools/setup-envtest
+    sigs.k8s.io/controller-tools/cmd/controller-gen
+    sigs.k8s.io/kubebuilder/v4
+)
+
+for binary in "${binaries[@]}"; do
+    go install "$binary"@latest
+done

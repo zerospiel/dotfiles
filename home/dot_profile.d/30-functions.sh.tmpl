@@ -1,0 +1,66 @@
+getip() {
+    dig TXT -4 +short o-o.myaddr.l.google.com @ns1.google.com | tr -d '"'
+}
+
+getbuf() {
+    local argl=${#@}
+    local v=""
+    local version_string="latest version"
+    if [[ $argl -eq 0 ]]; then
+        v=$(git ls-remote --tags --sort v:refname --exit-code --refs https://github.com/bufbuild/buf | tail -n1 | cut -d '/' -f3 | cut -c2-)
+    else
+        v="$1"
+        version_string="given version"
+    fi
+
+    local link
+    link="https://github.com/bufbuild/buf/releases/download/v$v/buf-$(uname -s)-$(uname -m)"
+    if ! curl -sI --fail -o /dev/null "$link"; then echo "No such version $v" && return 1; fi
+
+    bufpath=$(which buf)
+    if [[ -e "$bufpath" && -x "$bufpath" ]]; then
+        if [[ $($bufpath --version) == "$v" ]]; then echo "Current version $v equals to the $version_string" && return 0; fi
+        rm "$bufpath"
+    elif [[ -z $bufpath ]]; then bufpath=${GOBIN}/buf; fi
+    echo "Getting the $version_string: $v"
+    curl -sSL -o "$bufpath" https://github.com/bufbuild/buf/releases/download/v"$v"/buf-"$(uname -s)"-"$(uname -m)" && chmod +x "$bufpath"
+}
+
+get_branch() {
+    git branch 2>/dev/null | sed -e '/^[^*]/d ; s/* \(.*\)/(\1) /'
+}
+
+qq() {
+    clear
+
+    logpath="$TMPDIR/q"
+    if [[ -z "$TMPDIR" ]]; then
+        logpath="/tmp/q"
+    fi
+
+    if [[ ! -f "$logpath" ]]; then
+        echo 'Q LOG' >"$logpath"
+    fi
+
+    tail -100f -- "$logpath"
+}
+
+rmqq() {
+    logpath="$TMPDIR/q"
+    if [[ -z "$TMPDIR" ]]; then
+        logpath="/tmp/q"
+    fi
+    if [[ -f "$logpath" ]]; then
+        rm "$logpath"
+    fi
+    qq
+}
+
+ghpull() {
+    if [ ${#@} -gt 0 ]; then
+        local pr_num=${1}
+        local stream=${2:-upstream}
+        printf "Fetching PR #%s from the %s remote\n" "$pr_num" "$stream"
+        git fetch "$stream" pull/"$pr_num"/head && git checkout FETCH_HEAD
+    fi
+}

@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# vim: set expandtab ts=4 sw=4 ft=bash:
+
+[[ $(command -v ya) ]] || exit 0
+
+# yazi_package.toml hash: {{ include "symlinked/yazi_package.toml" | sha256sum }}
+
+ya pkg install

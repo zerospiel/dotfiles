@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# vim: set expandtab ts=4 sw=4 ft=bash:
+
+packages=(
+    age
+    bash
+    bash-completion@2
+    calc
+    chezmoi
+    clang-format
+    cloc
+    delta
+    fzf
+    gawk
+    git
+    gitleaks
+    gnu-sed
+    helm
+    htop
+    iproute2mac
+    jq
+    k9s
+    kind
+    kubernetes-cli
+    nmap
+    pidof
+    podman
+    pre-commit
+    readline
+    shellcheck
+    speedtest
+    sqlite
+    tree
+    watch
+    wget
+    yazi
+    yq
+)
+
+casks=(
+    appcleaner
+    discord
+    dropbox
+    ghostty
+    logi-options+
+    microsoft-auto-update
+    microsoft-onenote
+    microsoft-teams
+    onedrive
+    podman-desktop
+    spotify
+    transmission
+    vlc
+    zoom
+)
+
+# TODO: VSCode, ausweis(?), bitwarder(?), whatsapp(?), google-chrome-dev, iterm, steam(?), telegram(?)
+
+brew install "${packages[@]}"
+brew install --cask "${casks[@]}"

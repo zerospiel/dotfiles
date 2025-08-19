@@ -1,0 +1,13 @@
+Host github.com
+  IgnoreUnknown AddKeysToAgent,UseKeychain
+  AddKeysToAgent yes
+  {{- if eq .chezmoi.os "darwin" }}
+  UseKeychain yes
+  {{- end }}
+  Preferredauthentications publickey
+  IdentityFile ~/.ssh/ghz_ed
+
+Host *
+  ServerAliveInterval 600
+  TCPKeepAlive yes
+  IPQoS=throughput

@@ -1,0 +1,15 @@
+# profile -*- mode: sh -*-
+# vim: set expandtab ts=4 sw=4 ft=sh:
+
+for f in "$HOME/.profile.d/"*.sh; do
+    [ -r "$f" ] && . "$f"
+done
+
+alias k='kubectl'
+alias ls='ls -G'
+alias grep='grep --color=auto'
+alias c='clear'
+alias grpcurl='grpcurl -plaintext'
+alias ssh='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
+alias scp='scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
+alias hg='history | grep'

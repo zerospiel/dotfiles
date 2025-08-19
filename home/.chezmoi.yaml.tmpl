@@ -1,0 +1,31 @@
+encryption: age
+
+{{- $personalMachine := promptBool "Is it personal machine" -}}
+
+{{- $email := "mmorgen@posteo.com" }}
+{{- if not $personalMachine -}}
+{{-   $email = "mmorgen@mirantis.com" -}}
+{{- end }}
+
+cd:
+  command: /bin/bash
+  args: ["-l"]
+
+diff:
+  pager: "delta"
+
+github:
+  refreshPeriod: 12h
+
+textconv:
+- pattern: "**/*.plist"
+  command: "plutil"
+  args: ["-convert", "xml1", "-o", "-", "-"]
+
+age:
+  identity: "~/.config/chezmoi/key.txt"
+  recipient: age1zjl080l87vw9wqkxhxj8rxj89je39au82s0xr48tlfwkhjty9e3swmvp9g
+
+data:
+  personalMachine: {{ $personalMachine }}
+  email: {{ $email | quote }}

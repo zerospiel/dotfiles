@@ -1,0 +1,14 @@
+key.txt.age
+
+symlinked/**
+
+{{- if eq .chezmoi.os "windows" }}
+.chezmoiscripts/non-windows/**
+.profile
+.bash_profile
+{{- end }}
+
+{{- if ne .chezmoi.os "darwin" }}
+.chezmoiscripts/darwin/**
+Library/**
+{{- end }}

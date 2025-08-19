@@ -1,0 +1,59 @@
+# golang related envs
+export GOPATH=$HOME/go
+# export GOROOT=$(brew --prefix go@1.12)/libexec
+# export GOROOT=/usr/local/go
+export GOBIN=$GOPATH/bin
+export GONOPROXY=$GOPRIVATE
+{{- $chain := list }}
+{{- if not .personalMachine }}
+  {{- $chain = append $chain "https://artifactory.mcp.mirantis.net/artifactory/api/go/go" }}
+{{- end }}
+{{- $chain = uniq (compact (concat $chain (list "https://proxy.golang.org" "direct"))) }}
+export GOPROXY="{{ join "|" $chain }}"
+export GONOSUMDB=$GOPRIVATE
+export GOSUMDB=sum.golang.org
+export GO111MODULE=on
+export GOINSECURE=none
+export GOVULNDB=https://vuln.go.dev
+
+# csharp related envs
+export DOTNET_CLI_TELEMETRY_OPTOUT=0
+
+{{ $paths := list }}
+{{- $home := .chezmoi.homeDir -}}
+{{- $gobin := (coalesce (env "GOBIN") (joinPath .chezmoi.homeDir "go/bin")) -}}
+{{- $candidates := list "/opt/homebrew/opt/gnu-sed/libexec/gnubin" "/opt/homebrew/bin" "/opt/homebrew/sbin" $gobin -}}
+{{- range $_, $raw := $candidates -}}
+  {{- if and $raw (ne $raw "") -}}
+    {{- $p := $raw -}}
+    {{- if not (hasPrefix "/" $raw) -}}
+      {{- $p = joinPath $home $raw -}}
+    {{- end -}}
+    {{- if stat $p -}}
+      {{- $paths = append $paths $p -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+export PATH={{ join ":" (uniq (compact (concat $paths (splitList ":" (env "PATH"))))) }}
+
+# other related envs
+export LC_ALL='en_US.UTF-8'
+export LANG=$LC_ALL
+export LC_TIME=$LC_ALL
+export LC_COLLATE=$LC_ALL
+export LC_CTYPE=$LC_ALL
+export PS1="\[\033[38;5;5m\]\W\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]\[\033[38;5;10m\]\\$\[$(tput sgr0)\]\[\033[38;5;15m\]\[$(tput sgr0)\] \[\033[38;5;14m\]\$(get_branch)\[$(tput sgr0)\]"
+export CLICOLOR=1
+export LSCOLORS=Gxfxcxdxbxegedabagacad
+{{- if eq .chezmoi.os "darwin" }}
+export BASH_SILENCE_DEPRECATION_WARNING=1
+{{- end }}
+export EDITOR='vim'
+{{- if eq .chezmoi.os "darwin" }}
+export KIND_EXPERIMENTAL_PROVIDER='podman'
+{{- end }}
+
+# history
+export HISTFILESIZE=1000000
+export HISTSIZE=1000000
+export HISTCONTROL="ignoreboth:erasedups"

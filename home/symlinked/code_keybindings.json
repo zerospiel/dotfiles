@@ -1,0 +1,20 @@
+[
+    {
+        "key": "ctrl+z",
+        "command": "workbench.action.showNextWindowTab"
+    },
+    {
+        "key": "ctrl+shift+z",
+        "command": "workbench.action.showPreviousWindowTab"
+    },
+    {
+        "key": "cmd+[Slash]",
+        "command": "editor.action.commentLine",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "shift+cmd+[Backslash]",
+        "command": "-editor.action.commentLine",
+        "when": "editorTextFocus && !editorReadonly"
+    }
+]
