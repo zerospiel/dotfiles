@@ -1,151 +1,168 @@
-" ========== Plugin Setup ==========
+" ========= Plugins =========
 call plug#begin('~/.vim/plugged')
 
-" File navigation
-Plug 'preservim/nerdtree'
-Plug 'junegunn/fzf'
+" LSP-like IntelliSense
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" Go tooling (use commands, not its LSP)
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+" Linting (golangci-lint, markdownlint, yamllint, etc.)
+Plug 'dense-analysis/ale'
+
+" Project root auto-CD
+Plug 'airblade/vim-rooter'
+
+" Fast file finder & project search
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
-" Statusline
-Plug 'vim-airline/vim-airline'
-
-" Git integration
+" Git essentials
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
-" Markdown, TOC & Linting
-Plug 'preservim/vim-markdown'
-Plug 'godlygeek/tabular'
-Plug 'mzlogin/vim-markdown-toc'
-" Plug 'DavidAnson/vim-markdownlint'
+" Better file explorer on top of netrw
+Plug 'tpope/vim-vinegar'
 
-" Go development
-Plug 'govim/govim'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'yami-beta/asyncomplete-omni.vim'
+" Sessions (auto-restore last workspace)
+Plug 'mhinz/vim-startify'
+Plug 'tpope/vim-obsession'
 
-" Python development
-Plug 'vim-python/python-syntax'
-Plug 'psf/black', { 'branch': 'main' }
+Plug 'tpope/vim-commentary'
 
-" Linting, formatting, diagnostics
-Plug 'dense-analysis/ale'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
-" Clang formatting
-Plug 'rhysd/vim-clang-format'
-
-" YAML
-Plug 'stephpy/vim-yaml'
-
-" Colorscheme
-Plug 'aonemd/quietlight.vim'
+Plug 'endel/vim-github-colorscheme'
 
 call plug#end()
 
-" ========== General Settings ==========
+" ========= Basics =========
+filetype plugin indent on
 syntax on
-
-let mapleader = ","
-
+set nocompatible
+set hidden
 set number
+set updatetime=300
+set undofile
+set clipboard=unnamedplus
+set completeopt=menuone,noinsert,noselect
+set wildmode=longest:full,full
+set ignorecase smartcase incsearch hlsearch
+set wrap
 set tabstop=4
 set shiftwidth=4
 set expandtab
 set autoindent
 set smartindent
-set wrap
 set linebreak
-set cursorline
-set hidden
 set termguicolors
-set nocompatible
 set background=light
 set nobackup
 set nowritebackup
 set noswapfile
 set autoread
-set updatetime=500
-set balloondelay=250
 set signcolumn=number
+set balloondelay=250
 set backspace=2
-" https://github.com/govim/govim/wiki/vimrc-tips#-fix-why-does-vim-flicker-when-i-enter-normal-mode-leave-exit-insert-mode
 set timeoutlen=1000 ttimeoutlen=0
 set showcmd
 
 set mouse=a
 set ttymouse=sgr
 
-filetype off
-filetype indent on
-filetype plugin on
+let mapleader = ","
 
-colorscheme quietlight
+" Tabs/windows ergonomics
+nnoremap <silent> <Tab>   :bnext<CR>
+nnoremap <silent> <S-Tab> :bprevious<CR>
+nnoremap <silent> <C-w>q  :close<CR>
+nnoremap <silent> <C-w>Q  :tabclose<CR>
 
-" ========== Editing Behavior ==========
-set clipboard=unnamedplus
-set incsearch
-set hlsearch
-set ignorecase
-set smartcase
+" Visual paste should not clobber the default/clipboard register
+xnoremap p "_dP
 
-" ========== Filetype Specific ==========
-autocmd FileType go setlocal tabstop=4 shiftwidth=4
-autocmd FileType python setlocal tabstop=4 shiftwidth=4
-autocmd FileType markdown setlocal wrap linebreak nolist
+colorscheme github
 
-" ========== Autoformat ==========
-let g:ale_fix_on_save = 1
-let g:ale_linters_explicit = 1
-let g:ale_fixers = {
-\   'python': ['black'],
-\   'javascript': ['prettier'],
-\   'markdown': ['prettier'],
-\   'yaml': ['prettier'],
-\   'cpp': ['clang-format'],
+" ========= FZF mappings =========
+nnoremap <C-p> :Files<CR>
+nnoremap <leader>fg :Rg<CR>
+nnoremap <leader>fb :Buffers<CR>
+
+" Make :Files show hidden files but ignore .git
+let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow -g "!.git/"'
+
+" ========= Rooter (auto cd to repo root) =========
+let g:rooter_patterns = ['go.work', 'go.mod', '.git', '.hg', '.svn']
+let g:rooter_change_directory_for_non_project_files = 'current'
+" Use global :cd so a single vim instance tracks one main project directory
+let g:rooter_cd_cmd = 'cd'
+
+" ========= Startify + Obsession (sessions) =========
+let g:startify_change_to_dir = 1
+let g:startify_session_autoload = 1
+let g:startify_session_persistence = 1
+
+" autocmd VimEnter * if empty(v:this_session) | silent! Obsession | endif
+
+" ========= ALE (linting/format helpers) =========
+let g:ale_linters = {
+\ 'go': ['golangci-lint'],
+\ 'markdown': ['markdownlint'],
+\ 'yaml': ['yamllint'],
 \}
+let g:ale_go_golangci_lint_options = '--path-mode=abs --timeout=30s --fast'
+let g:ale_virtualtext_cursor = 1
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = '•'
+" Don't duplicate format-on-save here (Coc will format); keep ALE for diagnostics
+let g:ale_fix_on_save = 0
+let g:ale_completion_enabled = 0
 
-" ========== Autocompletion ==========
+" ========= vim-go (tools; disable its LSP) =========
+let g:go_gopls_enabled = 0
+let g:go_fmt_command = 'gofumpt'
+let g:go_imports_mode = 'gopls'   " let gopls organize imports via Coc
+let g:go_addtags_transform = 'camelcase'
+let g:go_addtags_options = 'json=omitempty'
+let g:go_doc_popup_window = 1
+let g:go_auto_type_info = 0       " Coc handles hover
 
-" enabled only for *.go files
+" ========= Coc =========
+let g:coc_global_extensions = ['coc-json', 'coc-yaml', 'coc-snippets', 'coc-pairs']
 
-function! Omni()
-    call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
-         \ 'name': 'omni',
-         \ 'whitelist': ['go'],
-         \ 'completor': function('asyncomplete#sources#omni#completor')
-         \  }))
-endfunction
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+inoremap <silent><expr> <Tab>   coc#pum#visible() ? coc#pum#next(1)  : "\<Tab>"
+inoremap <silent><expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1)  : "\<S-Tab>"
 
-au VimEnter * :call Omni()
+" Go-to, rename, code actions
+nmap gd <Plug>(coc-definition)
+nmap gy <Plug>(coc-type-definition)
+nmap gr <Plug>(coc-references)
+nmap gi <Plug>(coc-implementation)
+nmap <leader>rn <Plug>(coc-rename)
+nmap <leader>ca <Plug>(coc-codeaction)
 
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
+" Diagnostics in floating window
+nnoremap <silent> K :call CocActionAsync('doHover')<CR>
+nnoremap <silent> [d <Plug>(coc-diagnostic-prev)
+nnoremap <silent> ]d <Plug>(coc-diagnostic-next)
 
-" ========== clang-format ==========
-let g:clang_format#style_options = {
-\ 'BasedOnStyle': 'file',
-\ }
+" Format on save for Go (uses gopls with gofumpt and organize imports)
+autocmd BufWritePre *.go :silent! call CocAction('format')
 
-" ========== Markdown TOC ==========
-let g:vmt_auto_update_on_save = 1
+" ========= netrw quality-of-life =========
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_winsize = 25
+let g:netrw_keepdir = 0
+let g:netrw_browse_split = 0
 
-" ========== Git ==========
-nnoremap <leader>gs :Gstatus<CR>
-nnoremap <leader>gc :Gcommit<CR>
-nnoremap <leader>gp :Gpush<CR>
-
-" ========== FZF ==========
-" nnoremap <C-p> :Files<CR>
-" nnoremap <C-f> :Rg<CR>
-
-" ========== NERDTree ==========
-nnoremap <C-n> :NERDTreeToggle<CR>
-
-" ========== Airline ==========
+" ========= Airline =========
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#show_buffers = 1
+let g:airline_powerline_fonts = 1
 
 " ========== Todo Highlights ==========
 hi Todo guifg=White guibg=Orange
@@ -159,15 +176,3 @@ autocmd BufReadPost,BufNewFile * call matchadd('Note', '\<NOTE\>')
 autocmd BufReadPost,BufNewFile * call matchadd('Hack', '\<HACK\>')
 autocmd BufReadPost,BufNewFile * call matchadd('Warn', '\<WARN\>')
 autocmd BufReadPost,BufNewFile * call matchadd('Kludge', '\<kludge\>')
-
-
-" ========== Misc Settings ==========
-
-" govim: show info for completion candidates in a popup menu
-if has("patch-8.1.1904")
-  set completeopt+=popup
-  set completepopup=align:menu,border:off,highlight:Pmenu
-endif
-
-call govim#config#Set("FormatOnSave", "goimports-gofmt")
-
