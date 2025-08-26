@@ -3,7 +3,7 @@ set -euo pipefail
 
 # vim: set expandtab ts=4 sw=4 ft=bash:
 
-packages=(
+packages_common=(
     age
     bash
     bash-completion@2
@@ -15,7 +15,6 @@ packages=(
     fzf
     gawk
     git
-    gitleaks
     gnu-sed
     helm
     htop
@@ -24,16 +23,16 @@ packages=(
     k9s
     kind
     kubernetes-cli
+    lima
     nmap
     node
     pidof
     podman
-    pre-commit
     readline
     ripgrep
     shellcheck
-    speedtest
     sqlite
+    tmux
     tree
     watch
     wget
@@ -41,24 +40,66 @@ packages=(
     yq
 )
 
-casks=(
+packages_personal=(
+    gitleaks
+    pre-commit
+    teamookla/speedtest/speedtest
+)
+
+packages_non_personal=(
+    awscli
+    azure-cli
+    cloud-nuke
+    clusterctl
+    coreutils
+    gh
+    goreleaser
+    govc
+    graphviz
+    jwt-cli
+    minio-mc
+    openstackclient
+    qemu
+    sshuttle
+    velero
+)
+
+casks_common=(
     appcleaner
-    discord
-    dropbox
     ghostty
     logi-options+
+    podman-desktop
+    spotify
+)
+
+casks_personal=(
+    discord
+    dropbox
     microsoft-auto-update
     microsoft-onenote
     microsoft-teams
     onedrive
-    podman-desktop
-    spotify
     transmission
     vlc
     zoom
 )
 
-# TODO: VSCode, ausweis(?), bitwarder(?), whatsapp(?), google-chrome-dev, iterm, steam(?), telegram(?)
+casks_non_personal=(
+    bitwarden
+    docker-desktop
+    gpg-suite
+    lens
+    telegram
+)
 
-brew install "${packages[@]}"
-brew install --cask "${casks[@]}"
+brew install "${packages_common[@]}"
+brew install --cask "${casks_common[@]}"
+
+# shellcheck disable=all
+{{- if .personalMachine }}
+brew install "${packages_personal[@]}"
+brew install --cask "${casks_personal[@]}"
+{{- else }}
+brew install "${packages_non_personal[@]}"
+brew install --cask "${casks_non_personal[@]}"
+{{- end }}
