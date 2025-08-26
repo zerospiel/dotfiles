@@ -64,42 +64,11 @@ packages_non_personal=(
     velero
 )
 
-casks_common=(
-    appcleaner
-    ghostty
-    logi-options+
-    podman-desktop
-    spotify
-)
-
-casks_personal=(
-    discord
-    dropbox
-    microsoft-auto-update
-    microsoft-onenote
-    microsoft-teams
-    onedrive
-    transmission
-    vlc
-    zoom
-)
-
-casks_non_personal=(
-    bitwarden
-    docker-desktop
-    gpg-suite
-    lens
-    telegram
-)
-
 brew install "${packages_common[@]}"
-brew install --cask "${casks_common[@]}"
 
 # shellcheck disable=all
 {{- if .personalMachine }}
 brew install "${packages_personal[@]}"
-brew install --cask "${casks_personal[@]}"
 {{- else }}
 brew install "${packages_non_personal[@]}"
-brew install --cask "${casks_non_personal[@]}"
 {{- end }}
