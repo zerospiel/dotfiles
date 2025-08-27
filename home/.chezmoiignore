@@ -12,3 +12,9 @@ symlinked/**
 .chezmoiscripts/darwin/**
 Library/**
 {{- end }}
+
+{{- if .personalMachine }}
+.ssh/work_public*
+{{- else }}
+.ssh/pers*
+{{- end }}

@@ -1,0 +1,23 @@
+Host github.com
+  IgnoreUnknown AddKeysToAgent,UseKeychain
+  AddKeysToAgent yes
+  {{- if eq .chezmoi.os "darwin" }}
+  UseKeychain yes
+  {{- end }}
+  Preferredauthentications publickey
+  IdentityFile ~/.ssh/{{ if .personalMachine }}pers{{ else }}work_public{{ end }}
+
+{{- if not .personalMachine }}
+Host gerrit.mcp.mirantis.com
+  IgnoreUnknown AddKeysToAgent,UseKeychain
+  AddKeysToAgent yes
+  UseKeychain yes
+  Preferredauthentications publickey
+  IdentityFile ~/.ssh/work_public
+  Port 29418
+{{- end }}
+
+Host *
+  ServerAliveInterval 600
+  TCPKeepAlive yes
+  IPQoS=throughput
