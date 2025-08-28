@@ -1,38 +1,61 @@
 {
-  "suggest.noselect": true,
-  "suggest.enablePreview": true,
-  "diagnostic.virtualText": true,
-  "codeLens.enable": true,
-
-  "coc.preferences.formatOnSave": true,
-
-  "languageserver": {
-    "golang": {
-      "command": "gopls",
-      "rootPatterns": ["go.work", "go.mod", ".git/"],
-      "filetypes": ["go"],
-      "initializationOptions": {
-        "gofumpt": true
-      },
-      "settings": {
-        "gopls": {
-          "formatting.gofumpt": true,
-          "ui.completion.usePlaceholders": false,
-          "hoverKind": "FullDocumentation",
-          "staticcheck": true,
-          "directoryFilters": ["-vendor", "-node_modules"],
-          "codelenses": {
-            "generate": true,
-            "regenerate_cgo": true,
-            "run_govulncheck": true,
-            "upgrade_dependency": true,
-            "vendor": true,
-            "test": false
-          }
+    "suggest.noselect": true,
+    "suggest.enablePreview": true,
+    "diagnostic.virtualText": true,
+    "codeLens.enable": true,
+    "diagnostic.displayByAle": true,
+    "coc.preferences.formatOnSave": true,
+    "inlayHint.enable": false,
+    "languageserver": {
+        "golang": {
+            "command": "gopls",
+            "filetypes": [
+                "go"
+            ],
+            "rootPatterns": [
+                "go.work",
+                "go.mod"
+            ],
+            "env": {
+                "GOEXPERIMENT": "synctest,jsonv2"
+            },
+            "initializationOptions": {
+                "gofumpt": true
+            },
+            "settings": {
+                "gopls": {
+                    "formatting.gofumpt": true,
+                    "staticcheck": true,
+                    "hoverKind": "FullDocumentation",
+                    "build.directoryFilters": [
+                        "-vendor",
+                        "-node_modules"
+                    ],
+                    "usePlaceholders": false,
+                    "codelenses": {
+                        "generate": true,
+                        "regenerate_cgo": true,
+                        "run_govulncheck": true,
+                        "upgrade_dependency": true,
+                        "vendor": true,
+                        "test": false
+                    },
+                    "vulncheck": "Imports",
+                    "importsSource": "goimports"
+                }
+            }
+        },
+        "yaml": {
+            "module": "yaml-language-server",
+            "args": [
+                "--stdio"
+            ],
+            "filetypes": [
+                "yaml",
+                "yml"
+            ]
         }
-      }
-    }
-  },
-  "snippets.ultisnips.pythonPrompt": false
+    },
+    "yaml.format.enable": false,
+    "snippets.ultisnips.pythonPrompt": false
 }
-
