@@ -1,12 +1,5 @@
-*
-!*.*
-!*/
-!LICENSE
-!README
-!Makefile
-!Dockerfile
-!Containerfile
 .vscode
+.vim
 vendor/
 dist/
 *.swp

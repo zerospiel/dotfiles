@@ -1,0 +1,7 @@
+# interactive non-login shells
+[[ -r "$HOME"/.profile ]] && . "$HOME"/.profile
+[[ -r "$(brew --prefix)"/etc/profile.d/bash_completion.sh ]] && . "$(brew --prefix)"/etc/profile.d/bash_completion.sh
+[[ $(command -v kubectl) ]] && source <(kubectl completion bash) && complete -F __start_kubectl k
+[[ $(command -v kubebuilder) ]] && source <(kubebuilder completion bash)
+
+[[ $- == *i* ]] && stty -ixon

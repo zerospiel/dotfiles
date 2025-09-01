@@ -61,6 +61,7 @@ set balloondelay=250
 set backspace=2
 set timeoutlen=1000 ttimeoutlen=0
 set showcmd
+set splitbelow
 
 set mouse=a
 set ttymouse=sgr
@@ -74,6 +75,8 @@ nmap <leader>O m`O<Esc>``
 noremap <leader>p "*p
 noremap <leader>P "*P
 vnoremap Y "*y
+
+tnoremap <Esc> <C-w>N
 
 " ========= FZF mappings =========
 nnoremap <C-p> :Files<CR>
