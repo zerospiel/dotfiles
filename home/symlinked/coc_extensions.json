@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "coc-json": ">=1.9.3",
+    "coc-snippets": ">=3.4.7",
+    "coc-pairs": ">=1.5.2",
+    "coc-yaml": ">=1.9.1",
+    "coc-markdownlint": ">=1.36.0"
+  }
+}

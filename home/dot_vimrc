@@ -4,14 +4,13 @@ call plug#begin('~/.vim/plugged')
 " LSP-like IntelliSense
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" Linting (golangci-lint, markdownlint, yamllint, etc.)
-Plug 'dense-analysis/ale'
+Plug 'fatih/vim-go'
 
 " Project root auto-CD
 Plug 'airblade/vim-rooter'
 
 " Fast file finder & project search
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
 " Git essentials
@@ -80,6 +79,7 @@ vnoremap Y "*y
 nnoremap <C-p> :Files<CR>
 nnoremap <leader>fg :Rg<CR>
 nnoremap <leader>fb :Buffers<CR>
+nnoremap <leader>/ :BLines<CR>
 
 " Make :Files show hidden files but ignore .git
 let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow -g "!.git/"'
@@ -95,20 +95,6 @@ let g:startify_change_to_dir = 1
 let g:startify_session_autoload = 1
 let g:startify_session_persistence = 1
 
-" ========= ALE (linting/format helpers) =========
-let g:ale_linters = {
-\ 'go': ['golangci-lint'],
-\ 'markdown': ['markdownlint'],
-\ 'yaml': ['yamllint'],
-\}
-let g:ale_go_golangci_lint_options = '--path-mode=abs --timeout=30s --fast'
-let g:ale_virtualtext_cursor = 1
-let g:ale_sign_error = '✗'
-let g:ale_sign_warning = '•'
-" Don't duplicate format-on-save here (Coc will format); keep ALE for diagnostics
-let g:ale_fix_on_save = 0
-let g:ale_completion_enabled = 0
-
 " ========= Coc =========
 let g:coc_global_extensions = ['coc-json', 'coc-yaml', 'coc-snippets', 'coc-pairs']
 
@@ -116,7 +102,6 @@ inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 inoremap <silent><expr> <Tab>   coc#pum#visible() ? coc#pum#next(1)  : "\<Tab>"
 inoremap <silent><expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1)  : "\<S-Tab>"
 
-" Go-to, rename, code actions
 augroup GoCocKeys
   autocmd!
   autocmd FileType go nmap <buffer> gd <Plug>(coc-definition)
@@ -128,13 +113,53 @@ augroup GoCocKeys
   autocmd FileType go nnoremap <buffer> K :call CocActionAsync('doHover')<CR>
 augroup END
 
-" Diagnostics in floating window
-nnoremap <silent> K :call CocActionAsync('doHover')<CR>
 nnoremap <silent> [d <Plug>(coc-diagnostic-prev)
 nnoremap <silent> ]d <Plug>(coc-diagnostic-next)
 
-" Format on save for Go (uses gopls with gofumpt and organize imports)
-autocmd BufWritePre *.go :silent! call CocAction('format')
+nnoremap <leader>sp :CocList outline<CR>
+nnoremap <leader>t :CocList -I symbols<CR>
+
+" Smart <CR>: confirm pum OR split pairs with indent OR normal Coc enter
+inoremap <expr> <CR> coc#pum#visible() ? coc#pum#confirm() : <SID>SmartCR()
+
+function! s:BetweenPair() abort
+  let coln = col('.')
+  if coln <= 1 | return 0 | endif
+  let line = getline('.')
+  if coln > len(line) | return 0 | endif
+  let prev = line[coln-2]
+  let next = line[coln-1]
+  return ( (prev ==# '(' && next ==# ')')
+        \ || (prev ==# '[' && next ==# ']')
+        \ || (prev ==# '{' && next ==# '}') )
+endfunction
+
+function! s:SmartCR() abort
+  if <SID>BetweenPair()
+    " newline, then open a new line above the closer (properly indented)
+    return "\<C-g>u\<CR>\<Esc>O"
+  endif
+  " default enter + Coc's on_enter hook
+  return "\<C-g>u\<CR>\<C-r>=coc#on_enter()\<CR>"
+endfunction
+
+" ========= vim-go (tools; disable its LSP) =========
+let g:go_addtags_options = 'json=omitempty'
+let g:go_addtags_transform = 'camelcase'
+let g:go_fmt_command = 'gofumpt'
+let g:go_imports_mode = 'goimports'
+
+let g:go_auto_type_info = 0
+let g:go_def_mapping_enabled = 0
+let g:go_doc_keywordprg_enabled = 0
+let g:go_doc_popup_window = 0
+let g:go_fmt_autosave = 0
+let g:go_gopls_enabled = 0
+let g:go_highlight_fields = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_types = 1
+let g:go_mod_fmt_autosave = 0
 
 " ========= netrw quality-of-life =========
 let g:netrw_banner = 0

@@ -2,9 +2,10 @@
     "suggest.noselect": true,
     "suggest.enablePreview": true,
     "diagnostic.virtualText": true,
+    "diagnostic.displayByAle": false,
     "codeLens.enable": true,
-    "diagnostic.displayByAle": true,
     "coc.preferences.formatOnSave": true,
+    "semanticTokens.enable": true,
     "inlayHint.enable": false,
     "languageserver": {
         "golang": {
@@ -14,7 +15,8 @@
             ],
             "rootPatterns": [
                 "go.work",
-                "go.mod"
+                "go.mod",
+                ".git/"
             ],
             "env": {
                 "GOEXPERIMENT": "synctest,jsonv2"
@@ -24,10 +26,10 @@
             },
             "settings": {
                 "gopls": {
-                    "formatting.gofumpt": true,
+                    "gofumpt": true,
                     "staticcheck": true,
                     "hoverKind": "FullDocumentation",
-                    "build.directoryFilters": [
+                    "directoryFilters": [
                         "-vendor",
                         "-node_modules"
                     ],
@@ -40,22 +42,14 @@
                         "vendor": true,
                         "test": false
                     },
-                    "vulncheck": "Imports",
-                    "importsSource": "goimports"
+                    "vulncheck": "Imports"
                 }
             }
         },
-        "yaml": {
-            "module": "yaml-language-server",
-            "args": [
-                "--stdio"
-            ],
-            "filetypes": [
-                "yaml",
-                "yml"
-            ]
-        }
     },
     "yaml.format.enable": false,
-    "snippets.ultisnips.pythonPrompt": false
+    "snippets.ultisnips.pythonPrompt": false,
+    "markdownlint.config": {
+        "MD029": false
+    }
 }
