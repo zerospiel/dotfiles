@@ -62,6 +62,7 @@ set backspace=2
 set timeoutlen=1000 ttimeoutlen=0
 set showcmd
 set splitbelow
+set splitright
 
 set mouse=a
 set ttymouse=sgr
@@ -79,7 +80,7 @@ vnoremap Y "*y
 tnoremap <Esc> <C-w>N
 
 " ========= FZF mappings =========
-nnoremap <C-p> :Files<CR>
+nnoremap <leader>ff :Files<CR>
 nnoremap <leader>fg :Rg<CR>
 nnoremap <leader>fb :Buffers<CR>
 nnoremap <leader>/ :BLines<CR>
