@@ -96,6 +96,33 @@ let g:startify_change_to_dir = 0
 let g:startify_session_autoload = 1
 let g:startify_session_persistence = 1
 
+
+function! s:SessionNameFromCwdFull() abort
+  " 1) Normalize paths (strip trailing slashes)
+  let path = substitute(fnamemodify(getcwd(), ':p'), '/\+$', '', '')
+  let home = substitute(fnamemodify(expand('~'), ':p'), '/\+$', '', '')
+
+  " 2) Make relative to $HOME if applicable
+  if path[:len(home)-1] ==# home
+    let rel = path[len(home):]
+  else
+    let rel = path
+  endif
+
+  " 3) Remove leading slash; handle CWD == HOME
+  if rel =~ '^/' | let rel = rel[1:] | endif
+  if empty(rel)  | let rel = 'home'   | endif
+
+  let rel = substitute(rel, '^\.', 'dot_', '')
+
+  " 4) Sanitize to a filename-friendly session name
+  let name = substitute(rel, '[/\\: ]', '_', 'g')
+  let name = substitute(name, '[^A-Za-z0-9_.-]', '_', 'g')
+  return name
+endfunction
+
+command! SSavePath execute 'SSave ' . s:SessionNameFromCwdFull()
+
 " ========= Coc =========
 let g:coc_global_extensions = ['coc-json', 'coc-yaml', 'coc-snippets', 'coc-pairs']
 
@@ -242,6 +269,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline_powerline_fonts = 1
+let g:airline_theme='atomic'
 
 " ========== Todo Highlights ==========
 hi Todo guifg=White guibg=Orange
