@@ -1,3 +1,5 @@
+require("git"):setup()
+
 Status:children_add(function()
     local h = cx.active.current.hovered
     local elements = {}
