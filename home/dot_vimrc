@@ -6,19 +6,13 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'fatih/vim-go'
 
-" Project root auto-CD
-Plug 'airblade/vim-rooter'
-
-" Fast file finder & project search
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
-" Git essentials
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
-" Better file explorer on top of netrw
-Plug 'tpope/vim-vinegar'
+Plug 'airblade/vim-rooter'
 
 Plug 'mhinz/vim-startify'
 
@@ -27,11 +21,14 @@ Plug 'tpope/vim-commentary'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
+Plug 'Konfekt/filepicker.vim'
+
 Plug 'dunstontc/vim-vscode-theme'
 
 call plug#end()
 
 " ========= Basics =========
+
 filetype plugin indent on
 syntax on
 colorscheme dark_plus
@@ -73,9 +70,9 @@ nnoremap <silent> <Tab>   :bnext<CR>
 nnoremap <silent> <S-Tab> :bprevious<CR>
 nmap <leader>o m`o<Esc>``
 nmap <leader>O m`O<Esc>``
-noremap <leader>p "*p
-noremap <leader>P "*P
-vnoremap Y "*y
+noremap <leader>p "+p
+noremap <leader>P "+P
+vnoremap Y "+y
 
 tnoremap <Esc> <C-w>N
 
@@ -95,7 +92,7 @@ let g:rooter_change_directory_for_non_project_files = 'current'
 let g:rooter_cd_cmd = 'cd'
 
 " ========= Startify =========
-let g:startify_change_to_dir = 1
+let g:startify_change_to_dir = 0
 let g:startify_session_autoload = 1
 let g:startify_session_persistence = 1
 
@@ -167,10 +164,78 @@ let g:go_mod_fmt_autosave = 0
 
 " ========= netrw quality-of-life =========
 let g:netrw_banner = 0
-let g:netrw_liststyle = 3
-let g:netrw_winsize = 25
+let g:netrw_liststyle = 0
+let g:netrw_winsize = 30
 let g:netrw_keepdir = 0
 let g:netrw_browse_split = 0
+let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
+let g:netrw_localcopydircmd = 'cp -r'
+let g:netrw_localrmdir='rm -r'
+
+nnoremap <leader>dd :Lexplore %:p:h<CR>
+nnoremap <Leader>da :Lexplore<CR>
+
+hi! link netrwMarkFile SpecialKey
+
+function! NetrwMapping()
+  nmap <buffer> H u
+  nmap <buffer> h -^
+  nmap <buffer> l <CR>
+  nmap <buffer> . gh
+  nmap <buffer> P <C-w>z
+  nmap <buffer> L <CR>:Lexplore<CR>
+  nmap <buffer> <leader>dd :Lexplore<CR>
+
+  nmap <buffer> <Space> mf
+  nmap <buffer> <M-Space> mF
+  nmap <buffer> <leader><Tab> mu
+
+  nmap <buffer> ff %:w<CR>:buffer #<CR>
+  nmap <buffer> fe R
+  nmap <buffer> fc mc
+  nmap <buffer> fC mtmc
+  nmap <buffer> fx mm
+  nmap <buffer> fX mtmm
+  nmap <buffer> f; mx
+  nmap <buffer> fl :echo join(netrw#Expose("netrwmarkfilelist"), "\n")<CR>
+
+  nmap <buffer> bb mb
+  nmap <buffer> bd mB
+  nmap <buffer> bl gb
+endfunction
+
+augroup netrw_mapping
+  autocmd!
+  autocmd filetype netrw call NetrwMapping()
+augroup END
+
+" ========= FileExplorer Hack =========
+" calls FilePicker on a new dir instead of netrw
+" see netrw configuration above just in case
+augroup FileExplorer
+  autocmd!
+augroup END
+
+augroup FilePickerHijack
+  autocmd!
+  autocmd VimEnter * if argc() == 1 && isdirectory(argv(0)) |
+        \ call s:OpenDirWithPicker(argv(0)) |
+        \ endif
+
+  autocmd BufEnter * if &buftype == '' && isdirectory(expand('%:p')) |
+        \ call s:OpenDirWithPicker(expand('%:p')) |
+        \ endif
+augroup END
+
+function! s:OpenDirWithPicker(dir) abort
+  let l:abs = fnamemodify(a:dir, ':p')
+  execute 'cd' fnameescape(l:abs)
+  if expand('%:p') ==# l:abs
+    silent! bwipeout
+  endif
+
+  silent! FilePicker
+endfunction
 
 " ========= Airline =========
 let g:airline#extensions#tabline#enabled = 1
