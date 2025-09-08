@@ -1,0 +1,63 @@
+{
+    "configurations": {
+        "Go: Debug Package": {
+            "adapter": "delve",
+            "filetypes": [
+                "go"
+            ],
+            "variables": {
+                "dlvFlags": "--check-go-version=false"
+            },
+            "configuration": {
+                "request": "launch",
+                "mode": "debug",
+                "program": "${workspaceRoot}",
+                "cwd": "${workspaceRoot}",
+                "dlvToolPath": "dlv",
+                "dlvFlags": "${dlvFlags}"
+            }
+        },
+        "Go: Debug File Dir": {
+            "adapter": "delve",
+            "filetypes": [
+                "go"
+            ],
+            "configuration": {
+                "request": "launch",
+                "mode": "debug",
+                "program": "${fileDirname}",
+                "cwd": "${fileDirname}",
+                "dlvToolPath": "dlv",
+                "dlvFlags": "--check-go-version=false"
+            }
+        },
+        "Go: Debug Test (pkg)": {
+            "adapter": "delve",
+            "filetypes": [
+                "go"
+            ],
+            "configuration": {
+                "request": "launch",
+                "mode": "test",
+                "program": "${workspaceRoot}",
+                "cwd": "${workspaceRoot}",
+                "dlvToolPath": "dlv",
+                "dlvFlags": "--check-go-version=false"
+            }
+        },
+        "Go: Debug Test (file)": {
+            "adapter": "delve",
+            "filetypes": [
+                "go"
+            ],
+            "configuration": {
+                "request": "launch",
+                "mode": "test",
+                "program": "${fileDirname}",
+                "cwd": "${fileDirname}",
+                "dlvToolPath": "dlv",
+                "dlvFlags": "--check-go-version=false"
+            }
+        }
+    }
+}

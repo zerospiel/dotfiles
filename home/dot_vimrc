@@ -5,6 +5,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'fatih/vim-go'
+Plug 'puremourning/vimspector'
 
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
@@ -28,7 +29,6 @@ Plug 'dunstontc/vim-vscode-theme'
 call plug#end()
 
 " ========= Basics =========
-
 filetype plugin indent on
 syntax on
 colorscheme dark_plus
@@ -170,6 +170,9 @@ function! s:SmartCR() abort
   " default enter + Coc's on_enter hook
   return "\<C-g>u\<CR>\<C-r>=coc#on_enter()\<CR>"
 endfunction
+
+" ========= vimspector =========
+let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
 
 " ========= vim-go (tools; disable its LSP) =========
 let g:go_addtags_options = 'json=omitempty'
