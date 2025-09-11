@@ -8,3 +8,6 @@ id   = "git"
 name = "*/"
 run  = "git"
 
+[mgr]
+show_hidden = true
+
