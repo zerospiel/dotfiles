@@ -359,5 +359,90 @@
         "diffEditor.ignoreTrimWhitespace": false
     },
     "diffEditor.renderSideBySide": true,
-    "containers.containerClient": "com.microsoft.visualstudio.containers.podman"
+    "containers.containerClient": "com.microsoft.visualstudio.containers.podman",
+    "vim.smartRelativeLine": true,
+    "vim.leader": ",",
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "Y"
+            ],
+            "after": [
+                "\"",
+                "+",
+                "y"
+            ]
+        }
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "<leader>",
+                "p"
+            ],
+            "after": [
+                "\"",
+                "+",
+                "p"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "P"
+            ],
+            "after": [
+                "\"",
+                "+",
+                "P"
+            ]
+        }
+    ],
+    "vim.normalModeKeyBindings": [
+        {
+            "before": [
+                "<leader>",
+                "o"
+            ],
+            "after": [
+                "m",
+                "`",
+                "o",
+                "<Esc>"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "O"
+            ],
+            "after": [
+                "m",
+                "`",
+                "O",
+                "<Esc>"
+            ]
+        }
+    ],
+    "github.copilot.enable": {
+        "*": false,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false,
+        "go": true
+    },
+    "[dockercompose]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2,
+        "editor.autoIndent": "advanced",
+        "editor.quickSuggestions": {
+            "other": true,
+            "comments": false,
+            "strings": true
+        },
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
+    "[github-actions-workflow]": {
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    }
 }
