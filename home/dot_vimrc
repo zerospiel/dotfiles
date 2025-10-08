@@ -22,7 +22,7 @@ Plug 'tpope/vim-commentary'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-Plug 'Konfekt/filepicker.vim'
+Plug 'Konfekt/filepicker.vim', { 'commit': 'baab959a708407fb2501344e54bb8eb0c511a243', 'frozen': 1 }
 
 Plug 'dunstontc/vim-vscode-theme'
 
@@ -268,6 +268,8 @@ function! s:OpenDirWithPicker(dir) abort
   silent! FilePicker
 endfunction
 
+" let g:filepicker_prefer = 'yazi'
+" let g:filepicker_hijack_netrw = 1
 " ========= Airline =========
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
