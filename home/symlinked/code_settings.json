@@ -108,7 +108,7 @@
     // "go.autocompleteUnimportedPackages": true,
     // "go.useCodeSnippetsOnFunctionSuggest": true,
     // "go.docsTool": "gogetdoc",
-    "go.formatTool": "gofumpt",
+    // "go.formatTool": "gofumpt", // enabled on the server side
     "go.formatFlags": [
         "-w"
     ],
@@ -130,7 +130,7 @@
         "transform": "camelcase"
     },
     "go.toolsEnvVars": {
-        "GOEXPERIMENT": "synctest,jsonv2"
+        "GOEXPERIMENT": "jsonv2"
     },
     "go.useLanguageServer": true,
     // "go.languageServerExperimentalFeatures": {
@@ -428,8 +428,7 @@
         "*": false,
         "plaintext": false,
         "markdown": false,
-        "scminput": false,
-        "go": true
+        "scminput": false
     },
     "[dockercompose]": {
         "editor.insertSpaces": true,
