@@ -192,7 +192,7 @@
             "regenerate_cgo": true, // Regenerates cgo definitions.
             "test": false, // https://github.com/golang/tools/blob/master/gopls/doc/codelenses.md#test-run-tests-and-benchmarks
             // "run_vulncheck_exp": true, // removed since 0.11.0; Run vulnerability check (govulncheck).
-            "run_govulncheck": true,
+            // "run_govulncheck": true, // invalid since v0.21.0-pre.1, only vulncheck should be set
             "vulncheck": true,
             "upgrade_dependency": true, // Upgrades a dependency in the go.mod file for a module.
             "vendor": true // Runs go mod vendor for a module.
