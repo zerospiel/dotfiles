@@ -1,9 +1,9 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
 rev = "d7588f6"
-hash = "63b6c222bf2103b3023389dde5e2ecfe"
+hash = "3cce60031b27cbce80b50f68ca319c0a"
 
 [[flavor.deps]]
 use = "956MB/vscode-dark-modern"
 rev = "cd60541"
-hash = "f970182bee3543831796629ccf078553"
+hash = "d1134a80fdf8df043b2497846f137f04"

@@ -174,6 +174,7 @@
             "-vendor"
         ],
         "importsSource": "goimports",
+        "renameMovesSubpackages": true,
         // "analysisProgressReporting": true, // report when deep analyse is slow
         "usePlaceholders": false, // add parameter placeholders when completing a function
         "staticcheck": true, // add staticcheck linter capabilities
@@ -192,13 +193,14 @@
             "regenerate_cgo": true, // Regenerates cgo definitions.
             "test": false, // https://github.com/golang/tools/blob/master/gopls/doc/codelenses.md#test-run-tests-and-benchmarks
             // "run_vulncheck_exp": true, // removed since 0.11.0; Run vulnerability check (govulncheck).
-            // "run_govulncheck": true, // invalid since v0.21.0-pre.1, only vulncheck should be set
+            // "run_govulncheck": true, // default since v0.21.0
             "vulncheck": true,
             "upgrade_dependency": true, // Upgrades a dependency in the go.mod file for a module.
             "vendor": true // Runs go mod vendor for a module.
         },
         // "vulncheck": "Imports", // duplicates go.diagnostic.vulncheck since 07.12.2022
         "analyses": {
+            // "appendclipped": true, // https://go.dev/issue/73557
             // "fieldalignment": true, // use "the 'fieldalignment' analyzer was removed in gopls/v0.17.0; instead, hover over struct fields to see size/offset information (https://go.dev/issue/66861)" instead
             // "unusedparams": true,
             // "unusedwrite": true,
@@ -443,5 +445,8 @@
     },
     "[github-actions-workflow]": {
         "editor.defaultFormatter": "redhat.vscode-yaml"
-    }
+    },
+    "gitlens.ai.model": "vscode",
+    "gitlens.ai.vscode.model": "copilot:gpt-4.1",
+    "github.copilot.nextEditSuggestions.enabled": true
 }
