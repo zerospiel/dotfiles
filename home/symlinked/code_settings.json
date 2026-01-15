@@ -327,6 +327,9 @@
     "gitlens.plusFeatures.enabled": false,
     "gitlens.showWhatsNewAfterUpgrades": false,
     "gitlens.views.launchpad.files.layout": "list",
+    "gitlens.rebaseEditor.openOnPausedRebase": false,
+    "gitlens.ai.model": "vscode",
+    "gitlens.ai.vscode.model": "copilot:gpt-4.1",
     // 
     // Other (language) extensions
     "clang-format.style": "file",
@@ -362,70 +365,6 @@
     },
     "diffEditor.renderSideBySide": true,
     "containers.containerClient": "com.microsoft.visualstudio.containers.podman",
-    "vim.smartRelativeLine": true,
-    "vim.leader": ",",
-    "vim.visualModeKeyBindingsNonRecursive": [
-        {
-            "before": [
-                "Y"
-            ],
-            "after": [
-                "\"",
-                "+",
-                "y"
-            ]
-        }
-    ],
-    "vim.normalModeKeyBindingsNonRecursive": [
-        {
-            "before": [
-                "<leader>",
-                "p"
-            ],
-            "after": [
-                "\"",
-                "+",
-                "p"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "P"
-            ],
-            "after": [
-                "\"",
-                "+",
-                "P"
-            ]
-        }
-    ],
-    "vim.normalModeKeyBindings": [
-        {
-            "before": [
-                "<leader>",
-                "o"
-            ],
-            "after": [
-                "m",
-                "`",
-                "o",
-                "<Esc>"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "O"
-            ],
-            "after": [
-                "m",
-                "`",
-                "O",
-                "<Esc>"
-            ]
-        }
-    ],
     "github.copilot.enable": {
         "*": false,
         "plaintext": false,
@@ -446,7 +385,5 @@
     "[github-actions-workflow]": {
         "editor.defaultFormatter": "redhat.vscode-yaml"
     },
-    "gitlens.ai.model": "vscode",
-    "gitlens.ai.vscode.model": "copilot:gpt-4.1",
     "github.copilot.nextEditSuggestions.enabled": true
 }
