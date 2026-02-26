@@ -6,5 +6,6 @@
     "coc-yaml": ">=1.9.1",
     "coc-markdownlint": ">=1.36.0",
     "coc-sh": ">=1.2.4"
-  }
+  },
+  "lastUpdate": 1771935396327
 }
