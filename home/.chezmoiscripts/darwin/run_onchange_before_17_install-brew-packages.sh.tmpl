@@ -41,6 +41,7 @@ packages_common=(
     yq
 )
 
+# shellcheck disable=SC1083
 packages_machine=(
     {{- if .personalMachine }}
     gitleaks
