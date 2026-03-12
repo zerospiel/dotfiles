@@ -11,3 +11,9 @@ repos:
         entry: ./scripts/shellcheck.bash
         pass_filenames: false
         stages: [pre-commit]
+      - id: brew-sync-report-darwin
+        name: Check brew drift
+        language: system
+        entry: bash -lc 'if [[ "$(uname -s)" == "Darwin" ]]; then ./scripts/brew-sync-report.bash --strict; fi'
+        pass_filenames: false
+        stages: [pre-commit]

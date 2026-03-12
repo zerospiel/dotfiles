@@ -41,13 +41,12 @@ packages_common=(
     yq
 )
 
-packages_personal=(
+packages_machine=(
+    {{- if .personalMachine }}
     gitleaks
     pre-commit
     teamookla/speedtest/speedtest
-)
-
-packages_non_personal=(
+    {{- else }}
     awscli
     azure-cli
     cloud-nuke
@@ -64,13 +63,14 @@ packages_non_personal=(
     qemu
     sshuttle
     velero
+    {{- end }}
 )
 
-brew install "${packages_common[@]}"
+if [[ "${1:-}" == "--list" ]]; then
+    # List mode is used by brew-sync-report to read tracked packages without installing.
+    printf '%s\n' "${packages_common[@]}" "${packages_machine[@]}"
+    exit 0
+fi
 
-# shellcheck disable=all
-{{- if .personalMachine }}
-brew install "${packages_personal[@]}"
-{{- else }}
-brew install "${packages_non_personal[@]}"
-{{- end }}
+brew install "${packages_common[@]}"
+brew install "${packages_machine[@]}"

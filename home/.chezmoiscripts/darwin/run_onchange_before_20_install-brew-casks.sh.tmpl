@@ -12,7 +12,8 @@ casks_common=(
     spotify
 )
 
-casks_personal=(
+casks_machine=(
+    {{- if .personalMachine }}
     discord
     dropbox
     microsoft-auto-update
@@ -22,19 +23,18 @@ casks_personal=(
     transmission
     vlc
     zoom
-)
-
-casks_non_personal=(
+    {{- else }}
     bitwarden
     lens
     telegram
+    {{- end }}
 )
 
-brew install --cask "${casks_common[@]}"
+if [[ "${1:-}" == "--list" ]]; then
+    # List mode is used by brew-sync-report to read tracked casks without installing.
+    printf '%s\n' "${casks_common[@]}" "${casks_machine[@]}"
+    exit 0
+fi
 
-# shellcheck disable=all
-{{- if .personalMachine }}
-brew install --cask "${casks_personal[@]}"
-{{- else }}
-brew install --cask "${casks_non_personal[@]}"
-{{- end }}
+brew install --cask "${casks_common[@]}"
+brew install --cask "${casks_machine[@]}"

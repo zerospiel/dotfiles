@@ -1,7 +1,14 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
-# brew must be installed
-brew install age
+if ! command -v brew >/dev/null 2>&1; then
+    echo "brew is required but not installed" >&2
+    exit 1
+fi
+
+if ! command -v age >/dev/null 2>&1; then
+    brew install age
+fi
 
 if [ ! -f "$HOME/.config/chezmoi/key.txt" ]; then
     mkdir -p "$HOME/.config/chezmoi"
