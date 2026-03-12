@@ -9,72 +9,72 @@ strict_mode=false
 declare -a positional_args=()
 
 for arg in "$@"; do
-    case "$arg" in
+  case "$arg" in
     --strict)
-        strict_mode=true
-        ;;
+      strict_mode=true
+      ;;
     *)
-        positional_args+=("$arg")
-        ;;
-    esac
+      positional_args+=("$arg")
+      ;;
+  esac
 done
 
 discover_template() {
-    local pattern="$1"
-    local -a matches=()
-    local path
+  local pattern="$1"
+  local -a matches=()
+  local path
 
-    while IFS= read -r path; do
-        matches+=("$path")
-    done < <(compgen -G "$scripts_dir/$pattern" || true)
+  while IFS= read -r path; do
+    matches+=("$path")
+  done < <(compgen -G "$scripts_dir/$pattern" || true)
 
-    if ((${#matches[@]} == 1)); then
-        printf '%s\n' "${matches[0]}"
-        return 0
-    fi
+  if ((${#matches[@]} == 1)); then
+    printf '%s\n' "${matches[0]}"
+    return 0
+  fi
 
-    if ((${#matches[@]} == 0)); then
-        echo "no script template matched pattern: $scripts_dir/$pattern" >&2
-    else
-        echo "multiple script templates matched pattern: $scripts_dir/$pattern" >&2
-    fi
-    return 1
+  if ((${#matches[@]} == 0)); then
+    echo "no script template matched pattern: $scripts_dir/$pattern" >&2
+  else
+    echo "multiple script templates matched pattern: $scripts_dir/$pattern" >&2
+  fi
+  return 1
 }
 
 formula_script_template="${positional_args[0]:-${BREW_FORMULA_SCRIPT_TEMPLATE:-}}"
 cask_script_template="${positional_args[1]:-${BREW_CASK_SCRIPT_TEMPLATE:-}}"
 
 if [[ -z "$formula_script_template" ]]; then
-    formula_script_template="$(discover_template 'run_onchange_before_*install-brew-packages.sh.tmpl')"
+  formula_script_template="$(discover_template 'run_onchange_before_*install-brew-packages.sh.tmpl')"
 fi
 
 if [[ -z "$cask_script_template" ]]; then
-    cask_script_template="$(discover_template 'run_onchange_before_*install-brew-casks.sh.tmpl')"
+  cask_script_template="$(discover_template 'run_onchange_before_*install-brew-casks.sh.tmpl')"
 fi
 
 if ! command -v brew >/dev/null 2>&1; then
-    echo "brew is not installed" >&2
-    exit 1
+  echo "brew is not installed" >&2
+  exit 1
 fi
 
 if ! command -v chezmoi >/dev/null 2>&1; then
-    echo "chezmoi is not installed" >&2
-    exit 1
+  echo "chezmoi is not installed" >&2
+  exit 1
 fi
 
 if [[ ! -f "$formula_script_template" ]]; then
-    echo "missing formula run script template: $formula_script_template" >&2
-    exit 1
+  echo "missing formula run script template: $formula_script_template" >&2
+  exit 1
 fi
 
 if [[ ! -f "$cask_script_template" ]]; then
-    echo "missing cask run script template: $cask_script_template" >&2
-    exit 1
+  echo "missing cask run script template: $cask_script_template" >&2
+  exit 1
 fi
 
 if ! command -v jq >/dev/null 2>&1; then
-    echo "jq is required for dependency-aware formula reporting" >&2
-    exit 1
+  echo "jq is required for dependency-aware formula reporting" >&2
+  exit 1
 fi
 
 tmp_dir="$(mktemp -d)"
@@ -101,31 +101,31 @@ chezmoi execute-template <"$cask_script_template" >"$rendered_cask_script"
 # Extract tracked entries by asking rendered run scripts for list mode.
 # Normalize tap-qualified names (tap/repo/formula) to formula for stable comparisons.
 bash "$rendered_formula_script" --list |
-    awk -F/ '{print $NF}' |
-    LC_ALL=C sort -u >"$tracked_formula"
+  awk -F/ '{print $NF}' |
+  LC_ALL=C sort -u >"$tracked_formula"
 bash "$rendered_cask_script" --list | LC_ALL=C sort -u >"$tracked_cask"
 
 # Only report formulae that Homebrew currently considers explicitly user-installed.
 # Use the latest install record to avoid stale historical metadata.
 brew info --json=v2 --installed |
-    jq -r '.formulae[]
+  jq -r '.formulae[]
         | . as $f
         | (($f.installed | last? // {}) as $latest
         | select($latest.installed_on_request == true and $latest.installed_as_dependency != true)
         | $f.name)' |
-    LC_ALL=C sort -u >"$installed_formula"
+  LC_ALL=C sort -u >"$installed_formula"
 
 brew list --cask | LC_ALL=C sort -u >"$installed_cask"
 
 comm -12 "$tracked_formula" "$installed_formula" >"$tracked_installed_formula"
 
 if [[ -s "$tracked_installed_formula" ]]; then
-    mapfile -t tracked_formula_args <"$tracked_installed_formula"
-    brew deps --installed --include-requirements --union "${tracked_formula_args[@]}" |
-        awk -F/ '{print $NF}' |
-        LC_ALL=C sort -u >"$tracked_dependency_formula"
+  mapfile -t tracked_formula_args <"$tracked_installed_formula"
+  brew deps --installed --include-requirements --union "${tracked_formula_args[@]}" |
+    awk -F/ '{print $NF}' |
+    LC_ALL=C sort -u >"$tracked_dependency_formula"
 else
-    : >"$tracked_dependency_formula"
+  : >"$tracked_dependency_formula"
 fi
 
 comm -13 "$tracked_formula" "$installed_formula" >"$untracked_formula"
@@ -150,9 +150,9 @@ comm -23 "$tracked_cask" "$installed_cask" >"$report_missing_cask"
 cat "$report_missing_cask"
 
 if [[ "$strict_mode" == true ]]; then
-    if [[ -s "$report_untracked_formula" || -s "$report_missing_formula" || -s "$report_untracked_cask" || -s "$report_missing_cask" ]]; then
-        echo >&2
-        echo "brew state drift detected (strict mode)" >&2
-        exit 1
-    fi
+  if [[ -s "$report_untracked_formula" || -s "$report_missing_formula" || -s "$report_untracked_cask" || -s "$report_missing_cask" ]]; then
+    echo >&2
+    echo "brew state drift detected (strict mode)" >&2
+    exit 1
+  fi
 fi

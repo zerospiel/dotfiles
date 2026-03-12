@@ -5,6 +5,12 @@ repos:
       - id: gitleaks
   - repo: local
     hooks:
+      - id: shfmt
+        name: Run shfmt
+        language: system
+        entry: "bash -lc './scripts/shfmt.bash || { echo \"shfmt diff detected. Run: ./scripts/shfmt.bash -w\" >&2; exit 1; }'"
+        pass_filenames: false
+        stages: [pre-commit]
       - id: shellcheck
         name: Run shellcheck
         language: system
