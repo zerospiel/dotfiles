@@ -31,11 +31,34 @@ casks_machine=(
     {{- end }}
 )
 
+deduped_casks=()
+while IFS= read -r cask; do
+    deduped_casks+=("$cask")
+done < <(printf '%s\n' "${casks_common[@]}" "${casks_machine[@]}" | sort -u)
+
 if [[ "${1:-}" == "--list" ]]; then
     # List mode is used by brew-sync-report to read tracked casks without installing.
-    printf '%s\n' "${casks_common[@]}" "${casks_machine[@]}"
+    printf '%s\n' "${deduped_casks[@]}"
     exit 0
 fi
 
-brew install --cask "${casks_common[@]}"
-brew install --cask "${casks_machine[@]}"
+if ((${#deduped_casks[@]} == 0)); then
+    exit 0
+fi
+
+installed_casks="$(brew list --cask 2>/dev/null || true)"
+auto_updates_casks="$(brew info --cask --json=v2 "${deduped_casks[@]}" | jq -r '.casks[] | select(.auto_updates == true) | .token')"
+
+casks_to_install=()
+for cask in "${deduped_casks[@]}"; do
+    # Skip only when a cask is both installed and marked auto_updates: true.
+    if printf '%s\n' "$installed_casks" | grep -Fxq "$cask" && printf '%s\n' "$auto_updates_casks" | grep -Fxq "$cask"; then
+        continue
+    fi
+
+    casks_to_install+=("$cask")
+done
+
+if ((${#casks_to_install[@]})); then
+    brew install --cask "${casks_to_install[@]}"
+fi

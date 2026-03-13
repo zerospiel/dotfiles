@@ -67,11 +67,33 @@ packages_machine=(
     {{- end }}
 )
 
+deduped_packages=()
+while IFS= read -r package; do
+    deduped_packages+=("$package")
+done < <(printf '%s\n' "${packages_common[@]}" "${packages_machine[@]}" | sort -u)
+
 if [[ "${1:-}" == "--list" ]]; then
     # List mode is used by brew-sync-report to read tracked packages without installing.
-    printf '%s\n' "${packages_common[@]}" "${packages_machine[@]}"
+    printf '%s\n' "${deduped_packages[@]}"
     exit 0
 fi
 
-brew install "${packages_common[@]}"
-brew install "${packages_machine[@]}"
+if ((${#deduped_packages[@]} == 0)); then
+    exit 0
+fi
+
+installed_packages="$(brew list --formula 2>/dev/null || true)"
+
+packages_to_install=()
+for package in "${deduped_packages[@]}"; do
+    # brew list reports formula tokens; strip tap prefix when matching tapped entries.
+    if printf '%s\n' "$installed_packages" | grep -Fxq "${package##*/}"; then
+        continue
+    fi
+
+    packages_to_install+=("$package")
+done
+
+if ((${#packages_to_install[@]})); then
+    brew install "${packages_to_install[@]}"
+fi
