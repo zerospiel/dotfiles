@@ -353,7 +353,6 @@
     "vs-kubernetes": {
         "vs-kubernetes.crd-code-completion": "disabled"
     },
-    "vim.hlsearch": true,
     "yaml.format.enable": false,
     "git.mergeEditor": true,
     "git.openRepositoryInParentFolders": "never",
@@ -385,5 +384,6 @@
     "[github-actions-workflow]": {
         "editor.defaultFormatter": "redhat.vscode-yaml"
     },
-    "github.copilot.nextEditSuggestions.enabled": true
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "bashIde.shfmt.caseIndent": true
 }
