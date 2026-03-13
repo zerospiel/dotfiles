@@ -22,7 +22,7 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=0
 {{ $paths := list }}
 {{- $home := .chezmoi.homeDir -}}
 {{- $gobin := (coalesce (env "GOBIN") (joinPath .chezmoi.homeDir "go/bin")) -}}
-{{- $candidates := list "/opt/homebrew/opt/gnu-sed/libexec/gnubin" "/opt/homebrew/bin" "/opt/homebrew/sbin" $gobin -}}
+{{- $candidates := list "/opt/homebrew/opt/gnu-sed/libexec/gnubin" "/opt/homebrew/bin" "/opt/homebrew/sbin" $gobin "/usr/local/bin" "/usr/local/sbin" "/usr/bin" "/bin" "/usr/sbin" "/sbin" -}}
 {{- range $_, $raw := $candidates -}}
   {{- if and $raw (ne $raw "") -}}
     {{- $p := $raw -}}
@@ -34,7 +34,18 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=0
     {{- end -}}
   {{- end -}}
 {{- end -}}
-export PATH={{ join ":" (uniq (compact (concat $paths (splitList ":" (env "PATH"))))) }}
+{{- range $_, $raw := (splitList ":" (env "PATH")) -}}
+  {{- if and $raw (ne $raw "") -}}
+    {{- $p := $raw -}}
+    {{- if not (hasPrefix "/" $raw) -}}
+      {{- $p = joinPath $home $raw -}}
+    {{- end -}}
+    {{- if stat $p -}}
+      {{- $paths = append $paths $p -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+export PATH="{{ join ":" (uniq (compact $paths)) }}"
 
 # other related envs
 export LC_ALL='en_US.UTF-8'
