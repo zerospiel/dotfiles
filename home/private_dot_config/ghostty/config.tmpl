@@ -8,11 +8,11 @@ font-family = Monaco
 font-feature = -calt
 font-size = 14
 font-synthetic-style = false
-keybind = "super+f=write_scrollback_file:paste"
 {{- if eq .chezmoi.os "darwin" }}
+macos-applescript = false
 macos-option-as-alt = false
 macos-shortcuts = deny
-macos-titlebar-style = tabs
+# macos-titlebar-style = tabs
 macos-window-buttons = hidden
 macos-window-shadow = false
 {{- end }}
@@ -24,3 +24,8 @@ window-show-tab-bar = always
 window-subtitle = working-directory
 window-theme = dark
 window-width = 105
+
+# inheritance
+window-inherit-working-directory = false
+tab-inherit-working-directory = true
+split-inherit-working-directory = true
