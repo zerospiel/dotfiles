@@ -236,6 +236,9 @@
         "reportOptionalMemberAccess": "none"
     },
     //
+    // bash
+    "bashIde.shfmt.caseIndent": true,
+    // 
     // java
     "java.home": "/Library/Java/JavaVirtualMachines/openjdk.jdk/Contents/Home",
     // 
@@ -384,6 +387,5 @@
     "[github-actions-workflow]": {
         "editor.defaultFormatter": "redhat.vscode-yaml"
     },
-    "github.copilot.nextEditSuggestions.enabled": true,
-    "bashIde.shfmt.caseIndent": true
+    "github.copilot.nextEditSuggestions.enabled": true
 }

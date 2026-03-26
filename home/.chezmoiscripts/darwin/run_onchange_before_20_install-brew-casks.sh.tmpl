@@ -4,48 +4,48 @@ set -euo pipefail
 # vim: set expandtab ts=4 sw=4 ft=bash:
 
 casks_common=(
-    appcleaner
-    font-jetbrains-mono
-    ghostty
-    google-chrome
-    logi-options+
-    podman-desktop
-    spotify
+  appcleaner
+  font-jetbrains-mono
+  ghostty
+  google-chrome
+  logi-options+
+  podman-desktop
+  spotify
 )
 
 # shellcheck disable=SC1083
 casks_machine=(
-    {{- if .personalMachine }}
-    discord
-    dropbox
-    microsoft-auto-update
-    microsoft-onenote
-    microsoft-teams
-    onedrive
-    transmission
-    vlc
-    zoom
-    {{- else }}
-    bitwarden
-    gcloud-cli
-    lens
-    telegram
-    {{- end }}
+  {{- if .personalMachine }}
+  discord
+  dropbox
+  microsoft-auto-update
+  microsoft-onenote
+  microsoft-teams
+  onedrive
+  transmission
+  vlc
+  zoom
+  {{- else }}
+  bitwarden
+  gcloud-cli
+  lens
+  telegram
+  {{- end }}
 )
 
 deduped_casks=()
 while IFS= read -r cask; do
-    deduped_casks+=("$cask")
+  deduped_casks+=("$cask")
 done < <(printf '%s\n' "${casks_common[@]}" "${casks_machine[@]}" | sort -u)
 
 if [[ "${1:-}" == "--list" ]]; then
-    # List mode is used by brew-sync-report to read tracked casks without installing.
-    printf '%s\n' "${deduped_casks[@]}"
-    exit 0
+  # List mode is used by brew-sync-report to read tracked casks without installing.
+  printf '%s\n' "${deduped_casks[@]}"
+  exit 0
 fi
 
 if ((${#deduped_casks[@]} == 0)); then
-    exit 0
+  exit 0
 fi
 
 installed_casks="$(brew list --cask 2>/dev/null || true)"
@@ -53,14 +53,14 @@ auto_updates_casks="$(brew info --cask --json=v2 "${deduped_casks[@]}" | jq -r '
 
 casks_to_install=()
 for cask in "${deduped_casks[@]}"; do
-    # Skip only when a cask is both installed and marked auto_updates: true.
-    if printf '%s\n' "$installed_casks" | grep -Fxq "$cask" && printf '%s\n' "$auto_updates_casks" | grep -Fxq "$cask"; then
-        continue
-    fi
+  # Skip only when a cask is both installed and marked auto_updates: true.
+  if printf '%s\n' "$installed_casks" | grep -Fxq "$cask" && printf '%s\n' "$auto_updates_casks" | grep -Fxq "$cask"; then
+    continue
+  fi
 
-    casks_to_install+=("$cask")
+  casks_to_install+=("$cask")
 done
 
 if ((${#casks_to_install[@]})); then
-    brew install --cask "${casks_to_install[@]}"
+  brew install --cask "${casks_to_install[@]}"
 fi

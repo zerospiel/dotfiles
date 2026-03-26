@@ -4,97 +4,97 @@ set -euo pipefail
 # vim: set expandtab ts=4 sw=4 ft=bash:
 
 packages_common=(
-    age
-    bash
-    bash-completion@2
-    calc
-    chezmoi
-    clang-format
-    cloc
-    fzf
-    gawk
-    git
-    git-delta
-    gnu-sed
-    helm
-    htop
-    iproute2mac
-    jq
-    k9s
-    kind
-    kubernetes-cli
-    lima
-    nmap
-    node
-    pidof
-    podman
-    podman-compose
-    readline
-    ripgrep
-    shellcheck
-    tmux
-    tree
-    vim
-    watch
-    wget
-    yazi
-    yq
+  age
+  bash
+  bash-completion@2
+  calc
+  chezmoi
+  clang-format
+  cloc
+  fzf
+  gawk
+  git
+  git-delta
+  gnu-sed
+  helm
+  htop
+  iproute2mac
+  jq
+  k9s
+  kind
+  kubernetes-cli
+  lima
+  nmap
+  node
+  pidof
+  podman
+  podman-compose
+  readline
+  ripgrep
+  shellcheck
+  tmux
+  tree
+  vim
+  watch
+  wget
+  yazi
+  yq
 )
 
 # shellcheck disable=SC1083
 packages_machine=(
-    {{- if .personalMachine }}
-    gitleaks
-    pre-commit
-    teamookla/speedtest/speedtest
-    {{- else }}
-    awscli
-    azure-cli
-    cloud-nuke
-    clusterctl
-    cmctl
-    coreutils
-    gh
-    goreleaser
-    govc
-    graphviz
-    jwt-cli
-    lima-additional-guestagents
-    minio-mc
-    openstackclient
-    qemu
-    sshuttle
-    velero
-    {{- end }}
+  {{- if .personalMachine }}
+  gitleaks
+  pre-commit
+  teamookla/speedtest/speedtest
+  {{- else }}
+  awscli
+  azure-cli
+  cloud-nuke
+  clusterctl
+  cmctl
+  coreutils
+  gh
+  goreleaser
+  govc
+  graphviz
+  jwt-cli
+  lima-additional-guestagents
+  minio-mc
+  openstackclient
+  qemu
+  sshuttle
+  velero
+  {{- end }}
 )
 
 deduped_packages=()
 while IFS= read -r package; do
-    deduped_packages+=("$package")
+  deduped_packages+=("$package")
 done < <(printf '%s\n' "${packages_common[@]}" "${packages_machine[@]}" | sort -u)
 
 if [[ "${1:-}" == "--list" ]]; then
-    # List mode is used by brew-sync-report to read tracked packages without installing.
-    printf '%s\n' "${deduped_packages[@]}"
-    exit 0
+  # List mode is used by brew-sync-report to read tracked packages without installing.
+  printf '%s\n' "${deduped_packages[@]}"
+  exit 0
 fi
 
 if ((${#deduped_packages[@]} == 0)); then
-    exit 0
+  exit 0
 fi
 
 installed_packages="$(brew list --formula 2>/dev/null || true)"
 
 packages_to_install=()
 for package in "${deduped_packages[@]}"; do
-    # brew list reports formula tokens; strip tap prefix when matching tapped entries.
-    if printf '%s\n' "$installed_packages" | grep -Fxq "${package##*/}"; then
-        continue
-    fi
+  # brew list reports formula tokens; strip tap prefix when matching tapped entries.
+  if printf '%s\n' "$installed_packages" | grep -Fxq "${package##*/}"; then
+    continue
+  fi
 
-    packages_to_install+=("$package")
+  packages_to_install+=("$package")
 done
 
 if ((${#packages_to_install[@]})); then
-    brew install "${packages_to_install[@]}"
+  brew install "${packages_to_install[@]}"
 fi

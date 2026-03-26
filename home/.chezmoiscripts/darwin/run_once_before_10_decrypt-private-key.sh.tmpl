@@ -2,16 +2,16 @@
 set -euo pipefail
 
 if ! command -v brew >/dev/null 2>&1; then
-    echo "brew is required but not installed" >&2
-    exit 1
+  echo "brew is required but not installed" >&2
+  exit 1
 fi
 
 if ! command -v age >/dev/null 2>&1; then
-    brew install age
+  brew install age
 fi
 
 if [ ! -f "$HOME/.config/chezmoi/key.txt" ]; then
-    mkdir -p "$HOME/.config/chezmoi"
-    chezmoi age decrypt --output "$HOME/.config/chezmoi/key.txt" --passphrase "{{ .chezmoi.sourceDir }}/key.txt.age"
-    chmod 600 "${HOME}/.config/chezmoi/key.txt"
+  mkdir -p "$HOME/.config/chezmoi"
+  chezmoi age decrypt --output "$HOME/.config/chezmoi/key.txt" --passphrase "{{ .chezmoi.sourceDir }}/key.txt.age"
+  chmod 600 "${HOME}/.config/chezmoi/key.txt"
 fi
