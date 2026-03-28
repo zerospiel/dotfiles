@@ -238,6 +238,13 @@
     //
     // bash
     "bashIde.shfmt.caseIndent": true,
+    "[shellscript]": {
+        "files.eol": "\n",
+        "editor.defaultColorDecorators": "never",
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true,
+        "editor.detectIndentation": false
+    },
     // 
     // java
     "java.home": "/Library/Java/JavaVirtualMachines/openjdk.jdk/Contents/Home",
@@ -352,7 +359,7 @@
     "pgFormatter.keywordCase": "uppercase",
     "markdownConverter.Document.HeaderTemplate": "",
     "markdownConverter.Document.FooterTemplate": "",
-    "diffEditor.ignoreTrimWhitespace": true,
+    "diffEditor.ignoreTrimWhitespace": false,
     "vs-kubernetes": {
         "vs-kubernetes.crd-code-completion": "disabled"
     },
