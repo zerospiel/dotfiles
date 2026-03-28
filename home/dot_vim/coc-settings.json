@@ -19,7 +19,7 @@
                 ".git/"
             ],
             "env": {
-                "GOEXPERIMENT": "synctest,jsonv2"
+                "GOEXPERIMENT": "jsonv2"
             },
             "initializationOptions": {
                 "gofumpt": true
