@@ -26,7 +26,6 @@ packages_common=(
   lima
   nmap
   node
-  pidof
   podman
   podman-compose
   readline
@@ -39,6 +38,7 @@ packages_common=(
   wget
   yazi
   yq
+  zerospiel/tools/pidof
 )
 
 # shellcheck disable=SC1083
@@ -96,5 +96,5 @@ for package in "${deduped_packages[@]}"; do
 done
 
 if ((${#packages_to_install[@]})); then
-  brew install "${packages_to_install[@]}"
+  brew install --formulae "${packages_to_install[@]}"
 fi
