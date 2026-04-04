@@ -93,6 +93,7 @@
         "*.ipynb": "jupyter-notebook"
     },
     "workbench.editor.empty.hint": "hidden",
+    "workbench.editor.useModal": "off",
     // 
     // Extensions setup
     // "extensions.showRecommendationsOnlyOnDemand": false,
