@@ -115,7 +115,7 @@ brew info --json=v2 --installed |
         | $f.name)' |
   LC_ALL=C sort -u >"$installed_formula"
 
-brew list --cask | LC_ALL=C sort -u >"$installed_cask"
+brew list --cask --full-name | LC_ALL=C sort -u >"$installed_cask"
 
 comm -12 "$tracked_formula" "$installed_formula" >"$tracked_installed_formula"
 
