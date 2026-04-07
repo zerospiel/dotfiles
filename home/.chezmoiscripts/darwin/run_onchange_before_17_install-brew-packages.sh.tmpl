@@ -83,12 +83,12 @@ if ((${#deduped_packages[@]} == 0)); then
   exit 0
 fi
 
-installed_packages="$(brew list --formula 2>/dev/null || true)"
+installed_packages="$(brew list --formula --full-name 2>/dev/null || true)"
 
 packages_to_install=()
 for package in "${deduped_packages[@]}"; do
   # brew list reports formula tokens; strip tap prefix when matching tapped entries.
-  if printf '%s\n' "$installed_packages" | grep -Fxq "${package##*/}"; then
+  if printf '%s\n' "$installed_packages" | grep -Fxq "$package"; then
     continue
   fi
 

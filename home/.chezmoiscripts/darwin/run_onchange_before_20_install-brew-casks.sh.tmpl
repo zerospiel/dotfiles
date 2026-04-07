@@ -48,7 +48,7 @@ if ((${#deduped_casks[@]} == 0)); then
   exit 0
 fi
 
-installed_casks="$(brew list --cask 2>/dev/null || true)"
+installed_casks="$(brew list --cask --full-name 2>/dev/null || true)"
 auto_updates_casks="$(brew info --cask --json=v2 "${deduped_casks[@]}" | jq -r '.casks[] | select(.auto_updates == true) | .token')"
 
 casks_to_install=()
