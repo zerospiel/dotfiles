@@ -402,6 +402,13 @@
         "https://goreleaser.com": {
             "approveRequest": false,
             "approveResponse": true
-        }
-    }
+        },
+        "https://github.com": {
+            "approveRequest": false,
+            "approveResponse": true
+        },
+        "https://*.githubusercontent.com": true,
+        "https://*.k8s.io": true
+    },
+    "chat.agent.maxRequests": 150
 }
