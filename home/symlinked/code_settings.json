@@ -410,5 +410,7 @@
         "https://*.githubusercontent.com": true,
         "https://*.k8s.io": true
     },
-    "chat.agent.maxRequests": 150
+    "chat.agent.maxRequests": 150,
+    "chatgpt.composerEnterBehavior": "cmdIfMultiline",
+    "chatgpt.followUpQueueMode": "steer"
 }
