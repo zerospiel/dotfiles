@@ -13,4 +13,6 @@ alias grpcurl='grpcurl -plaintext'
 alias ssh='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
 alias scp='scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
 alias hg='history | grep'
+{{- if eq .chezmoi.os "darwin" }}
 alias flashdns='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
+{{- end }}

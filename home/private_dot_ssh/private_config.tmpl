@@ -10,6 +10,7 @@ Host github.com
 Host homeassistant
   IgnoreUnknown AddKeysToAgent,UseKeychain
   AddKeysToAgent yes
+  User root
   {{- if eq .chezmoi.os "darwin" }}
   UseKeychain yes
   {{- end }}
