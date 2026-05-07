@@ -409,7 +409,10 @@
         },
         "https://*.githubusercontent.com": true,
         "https://*.k8s.io": true,
-        "https://*.github.com": true
+        "https://*.github.com": true,
+        "https://kubernetes.io": true,
+        "https://*.k0smotron.io": true,
+        "https://*.k0sproject.io": true
     },
     "chat.agent.maxRequests": 150,
     "chatgpt.composerEnterBehavior": "cmdIfMultiline",
