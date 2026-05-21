@@ -131,7 +131,7 @@
         "transform": "camelcase"
     },
     "go.toolsEnvVars": {
-        "GOEXPERIMENT": "goroutineleakprofile,jsonv2"
+        "GOEXPERIMENT": "jsonv2"
     },
     "go.useLanguageServer": true,
     // "go.languageServerExperimentalFeatures": {
@@ -174,7 +174,7 @@
             "-node_modules",
             "-vendor"
         ],
-        "importsSource": "goimports",
+        // "importsSource": "goimports",
         "renameMovesSubpackages": true,
         // "analysisProgressReporting": true, // report when deep analyse is slow
         "usePlaceholders": false, // add parameter placeholders when completing a function
