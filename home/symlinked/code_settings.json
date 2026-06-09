@@ -202,7 +202,7 @@
         // "vulncheck": "Imports", // duplicates go.diagnostic.vulncheck since 07.12.2022
         "analyses": {
             // "appendclipped": true, // https://go.dev/issue/73557
-            // "fieldalignment": true, // use "the 'fieldalignment' analyzer was removed in gopls/v0.17.0; instead, hover over struct fields to see size/offset information (https://go.dev/issue/66861)" instead
+            "fieldalignment": true, // use "the 'fieldalignment' analyzer was removed in gopls/v0.17.0; instead, hover over struct fields to see size/offset information (https://go.dev/issue/66861)" instead; got back in gopls/v0.22.0
             // "unusedparams": true,
             // "unusedwrite": true,
             // "unusedvariable": true,
@@ -374,7 +374,6 @@
         "diffEditor.ignoreTrimWhitespace": false
     },
     "diffEditor.renderSideBySide": true,
-    "containers.containerClient": "com.microsoft.visualstudio.containers.podman",
     "github.copilot.enable": {
         "*": false,
         "plaintext": false,
@@ -416,5 +415,6 @@
     },
     "chat.agent.maxRequests": 150,
     "chatgpt.composerEnterBehavior": "cmdIfMultiline",
-    "chatgpt.followUpQueueMode": "steer"
+    "chatgpt.followUpQueueMode": "steer",
+    "containers.containerClient": "com.microsoft.visualstudio.containers.podman"
 }
