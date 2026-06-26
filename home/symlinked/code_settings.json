@@ -99,7 +99,7 @@
     // "extensions.showRecommendationsOnlyOnDemand": false,
     "extensions.ignoreRecommendations": true,
     "extensions.autoCheckUpdates": true,
-    "extensions.autoUpdate": false,
+    "extensions.autoUpdate": "off",
     // 
     // Window
     "window.nativeTabs": true,
