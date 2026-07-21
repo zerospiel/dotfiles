@@ -10,6 +10,7 @@ casks_common=(
   logi-options+
   podman-desktop
   spotify
+  zoom
 )
 
 # shellcheck disable=SC1083
@@ -21,10 +22,11 @@ casks_machine=(
   microsoft-teams
   onedrive
   transmission
-  zoom
   {{- else }}
+  1password
   bitwarden
   gcloud-cli
+  slack
   telegram
   {{- end }}
 )
