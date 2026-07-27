@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# vim: set expandtab ts=4 sw=4 ft=bash:
+# vim: set expandtab ft=bash ts=2 sw=2:
 
 packages_common=(
   age
@@ -49,10 +49,10 @@ packages_common=(
 # shellcheck disable=SC1083
 packages_machine=(
   {{- if .personalMachine }}
+  cloudflare-speed-cli
   gitleaks
   marp-cli
   pre-commit
-  teamookla/speedtest/speedtest
   {{- else }}
   awscli
   azure-cli
