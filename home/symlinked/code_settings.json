@@ -419,6 +419,18 @@
         "https://docs.podman.io": {
             "approveRequest": false,
             "approveResponse": true
+        },
+        "https://docs.anthropic.com": {
+            "approveRequest": false,
+            "approveResponse": true
+        },
+        "https://developers.openai.com": {
+            "approveRequest": false,
+            "approveResponse": true
+        },
+        "https://geminicli.com": {
+            "approveRequest": false,
+            "approveResponse": true
         }
     },
     "chat.agent.maxRequests": 150,

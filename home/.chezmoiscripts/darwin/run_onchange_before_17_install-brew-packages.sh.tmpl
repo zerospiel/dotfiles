@@ -11,10 +11,12 @@ packages_common=(
   chezmoi
   clang-format
   cloc
+  cloudflare-speed-cli
   fzf
   gawk
   git
   git-delta
+  gitleaks
   gnu-sed
   goreleaser
   helm
@@ -32,6 +34,7 @@ packages_common=(
   node
   podman
   podman-compose
+  pre-commit
   readline
   ripgrep
   shellcheck
@@ -49,10 +52,7 @@ packages_common=(
 # shellcheck disable=SC1083
 packages_machine=(
   {{- if .personalMachine }}
-  cloudflare-speed-cli
-  gitleaks
   marp-cli
-  pre-commit
   {{- else }}
   awscli
   azure-cli
