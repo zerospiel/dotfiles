@@ -431,6 +431,10 @@
         "https://geminicli.com": {
             "approveRequest": false,
             "approveResponse": true
+        },
+        "https://pkg.go.dev": {
+            "approveRequest": false,
+            "approveResponse": true
         }
     },
     "chat.agent.maxRequests": 150,
