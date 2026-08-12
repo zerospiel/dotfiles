@@ -1,0 +1,3 @@
+player=mpv
+twitch-supported-codecs=h264,h265,av1
+default-stream=best

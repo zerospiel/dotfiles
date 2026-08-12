@@ -131,7 +131,7 @@
         "transform": "camelcase"
     },
     "go.toolsEnvVars": {
-        "GOEXPERIMENT": "jsonv2"
+        "GOEXPERIMENT": "simd"
     },
     "go.useLanguageServer": true,
     // "go.languageServerExperimentalFeatures": {
