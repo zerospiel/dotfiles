@@ -1,12 +1,12 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "4c63ed3"
-hash = "88e56a64b7ce7c4314427452343fef17"
+rev = "3f2b882"
+hash = "336548d9f67926e12d5584f60b790f1"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-frappe"
-rev = "4770a34"
-hash = "1844f850b0c5d1af511c84399c95e3d7"
+rev = "be0b21d"
+hash = "ab7c71d442d3a9e16331ea0d95ab36a8"
 
 [[flavor.deps]]
 use = "kshawkat/aurora-storm"

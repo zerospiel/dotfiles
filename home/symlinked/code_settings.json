@@ -339,8 +339,6 @@
     "gitlens.showWhatsNewAfterUpgrades": false,
     "gitlens.views.launchpad.files.layout": "list",
     "gitlens.rebaseEditor.openOnPausedRebase": false,
-    "gitlens.ai.model": "vscode",
-    "gitlens.ai.vscode.model": "copilot:gpt-4.1",
     // 
     // Other (language) extensions
     "clang-format.style": "file",
