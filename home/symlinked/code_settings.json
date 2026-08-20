@@ -439,5 +439,6 @@
     "chatgpt.composerEnterBehavior": "cmdIfMultiline",
     "chatgpt.followUpQueueMode": "steer",
     "containers.containerClient": "com.microsoft.visualstudio.containers.podman",
-    "chat.viewSessions.orientation": "stacked"
+    "chat.viewSessions.orientation": "stacked",
+    "chat.mcp.gallery.enabled": true
 }
