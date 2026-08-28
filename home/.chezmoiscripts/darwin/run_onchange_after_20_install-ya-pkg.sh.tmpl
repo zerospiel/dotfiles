@@ -7,4 +7,4 @@ set -euo pipefail
 
 # yazi_package.toml hash: {{ include "symlinked/yazi_package.toml" | sha256sum }}
 
-ya pkg install
+ya pkg install --discard
