@@ -17,5 +17,6 @@ Library/**
 {{- if .personalMachine }}
 .ssh/work_public*
 {{- else }}
+.codex/**
 .ssh/pers*
 {{- end }}

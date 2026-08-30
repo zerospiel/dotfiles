@@ -1,0 +1,47 @@
+model = "gpt-5.6-sol"
+model_reasoning_effort = "high"
+personality = "pragmatic"
+
+[projects."{{ .chezmoi.homeDir }}"]
+trust_level = "trusted"
+
+[projects."{{ .chezmoi.homeDir }}/go/src/github.com/zerospiel/playground"]
+trust_level = "trusted"
+
+[projects."{{ .chezmoi.sourceDir | dir }}"]
+trust_level = "trusted"
+
+[plugins."github@openai-curated"]
+enabled = true
+
+[mcp_servers.home_assistant]
+command = "podman"
+args = [
+  "run",
+  "--rm",
+  "--interactive",
+  "--volume",
+  "ha-mcp-data:/home/mcpuser/.ha-mcp",
+  "--env",
+  "HOMEASSISTANT_URL",
+  "--env",
+  "HOMEASSISTANT_TOKEN",
+  "ghcr.io/homeassistant-ai/ha-mcp:latest",
+]
+default_tools_approval_mode = "auto"
+startup_timeout_sec = 30
+tool_timeout_sec = 120
+
+[mcp_servers.home_assistant.env]
+HOMEASSISTANT_URL = "http://192.168.178.40:8123"
+HOMEASSISTANT_TOKEN = {{ include ".chezmoitemplates/secrets/home-assistant-token.age" | decrypt | trim | quote }}
+
+[tui]
+status_line = [
+  "model-with-reasoning",
+  "current-dir",
+  "context-remaining",
+  "five-hour-limit",
+  "used-tokens",
+]
+status_line_use_colors = true
