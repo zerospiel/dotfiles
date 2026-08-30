@@ -19,33 +19,36 @@ export GOVULNDB=https://vuln.go.dev
 # csharp related envs
 export DOTNET_CLI_TELEMETRY_OPTOUT=0
 
-{{ $paths := list }}
-{{- $home := .chezmoi.homeDir -}}
-{{- $gobin := (coalesce (env "GOBIN") (joinPath .chezmoi.homeDir "go/bin")) -}}
-{{- $candidates := list "/opt/homebrew/opt/gnu-sed/libexec/gnubin" "/opt/homebrew/bin" "/opt/homebrew/sbin" $gobin "/usr/local/go/bin" "/usr/local/bin" "/usr/local/sbin" "/usr/bin" "/bin" "/usr/sbin" "/sbin" -}}
-{{- range $_, $raw := $candidates -}}
-  {{- if and $raw (ne $raw "") -}}
-    {{- $p := $raw -}}
-    {{- if not (hasPrefix "/" $raw) -}}
-      {{- $p = joinPath $home $raw -}}
-    {{- end -}}
-    {{- if stat $p -}}
-      {{- $paths = append $paths $p -}}
-    {{- end -}}
-  {{- end -}}
-{{- end -}}
-{{- range $_, $raw := (splitList ":" (env "PATH")) -}}
-  {{- if and $raw (ne $raw "") -}}
-    {{- $p := $raw -}}
-    {{- if not (hasPrefix "/" $raw) -}}
-      {{- $p = joinPath $home $raw -}}
-    {{- end -}}
-    {{- if stat $p -}}
-      {{- $paths = append $paths $p -}}
-    {{- end -}}
-  {{- end -}}
-{{- end -}}
-export PATH="{{ join ":" (uniq (compact $paths)) }}"
+# Build the preferred path first, then retain unique entries from the runtime
+# environment. This avoids baking chezmoi's apply-time PATH into the dotfiles.
+_preferred_path=(
+  /opt/homebrew/opt/gnu-sed/libexec/gnubin
+  /opt/homebrew/bin
+  /opt/homebrew/sbin
+  "$GOBIN"
+  /usr/local/go/bin
+  /usr/local/bin
+  /usr/local/sbin
+  /usr/bin
+  /bin
+  /usr/sbin
+  /sbin
+)
+
+IFS=: read -r -a _inherited_path <<<"${PATH:-}"
+_new_path=
+
+for path_entry in "${_preferred_path[@]}" "${_inherited_path[@]}"; do
+  [[ -n "$path_entry" ]] || continue
+  [[ "$path_entry" == /* ]] || path_entry="$HOME/$path_entry"
+  [[ -d "$path_entry" ]] || continue
+  [[ ":$_new_path:" == *":$path_entry:"* ]] && continue
+  _new_path="${_new_path:+$_new_path:}$path_entry"
+done
+
+PATH=$_new_path
+export PATH
+unset _preferred_path _inherited_path _new_path path_entry
 
 # other related envs
 export LC_ALL='en_US.UTF-8'

@@ -1,7 +1,23 @@
-# interactive non-login shells
+# interactive (non-login) shell setup; login shells reach this file through .bash_profile
+# shellcheck disable=SC1090,SC1091
 [[ -r "$HOME"/.profile ]] && . "$HOME"/.profile
-[[ -r "$(brew --prefix)"/etc/profile.d/bash_completion.sh ]] && . "$(brew --prefix)"/etc/profile.d/bash_completion.sh
-[[ $(command -v kubectl) ]] && source <(kubectl completion bash) && complete -F __start_kubectl k
-[[ $(command -v kubebuilder) ]] && source <(kubebuilder completion bash)
+[[ $- == *i* ]] || return 0
 
-[[ $- == *i* ]] && stty -ixon
+if command -v brew >/dev/null 2>&1; then
+  brew_completion="$(brew --prefix)/etc/profile.d/bash_completion.sh"
+  [[ -r "$brew_completion" ]] && . "$brew_completion"
+  unset brew_completion
+fi
+
+if command -v kubectl >/dev/null 2>&1; then
+  source <(kubectl completion bash)
+  complete -F __start_kubectl k
+fi
+
+if command -v kubebuilder >/dev/null 2>&1; then
+  source <(kubebuilder completion bash)
+fi
+
+if [[ -t 0 ]]; then
+  stty -ixon
+fi

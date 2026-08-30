@@ -37,7 +37,7 @@
   conflictStyle = diff3
 
 [mergetool "code"]
-  cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
+  cmd = code --wait --merge \"$REMOTE\" \"$LOCAL\" \"$BASE\" \"$MERGED\"
 
 [mergetool "vimdiff"]
   cmd = vimdiff \"$LOCAL\" \"$MERGED\" \"$REMOTE\"
@@ -75,8 +75,8 @@
   insteadOf = https://gerrit.mcp.mirantis.com/a
 {{- end }}
 
-[url "git@github.com:zerospiel"]
-  insteadOf = https://github.com/zerospiel
+[url "git@github.com:zerospiel/"]
+  insteadOf = https://github.com/zerospiel/
 
 [includeIf "hasconfig:remote.*.url:git@github.com*/**"]
   path = public-config

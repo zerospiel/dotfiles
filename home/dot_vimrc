@@ -31,7 +31,9 @@ call plug#end()
 " ========= Basics =========
 filetype plugin indent on
 syntax on
-colorscheme dark_plus
+if !empty(globpath(&runtimepath, 'colors/dark_plus.vim'))
+  colorscheme dark_plus
+endif
 set nocompatible
 set hidden
 set number

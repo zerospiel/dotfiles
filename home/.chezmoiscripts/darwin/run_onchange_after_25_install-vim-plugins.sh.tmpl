@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# vimrc hash: {{ include "dot_vimrc" | sha256sum }}
+
+if ! command -v vim >/dev/null 2>&1; then
+  echo "vim is required but not installed" >&2
+  exit 1
+fi
+
+if [[ ! -r "$HOME/.vim/autoload/plug.vim" ]]; then
+  echo "vim-plug is required but not installed" >&2
+  exit 1
+fi
+
+vim -Nu "$HOME/.vimrc" -n -es \
+  -c 'PlugInstall --sync' \
+  -c 'PlugStatus' \
+  -c 'if getline(1) !=# "Finished. 0 error(s)." | cquit | endif' \
+  -c 'qa!'

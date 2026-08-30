@@ -19,7 +19,7 @@
                 ".git/"
             ],
             "env": {
-                "GOEXPERIMENT": "jsonv2"
+                "GOEXPERIMENT": "simd"
             },
             "initializationOptions": {
                 "gofumpt": true
@@ -45,7 +45,7 @@
                     "vulncheck": "Imports"
                 }
             }
-        },
+        }
     },
     "yaml.format.enable": false,
     "snippets.ultisnips.pythonPrompt": false,

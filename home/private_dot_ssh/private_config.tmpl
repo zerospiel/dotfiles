@@ -28,6 +28,8 @@ Host gerrit.mcp.mirantis.com
 {{- end }}
 
 Host *
+  StrictHostKeyChecking accept-new
+  HashKnownHosts yes
   ServerAliveInterval 600
   TCPKeepAlive yes
   IPQoS=throughput
