@@ -1,16 +1,22 @@
+{{- if not .personalMachine }}
+export AWS_REGION=eu-central-1
+export CONTAINER_TOOL=podman
+export GOPRIVATE=gerrit.mcp.mirantis.com,github.com/Mirantis,github.com/k0rdent/k0rdent-enterprise
+{{- end }}
+
 # golang related envs
 export GOPATH=$HOME/go
 # export GOROOT=$(brew --prefix go@1.12)/libexec
 # export GOROOT=/usr/local/go
 export GOBIN=$GOPATH/bin
-export GONOPROXY=$GOPRIVATE
+export GONOPROXY="${GOPRIVATE:-}"
+export GONOSUMDB="${GOPRIVATE:-}"
 {{- $chain := list }}
 {{- if not .personalMachine }}
   {{- $chain = append $chain "https://artifactory.mcp.mirantis.net/artifactory/api/go/go" }}
 {{- end }}
 {{- $chain = uniq (compact (concat $chain (list "https://proxy.golang.org" "direct"))) }}
 export GOPROXY="{{ join "|" $chain }}"
-export GONOSUMDB=$GOPRIVATE
 export GOSUMDB=sum.golang.org
 export GO111MODULE=on
 export GOINSECURE=none
@@ -19,36 +25,23 @@ export GOVULNDB=https://vuln.go.dev
 # csharp related envs
 export DOTNET_CLI_TELEMETRY_OPTOUT=0
 
-# Build the preferred path first, then retain unique entries from the runtime
-# environment. This avoids baking chezmoi's apply-time PATH into the dotfiles.
-_preferred_path=(
-  /opt/homebrew/opt/gnu-sed/libexec/gnubin
-  /opt/homebrew/bin
-  /opt/homebrew/sbin
-  "$GOBIN"
-  /usr/local/go/bin
-  /usr/local/bin
-  /usr/local/sbin
-  /usr/bin
-  /bin
-  /usr/sbin
-  /sbin
-)
-
-IFS=: read -r -a _inherited_path <<<"${PATH:-}"
-_new_path=
-
-for path_entry in "${_preferred_path[@]}" "${_inherited_path[@]}"; do
-  [[ -n "$path_entry" ]] || continue
-  [[ "$path_entry" == /* ]] || path_entry="$HOME/$path_entry"
+# give existing tool directories priority and preserve the remaining inherited path
+for path_entry in /usr/local/go/bin "$GOBIN" /opt/homebrew/sbin /opt/homebrew/bin /opt/homebrew/opt/gnu-sed/libexec/gnubin; do
   [[ -d "$path_entry" ]] || continue
-  [[ ":$_new_path:" == *":$path_entry:"* ]] && continue
-  _new_path="${_new_path:+$_new_path:}$path_entry"
+  path_tail="${PATH+:$PATH:}"
+  while [[ "$path_tail" == *":$path_entry:"* ]]; do
+    path_tail="${path_tail/":$path_entry:"/:}"
+  done
+  if [[ -z "$path_tail" || "$path_tail" == : ]]; then
+    PATH="$path_entry"
+  else
+    path_tail="${path_tail#:}"
+    path_tail="${path_tail%:}"
+    PATH="$path_entry:$path_tail"
+  fi
 done
-
-PATH=$_new_path
 export PATH
-unset _preferred_path _inherited_path _new_path path_entry
+unset path_entry path_tail
 
 # other related envs
 export LC_ALL='en_US.UTF-8'
@@ -56,6 +49,7 @@ export LANG=$LC_ALL
 export LC_TIME=$LC_ALL
 export LC_COLLATE=$LC_ALL
 export LC_CTYPE=$LC_ALL
+# shellcheck disable=SC2155
 export PS1="\[\033[38;5;5m\]\W\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]\[\033[38;5;10m\]\\$\[$(tput sgr0)\]\[\033[38;5;15m\]\[$(tput sgr0)\] \[\033[38;5;14m\]\$(get_branch)\[$(tput sgr0)\]"
 export CLICOLOR=1
 export LSCOLORS=Gxfxcxdxbxegedabagacad

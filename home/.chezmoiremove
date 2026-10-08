@@ -1,0 +1,4 @@
+{{- if not .personalMachine }}
+.ssh/work_public
+.ssh/work_public.pub
+{{- end }}

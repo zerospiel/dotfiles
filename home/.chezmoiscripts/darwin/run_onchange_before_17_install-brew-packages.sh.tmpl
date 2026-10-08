@@ -1,107 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# vim: set expandtab ft=bash ts=2 sw=2:
+# keep the manifest and any Bundle lockfile outside the destination state
+tmp_dir="$(mktemp -d)"
+trap 'rm -rf "$tmp_dir"' EXIT
 
-packages_common=(
-  age
-  bash
-  bash-completion@2
-  calc
-  chezmoi
-  clang-format
-  cloc
-  cloudflare-speed-cli
-  fzf
-  gawk
-  git
-  git-delta
-  gitleaks
-  gnu-sed
-  goreleaser
-  helm
-  htop
-  iproute2mac
-  jq
-  k9s
-  kind
-  kubernetes-cli
-  lima
-  lima-additional-guestagents
-  mole
-  mpv
-  nmap
-  node
-  pandoc
-  podman
-  podman-compose
-  poppler
-  pre-commit
-  readline
-  ripgrep
-  shellcheck
-  streamlink
-  tmux
-  tree
-  vim
-  watch
-  weasyprint
-  wget
-  yazi
-  yq
-  zerospiel/tools/pidof
-)
+cat >"$tmp_dir/Brewfile" <<'BREWFILE'
+{{ includeTemplate "Brewfile" . }}
+BREWFILE
 
-# shellcheck disable=SC1083
-packages_machine=(
-  {{- if .personalMachine }}
-  marp-cli
-  {{- else }}
-  awscli
-  azure-cli
-  cloud-nuke
-  clusterctl
-  cmctl
-  coreutils
-  gh
-  govc
-  graphviz
-  jwt-cli
-  minio-mc
-  openstackclient
-  qemu
-  sshuttle
-  velero
-  {{- end }}
-)
-
-deduped_packages=()
-while IFS= read -r package; do
-  deduped_packages+=("$package")
-done < <(printf '%s\n' "${packages_common[@]}" "${packages_machine[@]}" | sort -u)
-
-if [[ "${1:-}" == "--list" ]]; then
-  # List mode is used by brew-sync-report to read tracked packages without installing.
-  printf '%s\n' "${deduped_packages[@]}"
-  exit 0
-fi
-
-if ((${#deduped_packages[@]} == 0)); then
-  exit 0
-fi
-
-installed_packages="$(brew list --formula --full-name 2>/dev/null || true)"
-
-packages_to_install=()
-for package in "${deduped_packages[@]}"; do
-  # brew list reports formula tokens; strip tap prefix when matching tapped entries.
-  if printf '%s\n' "$installed_packages" | grep -Fxq "$package"; then
-    continue
-  fi
-
-  packages_to_install+=("$package")
-done
-
-if ((${#packages_to_install[@]})); then
-  brew install --formulae "${packages_to_install[@]}"
-fi
+brew bundle install --file="$tmp_dir/Brewfile"

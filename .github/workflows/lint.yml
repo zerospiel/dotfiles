@@ -15,6 +15,12 @@ jobs:
       - name: Install ShellCheck
         run: sudo apt-get install -y shellcheck curl
 
+      - name: Install chezmoi for template checks
+        run: |
+          mkdir -p "$RUNNER_TEMP/chezmoi-bin"
+          curl -fsLS https://get.chezmoi.io | sh -s -- -b "$RUNNER_TEMP/chezmoi-bin"
+          echo "$RUNNER_TEMP/chezmoi-bin" >> "$GITHUB_PATH"
+
       - name: Run ShellCheck
         run: scripts/shellcheck.bash
 
@@ -32,10 +38,7 @@ jobs:
       - name: Install shfmt
         run: |
           go install mvdan.cc/sh/v3/cmd/shfmt@latest
-          export PATH="~/go/bin:$PATH"
-
-      - name: List files to shfmt
-        run: shfmt -f ./home/
+          echo "$(go env GOPATH)/bin" >> "$GITHUB_PATH"
 
       - name: Run shfmt
         run: scripts/shfmt.bash

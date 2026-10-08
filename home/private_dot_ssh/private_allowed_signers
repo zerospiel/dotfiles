@@ -1,0 +1,3 @@
+# see man ssh-keygen(1) ALLOWED SIGNERS
+mmorgen@mirantis.com,mmorgen@posteo.com namespaces="git" ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDhnVVmKeeFrrGXOkzRYNXbGBoWApF7vuRRAa48X+coj
+mmorgen@posteo.com,mmorgen@mirantis.com namespaces="git" ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFmvWHigZwNCA8GIdni1Cfr5IOcf3HPdYctngUcZdD2X

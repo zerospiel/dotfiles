@@ -5,7 +5,7 @@ Host github.com
   UseKeychain yes
   {{- end }}
   Preferredauthentications publickey
-  IdentityFile ~/.ssh/{{ if .personalMachine }}pers{{ else }}work_public{{ end }}
+  IdentityFile ~/.ssh/{{ if .personalMachine }}pers{{ else }}work{{ end }}
 
 Host homeassistant
   IgnoreUnknown AddKeysToAgent,UseKeychain
@@ -15,7 +15,7 @@ Host homeassistant
   UseKeychain yes
   {{- end }}
   Preferredauthentications publickey
-  IdentityFile ~/.ssh/{{ if .personalMachine }}pers{{ else }}work_public{{ end }}
+  IdentityFile ~/.ssh/{{ if .personalMachine }}pers{{ else }}work{{ end }}
 
 {{- if not .personalMachine }}
 Host gerrit.mcp.mirantis.com
@@ -23,7 +23,7 @@ Host gerrit.mcp.mirantis.com
   AddKeysToAgent yes
   UseKeychain yes
   Preferredauthentications publickey
-  IdentityFile ~/.ssh/work_public
+  IdentityFile ~/.ssh/work
   Port 29418
 {{- end }}
 

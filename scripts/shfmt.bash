@@ -2,12 +2,14 @@
 set -euo pipefail
 
 mode="-d"
-
 if [[ "${1:-}" == "--write" || "${1:-}" == "-w" ]]; then
   mode="-w"
   shift
 fi
 
-target="${1:-.}"
+if (($# == 0)); then
+  cd "$(dirname "${BASH_SOURCE[0]}")/.."
+  set -- scripts/*.bash home/dot_bashrc home/dot_bash_profile
+fi
 
-exec shfmt -i 2 -ci "$mode" "$target"
+exec shfmt -ln bash -i 2 -ci "$mode" "$@"

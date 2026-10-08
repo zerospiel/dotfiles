@@ -22,7 +22,6 @@ brew install chezmoi
 
 # 3) Initialize and apply this dotfiles repo
 chezmoi init zerospiel --apply
-chezmoi apply
 ```
 
 ## Thanks

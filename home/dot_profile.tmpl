@@ -1,5 +1,5 @@
 # profile -*- mode: sh -*-
-# vim: set expandtab ft=sh ts=2 sw=2:
+# shellcheck disable=SC1090
 
 for f in "$HOME/.profile.d/"*.sh; do
   [ -r "$f" ] && . "$f"

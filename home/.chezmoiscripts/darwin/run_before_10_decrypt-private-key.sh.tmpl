@@ -1,15 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-if ! command -v brew >/dev/null 2>&1; then
-  echo "brew is required but not installed" >&2
-  exit 1
-fi
-
-if ! command -v age >/dev/null 2>&1; then
-  brew install age
-fi
-
 key_dir="$HOME/.config/chezmoi"
 key_file="$key_dir/key.txt"
 
@@ -17,8 +8,14 @@ umask 077
 mkdir -p "$key_dir"
 chmod 700 "$key_dir"
 
-if [[ ! -f "$key_file" ]]; then
-  chezmoi age decrypt --output "$key_file" --passphrase "{{ .chezmoi.sourceDir }}/key.txt.age"
+if [[ ! -s "$key_file" ]]; then
+  if ! command -v age >/dev/null 2>&1; then
+    brew install age
+  fi
+  tmp_key="$(mktemp "$key_dir/.key.txt.XXXXXX")"
+  trap 'rm -f "$tmp_key"' EXIT
+  chezmoi age decrypt --output "$tmp_key" --passphrase "{{ .chezmoi.sourceDir }}/key.txt.age"
+  mv "$tmp_key" "$key_file"
 fi
 
 chmod 600 "$key_file"

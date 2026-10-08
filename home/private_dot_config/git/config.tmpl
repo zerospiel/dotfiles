@@ -1,4 +1,3 @@
-{{/* vim: set filetype=gitconfig: */}}
 
 [alias]
   tree = log --graph --oneline --all
@@ -9,9 +8,6 @@
 
 [core]
   editor = vim
-  compression = 0
-  packedGitLimit = 512m
-  packedGitWindowSize = 512m
   pager = delta
   whitespace = trailing-space,space-before-tab
 
@@ -29,9 +25,6 @@
 [init]
   defaultBranch = main
 
-[http]
-  postBuffer = 157286400
-
 [merge]
   tool = code
   conflictStyle = diff3
@@ -41,11 +34,6 @@
 
 [mergetool "vimdiff"]
   cmd = vimdiff \"$LOCAL\" \"$MERGED\" \"$REMOTE\"
-
-[pack]
-  deltaCacheSize = 2047m 
-  packSizeLimit = 2047m 
-  windowMemory = 2047m
 
 [pull]
   ff = only
@@ -65,7 +53,7 @@
 [user]
   name = Michael Morgen
   email = {{ .email }}
-  signingkey = ~/.ssh/{{ if .personalMachine }}pers{{ else }}work_public{{ end }}.pub
+  signingkey = ~/.ssh/{{ if .personalMachine }}pers{{ else }}work{{ end }}.pub
 
 {{- if not .personalMachine }}
 [url "ssh://mmorgoev@gerrit.mcp.mirantis.com:29418"]
