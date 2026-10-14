@@ -72,6 +72,7 @@ cask "podman-desktop"
 cask "spotify"
 cask "zoom"
 {{- if .personalMachine }}
+cask "claude-code"
 cask "codex"
 cask "discord"
 cask "dropbox"
