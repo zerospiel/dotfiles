@@ -3,7 +3,6 @@ key.txt.age
 symlinked/**
 
 {{- if eq .chezmoi.os "windows" }}
-.chezmoiscripts/non-windows/**
 .profile
 .bash_profile
 .bashrc

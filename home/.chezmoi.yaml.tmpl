@@ -1,6 +1,6 @@
 encryption: age
 
-{{- $personalMachine := promptBool "Is it personal machine" -}}
+{{- $personalMachine := promptBoolOnce . "personalMachine" "Is it personal machine" -}}
 
 {{- $email := "mmorgen@posteo.com" }}
 {{- if not $personalMachine -}}
@@ -20,7 +20,7 @@ textconv:
 
 age:
   identity: "~/.config/chezmoi/key.txt"
-  recipient: age1zjl080l87vw9wqkxhxj8rxj89je39au82s0xr48tlfwkhjty9e3swmvp9g
+  recipient: age133qwdtne8tjwjvq8ep2qyd7c74aj6cz9u2s93w5h86746mu6yeasnsplgl
 
 data:
   personalMachine: {{ $personalMachine }}
