@@ -6,24 +6,15 @@ export GOPRIVATE=gerrit.mcp.mirantis.com,github.com/Mirantis,github.com/k0rdent/
 
 # golang related envs
 export GOPATH=$HOME/go
-# export GOROOT=$(brew --prefix go@1.12)/libexec
-# export GOROOT=/usr/local/go
 export GOBIN=$GOPATH/bin
-export GONOPROXY="${GOPRIVATE:-}"
-export GONOSUMDB="${GOPRIVATE:-}"
-{{- $chain := list }}
-{{- if not .personalMachine }}
-  {{- $chain = append $chain "https://artifactory.mcp.mirantis.net/artifactory/api/go/go" }}
+{{- if .personalMachine }}
+export GOPROXY='https://proxy.golang.org|direct'
+{{- else }}
+export GOPROXY='https://artifactory.mcp.mirantis.net/artifactory/api/go/go|https://proxy.golang.org|direct'
 {{- end }}
-{{- $chain = uniq (compact (concat $chain (list "https://proxy.golang.org" "direct"))) }}
-export GOPROXY="{{ join "|" $chain }}"
-export GOSUMDB=sum.golang.org
-export GO111MODULE=on
-export GOINSECURE=none
-export GOVULNDB=https://vuln.go.dev
 
 # csharp related envs
-export DOTNET_CLI_TELEMETRY_OPTOUT=0
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 # give existing tool directories priority and preserve the remaining inherited path
 for path_entry in /usr/local/go/bin "$GOBIN" /opt/homebrew/sbin /opt/homebrew/bin /opt/homebrew/opt/gnu-sed/libexec/gnubin; do
@@ -46,11 +37,8 @@ unset path_entry path_tail
 # other related envs
 export LC_ALL='en_US.UTF-8'
 export LANG=$LC_ALL
-export LC_TIME=$LC_ALL
-export LC_COLLATE=$LC_ALL
-export LC_CTYPE=$LC_ALL
-# shellcheck disable=SC2155
-export PS1="\[\033[38;5;5m\]\W\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]\[\033[38;5;10m\]\\$\[$(tput sgr0)\]\[\033[38;5;15m\]\[$(tput sgr0)\] \[\033[38;5;14m\]\$(get_branch)\[$(tput sgr0)\]"
+# shellcheck disable=SC2016
+PS1='\[\e[38;5;5m\]\W\[\e[0m\] \[\e[38;5;10m\]\$\[\e[0m\] \[\e[38;5;14m\]$(get_branch)\[\e[0m\]'
 export CLICOLOR=1
 export LSCOLORS=Gxfxcxdxbxegedabagacad
 {{- if eq .chezmoi.os "darwin" }}
