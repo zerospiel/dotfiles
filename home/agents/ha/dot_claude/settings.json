@@ -1,0 +1,5 @@
+{
+  "permissions": {
+    "allow": ["mcp__home_assistant__*"]
+  }
+}

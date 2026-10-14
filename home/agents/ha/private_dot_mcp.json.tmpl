@@ -1,0 +1,24 @@
+{
+  "mcpServers": {
+    "home_assistant": {
+      "type": "stdio",
+      "command": "podman",
+      "args": [
+        "run",
+        "--rm",
+        "--interactive",
+        "--volume",
+        "ha-mcp-data:/home/mcpuser/.ha-mcp",
+        "--env",
+        "HOMEASSISTANT_URL",
+        "--env",
+        "HOMEASSISTANT_TOKEN",
+        "ghcr.io/homeassistant-ai/ha-mcp:latest"
+      ],
+      "env": {
+        "HOMEASSISTANT_URL": "http://192.168.178.40:8123",
+        "HOMEASSISTANT_TOKEN": {{ include ".chezmoitemplates/secrets/home-assistant-token.age" | decrypt | trim | quote }}
+      }
+    }
+  }
+}

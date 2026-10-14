@@ -18,5 +18,6 @@ Library/**
 .ssh/work.pub
 {{- else }}
 .claude/**
+agents/**
 .ssh/pers*
 {{- end }}
