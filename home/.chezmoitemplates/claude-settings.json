@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "deny": [
+      "Read(~/.config/chezmoi/**)",
+      "Read(~/.ssh/**)",
+      "Read(~/.config/containers/auth.json)",
+      "Bash(chezmoi cat *)",
+      "Bash(chezmoi decrypt *)",
+      "Bash(chezmoi age *)"
+    ],
+    "ask": [
+      "Bash(git push *)",
+      "Bash(chezmoi apply *)",
+      "Bash(chezmoi update *)"
+    ],
+    "disableBypassPermissionsMode": "disable"
+  },
+  "sandbox": {
+    "enabled": true,
+    "excludedCommands": ["podman *"],
+    "filesystem": {
+      "allowWrite": ["~/go", "~/Library/Caches"]
+    },
+    "network": {
+      "allowedDomains": [
+        "github.com",
+        "*.github.com",
+        "*.githubusercontent.com",
+        "proxy.golang.org",
+        "sum.golang.org",
+        "vuln.go.dev",
+        "registry.npmjs.org"
+      ]
+    }
+  },
+  "env": {
+    "DISABLE_TELEMETRY": "1",
+    "DISABLE_ERROR_REPORTING": "1"
+  },
+  "cleanupPeriodDays": 14,
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  }
+}
