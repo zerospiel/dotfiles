@@ -17,5 +17,6 @@ Library/**
 .ssh/work
 .ssh/work.pub
 {{- else }}
+.claude/**
 .ssh/pers*
 {{- end }}
