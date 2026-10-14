@@ -18,6 +18,5 @@ Library/**
 .ssh/work
 .ssh/work.pub
 {{- else }}
-.codex/**
 .ssh/pers*
 {{- end }}
