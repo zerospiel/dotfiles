@@ -10,7 +10,6 @@
       "Bash(chezmoi age *)"
     ],
     "ask": [
-      "Bash(git push *)",
       "Bash(chezmoi apply *)",
       "Bash(chezmoi update *)"
     ],
@@ -18,9 +17,21 @@
   },
   "sandbox": {
     "enabled": true,
-    "excludedCommands": ["podman *"],
+    "excludedCommands": [
+      "podman *",
+      "go get *",
+      "go mod *",
+      "gh *",
+      "git fetch *",
+      "git pull *",
+      "git push *",
+      "git commit *"
+    ],
     "filesystem": {
-      "allowWrite": ["~/go", "~/Library/Caches"]
+      "allowWrite": [
+        "~/go",
+        "~/Library/Caches"
+      ]
     },
     "network": {
       "allowedDomains": [
