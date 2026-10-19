@@ -236,6 +236,7 @@
         "reportOptionalSubscript": "none",
         "reportOptionalMemberAccess": "none"
     },
+    "python.terminal.activateEnvironment": false,
     //
     // bash
     "bashIde.shfmt.caseIndent": true,
@@ -440,5 +441,7 @@
     "chat.viewSessions.orientation": "stacked",
     "chat.mcp.gallery.enabled": true,
     "claudeCode.preferredLocation": "panel",
-    "claudeCode.hideOnboarding": true
+    "claudeCode.hideOnboarding": true,
+    "claudeCode.archiveInactiveSessions": 2,
+    "claudeCode.attachOpenFile": false
 }
